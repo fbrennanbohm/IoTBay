@@ -23,7 +23,6 @@
         <jsp:useBean id="user" class="uts.isd.model.User" scope="session">
             <jsp:setProperty name="user" property="firstName" value="<%= firstName %>"/>
             <jsp:setProperty name="user" property="lastName" value="<%= lastName %>" />
-            <jsp:setProperty name="user" property="gender" value="<%= gender %>" />
             <jsp:setProperty name="user" property="email" value="<%= email %>" />
             <jsp:setProperty name="user" property="password" value="<%= password %>" />
         </jsp:useBean>

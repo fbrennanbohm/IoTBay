@@ -40,6 +40,9 @@
             <li class="nav-item">
               <a class="nav-link" href="main.jsp">My Information</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="UserListController">Admin Menu</a>
+            </li>
             <% } %>
             </ul>
         </div>
@@ -54,5 +57,7 @@
                 <li>... and much more!</li>
             </ul>
             </div>
+            
+            <jsp:include page="/ConnServlet" flush="true"/>
     </body>
 </html>

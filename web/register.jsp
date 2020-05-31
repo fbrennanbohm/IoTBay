@@ -72,20 +72,6 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" name="password" id="password">
                 </div>
-                
-                Gender<br>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                        Male
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-                        Female
-                    </label>
-                </div>
 
                 <div class="form-text mt-2">
                     By registering, you confirm that you have read, understood 

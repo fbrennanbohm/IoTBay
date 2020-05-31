@@ -1,15 +1,17 @@
 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uts.isd.model.User"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>IoTBay - My Dashboard</title>
+        <title>IoTBay - User List</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        
         <div class="container-fluid px-5 py-3">
             <div class="row mb-3">
             <div class="col-sm-4"><span class="display-4">IoTBay</span></div>
@@ -40,7 +42,10 @@
             </li>
             <% if (loggedIn) { %>
             <li class="nav-item">
-              <a class="nav-link active" href="main.jsp">My Information</a>
+              <a class="nav-link" href="main.jsp">My Information</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="UserListController">Admin Menu</a>
             </li>
             <% } %>
         </div>
@@ -51,46 +56,56 @@
                 <div class="col-sm-3">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">My Dashboard</a>
+                            <a class="nav-link active" href="UserListController">View User list</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">View Order History</a>
+                            <a class="nav-link" href="#">Search Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Update Personal Details</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">View Access Logs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Delete My Account</a>
+                            <a class="nav-link" href="newUser.jsp">Create New User</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-sm-9">
                     
-                <h1>My Dashboard</h1>
-                <p>Your personal information is displayed in the table below.</p>
+                <h1>User List</h1>
+                <p>All the users in the IoTBay database are displayed below.</p>
                 <table class="table-striped table-hover table-bordered my-3">
                     <tr>
-                        <td>First Name</td>
-                        <td>${user.firstName}</td>
+                        <th>User ID</th>
+                        <th>Role</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
                     </tr>
+                    <% 
+                        List<User> userList = (List<User>)request.getAttribute("userList");
+                        if (userList != null) {for (User u : userList) {
+                    %>
                     <tr>
-                        <td>Last Name</td>
-                        <td>${user.lastName}</td>
+                        <td><%= u.getUserId() %></td>
+                        <td><%= u.getRoleName() %></td>
+                        <td><%= u.getFirstName() %></td>
+                        <td><%= u.getLastName() %></td>
+                        <td><%= u.getEmail() %></td>
+                        <td><a href="#" class="btn btn-info mx-2">Edit</a>
+                            <% if (!u.isAdmin()) { %>
+                            <a href="#" class="btn btn-secondary mx-2">Delete</a><% } else { %>
+                            <a href="#" class="btn btn-secondary disabled mx-2">Delete</a>
+                            <% } %>
+                        </td>
                     </tr>
+                    <% }} else { %>
                     <tr>
-                        <td>Email</td>
-                        <td>${user.email}</td>
+                        <td colspan="6">No users found.</td>
                     </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td>${user.password}</td>
-                    </tr>
+                    <% } %>
                 </table>
+                
                 </div>
             </div>
         </div>
+        
     </body>
 </html>
