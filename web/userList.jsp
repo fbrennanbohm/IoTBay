@@ -15,19 +15,7 @@
 
         <div class="container-fluid px-5 my-3">
             <div class="row">
-                <div class="col-sm-3">
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="UserListController">View User list</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Search Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="newUser.jsp">Create New User</a>
-                        </li>
-                    </ul>
-                </div>
+                <jsp:include page="_usersNav.jsp" />
                 <div class="col-sm-9">
 
                     <h1>User List</h1>
