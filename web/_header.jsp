@@ -6,7 +6,6 @@
     boolean loggedIn = !(user == null || user.getEmail().equals(""));
 
     String url = request.getRequestURL().toString();
-    boolean isIndexPage = (url.indexOf("index.jsp") > -1);
 %>
 <div class="container-fluid px-5 py-3">
     <div class="row mb-3">

@@ -60,7 +60,7 @@
                             </td>
                         </tr>
                         <% }
-                    } else { %>
+                        } else { %>
                         <tr>
                             <td colspan="6">No users found.</td>
                         </tr>
@@ -71,5 +71,6 @@
             </div>
         </div>
 
+        <jsp:include page="/ConnServlet" flush="true"/>
     </body>
 </html>
