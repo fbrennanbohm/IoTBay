@@ -12,6 +12,7 @@
             // Terminate the session
             session.invalidate();
         %>
+
         <div class="container-fluid px-5 mt-4">
             <h1>Logout</h1>
             <div class="alert alert-success my-3">
@@ -19,7 +20,7 @@
                 Please <a href="index.jsp" class="alert-link">click here</a> to go back to the home page.
             </div>
         </div>
-        
-        
+
+
     </body>
 </html>
