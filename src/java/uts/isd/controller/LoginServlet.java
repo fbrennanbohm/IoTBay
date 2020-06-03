@@ -9,8 +9,7 @@ import java.io.IOException;
 
 
      import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
      import javax.servlet.ServletException;
      import javax.servlet.http.HttpServlet;
 
@@ -55,7 +54,7 @@ if(!validator.validateEmail(email)) {
     try{
             User user=userDAO.findUser(email,password);
             if(user!=null) {      
-                userDAO.addAcess(email,logIn);
+                
                 session.setAttribute("user",user);
                 request.getRequestDispatcher("welcome.jsp").include(request,response);
                 
