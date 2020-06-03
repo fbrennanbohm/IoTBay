@@ -78,9 +78,9 @@
                         <td><%= u.getFirstName() %></td>
                         <td><%= u.getLastName() %></td>
                         <td><%= u.getEmail() %></td>
-                        <td><a href="EditUserController?id=<%=u.getUserId()%>" class="btn btn-info mx-2">Edit</a>
+                        <td><a href="AdminEditUserController?id=<%=u.getUserId()%>" class="btn btn-info mx-2">Edit</a>
                             <% if (!u.isAdmin()) { %>
-                            <a href="ConfirmDeleteUserController?id=<%=u.getUserId()%>" class="btn btn-secondary mx-2">Delete</a><% } else { %>
+                            <a href="AdminConfirmDeleteUserController?id=<%=u.getUserId()%>" class="btn btn-secondary mx-2">Delete</a><% } else { %>
                             <a href="#" class="btn btn-secondary disabled mx-2">Delete</a>
                             <% } %>
                         </td>
