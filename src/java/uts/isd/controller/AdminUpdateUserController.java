@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package uts.isd.controller;
 
 import java.io.IOException;
@@ -18,25 +14,23 @@ import uts.isd.model.User;
 import uts.isd.model.dao.UserDAO;
 
 /**
- * This servlet calls the Validator class to perform data validation on the user inputs.
- * If all the inputs are valid, the servlet creates a new record for the user in the database.
+ * This servlet validates the user inputs and updates the specified user record (if validation is successful).
  * 
  * @author Patrick
  */
-public class CreateUserController extends HttpServlet {
-
+public class AdminUpdateUserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         HttpSession session = request.getSession();
         
+        int userId = Integer.parseInt(request.getParameter("userId"));
         int roleId = Integer.parseInt(request.getParameter("roleId"));
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-
+        
         Validator v = new Validator();
         if (v.checkEmpty(firstName, lastName, email, password)) {
             request.setAttribute("errorMsg", "One or more fields are not filled in.");
@@ -56,17 +50,22 @@ public class CreateUserController extends HttpServlet {
             request.setAttribute("errorMsg", "Password must be between 6 to 20 characters in length.");
             request.getRequestDispatcher("newUser.jsp").forward(request, response);
         } else {
-            User user = new User(roleId, firstName, lastName, email, password);
             UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
             try {
-                userDAO.addUser(roleId, firstName, lastName, email, password);
-                request.setAttribute("successMsg", "User was successfully created.");
-                request.setAttribute("currentUser", user);
-                request.getRequestDispatcher("newUser.jsp").forward(request, response);
+                User user = userDAO.findUser(userId);
+                if (user != null) {
+                    userDAO.updateUser(userId, roleId, firstName, lastName, email, password);
+                    request.setAttribute("successMsg", "Update was successful.");
+                    request.setAttribute("currentUser", userDAO.findUser(userId));
+                    request.getRequestDispatcher("adminEditUser.jsp?user=" + userId).forward(request, response);
+                } else {
+                    request.setAttribute("errorMsg", "User could not be found in the database.");
+                    request.getRequestDispatcher("adminEditUser.jsp?user=" + userId).forward(request, response);
+                }
             } catch (SQLException ex) {
-                Logger.getLogger(CreateUserController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AdminUpdateUserController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.getRequestDispatcher("newUser.jsp").forward(request, response);
+            request.getRequestDispatcher("adminEditUser.jsp?user=" + userId).forward(request, response);
         }
     }
 }

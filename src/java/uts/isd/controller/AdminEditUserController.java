@@ -14,7 +14,8 @@ import uts.isd.model.User;
 import uts.isd.model.dao.UserDAO;
 
 /**
- *
+ * This servlet loads the edit user page.
+ * 
  * @author Patrick
  */
 public class AdminEditUserController extends HttpServlet {
@@ -24,13 +25,12 @@ public class AdminEditUserController extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        int userId = Integer.parseInt(request.getParameter("id"));
         
+        int userId = Integer.parseInt(request.getParameter("id")); // get userId from HTTP request parameter
         UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
-        
-        User user = null;
+
         try {
-            user = userDAO.findUser(userId);
+            User user = userDAO.findUser(userId);
             if (user != null) {
                 request.setAttribute("currentUser", user);
                 request.getRequestDispatcher("adminEditUser.jsp").forward(request, response);
@@ -45,6 +45,4 @@ public class AdminEditUserController extends HttpServlet {
         }
         request.getRequestDispatcher("adminEditUser.jsp").forward(request, response);
     }
-    
-    
 }

@@ -18,7 +18,8 @@ import uts.isd.model.User;
 import uts.isd.model.dao.UserDAO;
 
 /**
- *
+ * This servlet loads the user delete confirmation page.
+ * 
  * @author Patrick
  */
 public class AdminConfirmDeleteUserController extends HttpServlet {
@@ -29,12 +30,10 @@ public class AdminConfirmDeleteUserController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         int userId = Integer.parseInt(request.getParameter("id"));
-        
         UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
-        
-        User user = null;
+
         try {
-            user = userDAO.findUser(userId);
+            User user = userDAO.findUser(userId);
             if (user != null) {
                 request.setAttribute("currentUser", user);
                 request.getRequestDispatcher("adminDeleteUser.jsp").forward(request, response);

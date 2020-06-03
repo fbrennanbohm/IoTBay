@@ -14,36 +14,32 @@ import uts.isd.model.User;
 import uts.isd.model.dao.UserDAO;
 
 /**
- *
+ * This servlet deletes the selected user from the database.
  * @author Patrick
  */
 public class AdminDeleteUserController extends HttpServlet {
+    
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
         
+        HttpSession session = request.getSession();
         int userId = Integer.parseInt(request.getParameter("userId"));
-        int roleId = Integer.parseInt(request.getParameter("roleId"));
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        User user = new User(userId, roleId, firstName, lastName, email, password);
         UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
+        
         try {
+            User user = userDAO.findUser(userId);
             if (user != null) {
                 userDAO.deleteUser(userId);
                 request.setAttribute("successMsg", "User was deleted successfully.");
-                request.getRequestDispatcher("adminEditUser.jsp").forward(request, response);
-            }
-            else {
-                request.setAttribute("errorMsg", "User could not be deleted.");
-                request.getRequestDispatcher("adminEditUser.jsp?user=" + userId).forward(request, response);
+                request.getRequestDispatcher("adminDeleteUser.jsp").forward(request, response);
+            } else {
+                request.setAttribute("errorMsg", "User could not be found in the database.");
+                request.getRequestDispatcher("adminDeleteUser.jsp?user=" + userId).forward(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AdminDeleteUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("adminEditUser.jsp?user=" + userId).forward(request, response);
+        request.getRequestDispatcher("adminDeleteUser.jsp?user=" + userId).forward(request, response);
     }
 }

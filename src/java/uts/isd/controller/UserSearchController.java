@@ -19,10 +19,13 @@ import uts.isd.model.User;
 import uts.isd.model.dao.UserDAO;
 
 /**
- *
+ * This servlet searches the database for users that match the name and email specified by the user.
+ * It then sets the list of results in the JSP request object.
+ * 
  * @author Patrick
  */
 public class UserSearchController extends HttpServlet {
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

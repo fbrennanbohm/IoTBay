@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="form-check mb-3">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="roleId" id="systemAdmin" value="3" disabled>
+                                        <input class="form-check-input" type="radio" name="roleId" id="systemAdmin" value="3">
                                         System Admin
                                     </label>
                                 </div>

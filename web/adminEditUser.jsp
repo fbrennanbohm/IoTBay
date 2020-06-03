@@ -58,7 +58,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         
-                        <form action="UpdateUserController" method="post">
+                        <form action="AdminUpdateUserController" method="post">
                             <div class="form-group">
                                 <label for="userId">User ID</label>
                                 <input type="text" value="${currentUser.userId}" class="form-control" name="userId" id="userId" readonly>
@@ -67,23 +67,21 @@
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="radio" name="roleId" id="customer" value="1"
-                                           <% if (currentUser.isCustomer()) { %> checked="true" <% } %>
-                                           <% if (currentUser.isAdmin()) { %> disabled <% } %>>
+                                           <% if (currentUser.isCustomer()) { %> checked="true" <% } %>>
                                     Customer
                                 </label>
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="radio" name="roleId" id="staff" value="2"
-                                           <% if (currentUser.isStaff()) { %> checked="true" <% } %>
-                                           <% if (currentUser.isAdmin()) { %> disabled <% } %>>
+                                           <% if (currentUser.isStaff()) { %> checked="true" <% } %>>
                                     Staff
                                 </label>
                             </div>
                             <div class="form-check mb-3">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" 
-                                           <% if (currentUser.isAdmin()) { %> checked="true" <% } %> type="radio" name="roleId" id="systemAdmin" value="3" disabled>
+                                    <input class="form-check-input" type="radio" name="roleId" id="systemAdmin" value="3"
+                                           <% if (currentUser.isAdmin()) { %> checked="true" <% } %>>
                                     System Admin
                                 </label>
                             </div>
@@ -105,7 +103,7 @@
 
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" value="${currentUser.password}" class="form-control" name="password" id="password">
+                                <input type="text" value="${currentUser.password}" class="form-control" name="password" id="password">
                             </div>
                             <div class="container mt-4">
                                 <input type="submit" class="btn btn-primary" value="Update Details"/>

@@ -33,6 +33,15 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>AdminUpdateUserController</servlet-name>
+        <servlet-class>uts.isd.controller.AdminUpdateUserController</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>AdminUpdateUserController</servlet-name>
+        <url-pattern>/AdminUpdateUserController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>ConnServlet</servlet-name>
         <servlet-class>uts.isd.controller.ConnServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
