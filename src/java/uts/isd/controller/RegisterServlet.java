@@ -63,8 +63,8 @@ else{
                 request.getRequestDispatcher("register.jsp").include(request,response);
             } else {
                 
-                userDAO.addUser(roleId,fname,lname,email,password);
-                User user = new User(roleId,fname,lname,email,password);
+               userDAO.addUser(roleId,fname,lname,email,password);                
+                User user = userDAO.findUser(email,password);
                 session.setAttribute("user",user);
                 request.getRequestDispatcher("welcome.jsp").include(request, response);
             }
