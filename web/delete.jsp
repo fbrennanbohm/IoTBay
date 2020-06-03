@@ -37,19 +37,16 @@
                 <div class="col-sm-3">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">My Dashboard</a>
+                            <a class="nav-link" href="main.jsp">My Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">View Order History</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Update Personal Details</a>
+                          <li class="nav-item">
+                            <a class="nav-link" href="EditServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Update Personal Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">View Access Logs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Delete My Account</a>
+                            <a class="nav-link" href="DeleteServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'">Delete My Account</a>
                         </li>
                     </ul>
                 </div>
