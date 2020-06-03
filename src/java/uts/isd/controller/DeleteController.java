@@ -42,8 +42,7 @@ public class DeleteController extends HttpServlet {
          } catch (SQLException ex) {
              Logger.getLogger(DeleteController.class.getName()).log(Level.SEVERE, null, ex);
          }
-            session.invalidate();       
-            request.getRequestDispatcher("index.jsp").include(request, response);
+             request.getRequestDispatcher("logout.jsp").include(request, response);
 }
      }
           
