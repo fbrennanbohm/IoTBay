@@ -11,9 +11,7 @@
     <div class="row mb-3">
         <div class="col-sm-4"><span class="display-4">IoTBay </span></div>
         <div class="col-sm-8 text-right my-auto">
-            <%
-                if (!loggedIn) {
-            %>
+            <% if (!loggedIn) { %>
             You are not logged in.
             <a href="register.jsp" class="btn btn-primary m-2">Register</a>
             <a href="login.jsp" class="btn btn-secondary m-2">Login</a>
@@ -41,7 +39,7 @@
 
         <%if (user.isAdmin()) {%>
         <li class="nav-item">
-            <a class="nav-link <%=(url.indexOf("UserListController") > -1 ? "active" : "")%>" href="UserListController">Admin Menu</a>
+            <a class="nav-link <%=(url.indexOf("userList.jsp") > -1 ? "active" : "")%>" href="UserListController">Admin Menu</a>
         </li>
         <% }}%>
 </div>
