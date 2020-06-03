@@ -1,5 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="uts.isd.model.User"%>
 <!DOCTYPE html>
 <html>
     <head>
