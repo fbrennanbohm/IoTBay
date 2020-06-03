@@ -4,6 +4,34 @@
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	 version="3.1">
+    
+    <servlet>
+        <servlet-name>AdminConfirmDeleteUserController</servlet-name>
+        <servlet-class>uts.isd.controller.AdminConfirmDeleteUserController</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>AdminConfirmDeleteUserController</servlet-name>
+        <url-pattern>/AdminConfirmDeleteUserController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AdminDeleteUserController</servlet-name>
+        <servlet-class>uts.isd.controller.AdminDeleteUserController</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>AdminDeleteUserController</servlet-name>
+        <url-pattern>/AdminDeleteUserController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AdminEditUserController</servlet-name>
+        <servlet-class>uts.isd.controller.AdminEditUserController</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>AdminEditUserController</servlet-name>
+        <url-pattern>/AdminEditUserController</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>ConnServlet</servlet-name>
         <servlet-class>uts.isd.controller.ConnServlet</servlet-class>
@@ -13,14 +41,7 @@
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>UserListController</servlet-name>
-        <servlet-class>uts.isd.controller.UserListController</servlet-class>
-    </servlet>  
-    <servlet-mapping>
-        <servlet-name>UserListController</servlet-name>
-        <url-pattern>/UserListController</url-pattern>
-    </servlet-mapping>
+    
     <servlet>
         <servlet-name>CreateUserController</servlet-name>
         <servlet-class>uts.isd.controller.CreateUserController</servlet-class>
@@ -29,6 +50,89 @@
         <servlet-name>CreateUserController</servlet-name>
         <url-pattern>/CreateUserController</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeleteController</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteController</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>DeleteController</servlet-name>
+        <url-pattern>/DeleteController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/DeleteServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>EditServlet</servlet-name>
+        <servlet-class>uts.isd.controller.EditServlet</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>EditServlet</servlet-name>
+        <url-pattern>/EditServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>uts.isd.controller.LoginServlet</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>uts.isd.controller.LogoutController</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>uts.isd.controller.RegisterServlet</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UpdateServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateServlet</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>UpdateServlet</servlet-name>
+        <url-pattern>/UpdateServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UserListController</servlet-name>
+        <servlet-class>uts.isd.controller.UserListController</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>UserListController</servlet-name>
+        <url-pattern>/UserListController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UserSearchController</servlet-name>
+        <servlet-class>uts.isd.controller.UserSearchController</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>UserSearchController</servlet-name>
+        <url-pattern>/UserSearchController</url-pattern>
+    </servlet-mapping>
+    
+    
     
     <session-config>
         <session-timeout>

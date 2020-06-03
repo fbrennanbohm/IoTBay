@@ -1,8 +1,8 @@
+
 package uts.isd.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -14,27 +14,37 @@ import uts.isd.model.User;
 import uts.isd.model.dao.UserDAO;
 
 /**
- * This servlet displays fetches the user list from the database
- * and forwards it to the userList JSP page.
- * 
+ *
  * @author Patrick
  */
-
-public class UserListController extends HttpServlet {
-
+public class AdminEditUserController extends HttpServlet {
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();   
+        HttpSession session = request.getSession();
+        int userId = Integer.parseInt(request.getParameter("id"));
+        
         UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
+        
+        User user = null;
         try {
-            List<User> userList = userDAO.listUsers();
-            request.setAttribute("userList", userList);
+            user = userDAO.findUser(userId);
+            if (user != null) {
+                request.setAttribute("currentUser", user);
+                request.getRequestDispatcher("adminEditUser.jsp").forward(request, response);
+            }
+            else {
+                request.setAttribute("errorMsg", "User does not exist in the database.");
+                request.getRequestDispatcher("adminEditUser.jsp").forward(request, response);
+            }
         }
         catch (SQLException ex) {
             Logger.getLogger(UserListController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("userList.jsp").forward(request, response);
+        request.getRequestDispatcher("adminEditUser.jsp").forward(request, response);
     }
+    
+    
 }

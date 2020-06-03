@@ -5,13 +5,17 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import uts.isd.model.dao.*;
+
+/**
+ * This servlet initiates the connection to the database.
+ * It is included in the index JSP page.
+ */
 
 public class ConnServlet extends HttpServlet {
    private DBConnector db;
@@ -43,13 +47,9 @@ public class ConnServlet extends HttpServlet {
 
        //export the DB manager to the view-session (JSPs)
        session.setAttribute("userDAO", userDAO);
-
-//       String url = ((HttpServletRequest)request).getRequestURL().toString();
-//       RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-//       dispatcher.forward(request, response);
    }   
 
-   @Override //Destroy the servlet and release the resources of the application (terminate also the db connection)
+   @Override //Destroy the servlet and release the resources of the application (also terminates the db connection)
     public void destroy() {
        try {
            db.closeConnection();

@@ -19,7 +19,7 @@
             <a href="login.jsp" class="btn btn-secondary m-2">Login</a>
             <% } else { %>
             You are logged in as ${user.firstName} ${user.lastName} &lt;<b>${user.email}</b>&gt;
-            <a href="logout.jsp" class="btn btn-secondary ml-2">Logout</a>
+            <a href="LogoutController" class="btn btn-secondary ml-2">Logout</a>
             <% }%>
         </div>
     </div>
@@ -39,8 +39,9 @@
             <a class="nav-link <%=(url.indexOf("main.jsp") > -1 ? "active" : "")%>" href="main.jsp">My Information</a>
         </li>
 
+        <%if (user.isAdmin()) {%>
         <li class="nav-item">
             <a class="nav-link <%=(url.indexOf("UserListController") > -1 ? "active" : "")%>" href="UserListController">Admin Menu</a>
         </li>
-        <% }%>
+        <% }}%>
 </div>
