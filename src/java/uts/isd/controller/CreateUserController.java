@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uts.isd.controller;
 
 import java.io.IOException;
@@ -14,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import uts.isd.model.User;
 import uts.isd.model.dao.UserDAO;
 
 /**
@@ -64,7 +58,7 @@ public class CreateUserController extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(CreateUserController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.getRequestDispatcher("newUser.jsp").forward(request, response);
+        request.getRequestDispatcher("newUser.jsp").forward(request, response);
         }
     }
 }
