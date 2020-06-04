@@ -6,6 +6,7 @@
 package uts.isd.controller;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,8 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import uts.isd.model.User;
-import uts.isd.model.dao.UserDAO;
+import uts.isd.model.Order;
+import uts.isd.model.dao.DBConnector;
+import uts.isd.model.dao.OrderDAO;
 
 /**
  * This servlet loads the order history page.
@@ -25,6 +27,20 @@ import uts.isd.model.dao.UserDAO;
  */
 public class OrderHistoryController extends HttpServlet {
 
+    private OrderDAO orderDAO;
+
+    @Override //Create and instance of DBConnector for the deployment session
+    public void init() {
+        try {
+            DBConnector db = new DBConnector();
+            Connection conn = db.openConnection();
+            orderDAO = new OrderDAO(conn);
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -32,14 +48,13 @@ public class OrderHistoryController extends HttpServlet {
         HttpSession session = request.getSession();
 
         int userId = Integer.parseInt(request.getParameter("id")); // get userId from HTTP request parameter
-        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
         try {
-            List<User> userList = userDAO.listUsers();
+            List<Order> userList = orderDAO.getUserOrderList(userId);
             request.setAttribute("userList", userList);
         } catch (SQLException ex) {
-            Logger.getLogger(UserListController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderHistoryController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("userList.jsp").forward(request, response);
+        request.getRequestDispatcher("orderHistory.jsp").forward(request, response);
     }
 }

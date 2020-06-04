@@ -4,7 +4,9 @@
     Author     : duong
 --%>
 
-<%@page import="uts.isd.model.User"%>
+<%@page import="java.util.List"%>
+<%@page import="uts.isd.model.Order"%>
+<%@page import="uts.isd.model.OrderItem"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,12 +16,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
-    <body>
-
-        <%
-            User user = (User) session.getAttribute("user");
-            String updated = (String) session.getAttribute("updated");
-        %>
+    <body>s
 
         <jsp:include page="_header.jsp" />
         <div class="container-fluid px-5 my-3">
@@ -27,15 +24,47 @@
                 <jsp:include page="_myInfoNav.jsp" />
                 <div class="col-sm-9">
 
-                    <h1>User List</h1>
-                    <p>All the users in the IoTBay database are displayed below.</p>
+                    <h1>Order History</h1>
+                    <p>All my orders in the IoTBay database are displayed below.</p>
                     <table class="table-striped table-hover table-bordered my-3">
-                        <tr>
-                            <th>Order Number</th>
-                            <th>Items</th>
-                            <th>Placed On</th>
-                            <th>Total Price</th>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Order Number</th>
+                                <th>Items</th>
+                                <th>Placed On</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <%
+                                List<Order> orderList = (List<Order>) request.getAttribute("orderList");
+                                if (orderList != null) {
+                                    for (Order order : orderList) {
+                            %>
+                            <tr>
+                                <td><%= order.getOrderNumber()%></td>
+                                <td>
+                                    <div>
+                                        <%
+                                            for (OrderItem orderItem : order.getOrderItemList()) {
+                                        %>
+
+                                        <%=orderItem.getProduct().getName()%>
+                                        <br/>
+                                        <% }%>
+                                    </div>
+                                </td>
+                                <td><%=order.getCreatedOn()%></td>
+                                <td><%=order.getTotalPrice()%></td>
+                            </tr>
+                            <% }
+                            } else { %>
+                            <tr>
+                                <td colspan="4">No orders found.</td>
+                            </tr>
+                            <% }%>
+                        </tbody>
                     </table>
 
                 </div>
