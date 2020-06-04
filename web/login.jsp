@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label><br>
-                                    <input type="password" class="form-control" name="password" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>" required >
+                                    <input type="password" class="form-control" name="password" placeholder="<%=(emailErr != null ? emailErr : "Enter password")%>" required >
                                 </div>
 
                                 <input type="hidden" name="tos" value="yes">
