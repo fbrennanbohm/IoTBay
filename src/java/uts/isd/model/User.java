@@ -7,29 +7,6 @@ public class User implements java.io.Serializable {
     private String lastName;
     private String email;
     private String password;
-//    private String gender;
-    
-    public User() {
-        
-    }
-
-    public User(int roleId, String firstName, String lastName, String email, String password) {
-        this.roleId = roleId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
-    
-    
-
-    public User(int id, int roleId, String firstName, String lastName, String email) {
-        this.userId = id;
-        this.roleId = roleId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
 
     public User(int id, int roleId, String firstName, String lastName, String email, String password) {
         this.userId = id;
@@ -108,13 +85,4 @@ public class User implements java.io.Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-//    public String getGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(String gender) {
-//        this.gender = gender;
-//    }
-//    
 }

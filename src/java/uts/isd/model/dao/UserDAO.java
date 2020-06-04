@@ -28,8 +28,9 @@ public class UserDAO {
             String fName = rs.getString("firstName");
             String lName = rs.getString("lastName");
             String email = rs.getString("email");
+            String password = rs.getString("password");
 
-            User user = new User(userId, roleId, fName, lName, email);
+            User user = new User(userId, roleId, fName, lName, email, password);
             userList.add(user);
         }
         rs.close();
@@ -38,7 +39,7 @@ public class UserDAO {
 
     public List<User> searchUsers(String name, String emailInput) throws SQLException {
         List<User> userList = new ArrayList<>();
-        String query = "SELECT userId, roleId, firstName, lastName, email"
+        String query = "SELECT userId, roleId, firstName, lastName, email, password"
                 + " FROM Users WHERE ";
         if (name.length() > 0) {
             query += "(UPPER(firstName) LIKE '%" + name.toUpperCase() + "%'"
@@ -58,7 +59,8 @@ public class UserDAO {
             String fName = rs.getString("firstName");
             String lName = rs.getString("lastName");
             String email = rs.getString("email");
-            User user = new User(userId, roleId, fName, lName, email);
+            String password = rs.getString("password");
+            User user = new User(userId, roleId, fName, lName, email, password);
             userList.add(user);
         }
         return userList;

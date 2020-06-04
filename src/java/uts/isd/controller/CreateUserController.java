@@ -56,12 +56,10 @@ public class CreateUserController extends HttpServlet {
             request.setAttribute("errorMsg", "Password must be between 6 to 20 characters in length.");
             request.getRequestDispatcher("newUser.jsp").forward(request, response);
         } else {
-            User user = new User(roleId, firstName, lastName, email, password);
             UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
             try {
                 userDAO.addUser(roleId, firstName, lastName, email, password);
                 request.setAttribute("successMsg", "User was successfully created.");
-                request.setAttribute("currentUser", user);
                 request.getRequestDispatcher("newUser.jsp").forward(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(CreateUserController.class.getName()).log(Level.SEVERE, null, ex);

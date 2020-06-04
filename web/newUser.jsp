@@ -24,7 +24,6 @@
                     <h1>Create New User</h1>
                     <p>Please fill in the form below with the information of the new user.</p>
                     <%
-                        User currentUser = (User) request.getAttribute("currentUser");
                         String successMsg = (String) request.getAttribute("successMsg");
                         String errorMsg = (String) request.getAttribute("errorMsg");
                         if (successMsg != null) {
