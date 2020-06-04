@@ -39,7 +39,7 @@ public class UpdateServlet extends HttpServlet {
   UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
   String lastName = request.getParameter("lastName");
   int userId = Integer.parseInt(request.getParameter("userId"));
-  int roleId= Integer.parseInt(request.getParameter("roleId"));
+  int roleId= 1;
   
   User user = new User(userId,roleId,firstName,lastName,email,password);
   
