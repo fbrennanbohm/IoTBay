@@ -18,7 +18,7 @@
             <a class="nav-link  <%=(url.indexOf("edit.jsp") > -1 ? "active" : "")%>" href="EditServlet?id=<%= user.getUserId()%>"> Update Personal Details</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  <%=(url.indexOf("shipping.jsp") > -1 ? "active" : "")%>" href="ShippingServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> View/Update Shipping Details</a>
+            <a class="nav-link  <%=(url.indexOf("shipping.jsp") > -1 ? "active" : "")%>" href="ShippingServlet?id=<%= user.getUserId()%>"> View/Update Shipping Details</a>
         </li>
         <li class="nav-item">
             <a class="nav-link  <%=(url.indexOf("delete.jsp") > -1 ? "active" : "")%>" href="DeleteServlet?id=<%= user.getUserId()%>">Delete My Account</a>

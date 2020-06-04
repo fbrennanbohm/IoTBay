@@ -29,7 +29,7 @@
 
                     <h1>My Dashboard</h1>
                     <p>Your personal information is displayed in the table below.</p>
-                    <form class="form-horizontal" name="myForm" method="post" action="UpdateServlet">
+                    <form class="form-horizontal" name="myForm" method="post" action="UpdateServlet?Id=<%= user.getUserId()%>">
                         <h1 class="text-primary"><strong>Edit here  <span><%= (updated != null) ? updated : ""%></span></strong></h1>
 
                         <div class="form-group">

@@ -131,8 +131,8 @@ public class UserDAO {
     }
 
     //update a user's saved shipping details in the database
-    public void updateShipping(int userID, String Address) throws SQLException {
-        st.executeUpdate("UPDATE Users SET address='" + Address + "'" + " WHERE userID=" + userID);
+    public void updateShipping(int userId, String Address) throws SQLException {
+        st.executeUpdate("UPDATE Users SET address='" + Address + "'" + " WHERE userId=" + userId);
     }
 
     private String wrapStr(String input) {

@@ -28,19 +28,17 @@ public class ShippingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {   
         
         HttpSession session = request.getSession();
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
+        int userId = Integer.parseInt(request.getParameter("id"));
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
         User user = null;
         
         try {
-            user=userDAO.findUser(email,password);
-            if(user!=null) {
-                session.setAttribute("user",user);
-                request.getRequestDispatcher("shipping.jsp").include(request,response);
+            user = userDAO.findUser(userId);
+            if (user != null) {
+                session.setAttribute("user", user);
             } else {
                 session.setAttribute("existErr","User does not exist in the Database");
-                request.getRequestDispatcher("shipping.jsp").include(request, response);
+                
             }
         }
         
@@ -48,8 +46,8 @@ public class ShippingServlet extends HttpServlet {
             Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE,null,ex);
             System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
         }
+        request.getRequestDispatcher("shipping.jsp").include(request,response);
         
-        request.getRequestDispatcher("shipping.jsp").include(request, response);
     }
 
     

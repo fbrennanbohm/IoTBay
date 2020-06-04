@@ -8,6 +8,10 @@
         <servlet-name>ShippingServlet</servlet-name>
         <servlet-class>uts.isd.controller.ShippingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShippingController</servlet-name>
+        <servlet-class>uts.isd.controller.ShippingController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
         <url-pattern>/AdminConfirmDeleteUserController</url-pattern>
