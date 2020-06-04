@@ -67,10 +67,7 @@
                     <label for="firstName">User ID</label>
                     <input type="text" class="form-control" name="userId"value="<%=user.getUserId()%>" >
                 </div>
-                  <div class="form-group">
-                    <label for="firstName">Role ID</label>
-                    <input type="text" class="form-control" name="roleId" value="<%=user.getRoleId()%>">
-                </div>
+                 
                 
                         <div class="form-group">
                     <label for="firstName">First name</label>
