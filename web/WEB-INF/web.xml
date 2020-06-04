@@ -129,6 +129,14 @@
         <servlet-name>ShippingServlet</servlet-name>
         <url-pattern>/ShippingServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>OrderHistoryController</servlet-name>
+        <servlet-class>uts.isd.controller.OrderHistoryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderHistoryController</servlet-name>
+        <url-pattern>/OrderHistory</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

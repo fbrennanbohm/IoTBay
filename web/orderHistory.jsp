@@ -31,34 +31,11 @@
                     <p>All the users in the IoTBay database are displayed below.</p>
                     <table class="table-striped table-hover table-bordered my-3">
                         <tr>
-                            <th>User ID</th>
-                            <th>Role</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Actions</th>
+                            <th>Order Number</th>
+                            <th>Items</th>
+                            <th>Placed On</th>
+                            <th>Total Price</th>
                         </tr>
-                        <%
-                            List<User> userList = (List<User>) request.getAttribute("userList");
-                            if (userList != null) {
-                                for (User u : userList) {
-                        %>
-                        <tr>
-                            <td><%= u.getUserId()%></td>
-                            <td><%= u.getRoleName()%></td>
-                            <td><%= u.getFirstName()%></td>
-                            <td><%= u.getLastName()%></td>
-                            <td><%= u.getEmail()%></td>
-                            <td><a href="AdminEditUserController?id=<%=u.getUserId()%>" class="btn btn-info mx-2">Edit</a>
-                                <a href="AdminConfirmDeleteUserController?id=<%=u.getUserId()%>" class="btn btn-secondary mx-2">Delete</a>
-                            </td>
-                        </tr>
-                        <% }
-                        } else { %>
-                        <tr>
-                            <td colspan="6">No users found.</td>
-                        </tr>
-                        <% }%>
                     </table>
 
                 </div>

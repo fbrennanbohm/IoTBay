@@ -12,7 +12,7 @@
             <a class="nav-link  <%=(url.indexOf("main.jsp") > -1 ? "active" : "")%>" href="main.jsp">My Dashboard</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  <%=(url.indexOf("orderHistory.jsp") > -1 ? "active" : "")%>" href="OrderHistoryServlet?id=<%= user.getUserId()%>">View Order History</a>
+            <a class="nav-link  <%=(url.indexOf("orderHistory.jsp") > -1 ? "active" : "")%>" href="OrderHistory?id=<%= user.getUserId()%>">View Order History</a>
         </li>
         <li class="nav-item">
             <a class="nav-link  <%=(url.indexOf("edit.jsp") > -1 ? "active" : "")%>" href="EditServlet?id=<%= user.getUserId()%>"> Update Personal Details</a>

@@ -2,47 +2,45 @@ package uts.isd.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author Patrick
  */
 public class Order implements java.io.Serializable {
-    private String orderId;
-    private String customerId;
-    private Date orderDate;
-    private ArrayList<Product> productList = new ArrayList<>();
 
-    public String getOrderId() {
+    private int orderId;
+    private int userId;
+    private String orderNumber;
+    private Date createdOn;
+    private List<OrderItem> orderList = new ArrayList<>();
+
+    public Order(int orderId, int userId, String orderNumber, Date createdOn, List<OrderItem> orderList) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.orderNumber = orderNumber;
+        this.createdOn = createdOn;
+        this.orderList = orderList;
+    }
+
+    public int getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public int getUserId() {
+        return userId;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public Date getCreatedOn() {
+        return createdOn;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public List<OrderItem> getOrderList() {
+        return orderList;
     }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public ArrayList<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(ArrayList<Product> productList) {
-        this.productList = productList;
-    }
-    
 }
