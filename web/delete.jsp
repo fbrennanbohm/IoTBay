@@ -23,14 +23,6 @@
 
                     <form class="form-horizontal" name="myForm" method="post" action="DeleteController">
                         <h1 class="text-primary"><strong>Edit here  </strong></h1>
-                        <div class="form-group">
-                            <label for="firstName">User ID</label>
-                            <input type="text" class="form-control" name="userId"value="<%=user.getUserId()%>" >
-                        </div>
-                        <div class="form-group">
-                            <label for="firstName">Role ID</label>
-                            <input type="text" class="form-control" name="roleId" value="<%=user.getRoleId()%>">
-                        </div>
 
                         <div class="form-group">
                             <label for="firstName">First name</label>
@@ -56,9 +48,9 @@
                         <div class="form-group"><div class="col-sm-offset-2 col-sm-10"><input type='submit' class='btn btn-primary'value='Delete'>
 
 
-                                </form>
                             </div>
                         </div>
+                    </form>
                 </div>
             </div>
         </div>

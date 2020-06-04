@@ -5,8 +5,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/* 
-* DBManager is the primary DAO class to interact with the database. 
+/*
+* DBManager is the primary DAO class to interact with the database.
 * Performs CRUD operations with the db.
  */
 public class UserDAO {
@@ -84,58 +84,57 @@ public class UserDAO {
         return null;
     }
 
-    //Find user by email and password in the database   
-    public User findUser(String email, String password) throws SQLException {       
-       String fetch = "select * from Users where email ='"+email+"'and password ='"+password+"'";
-  
-   //execute this query using the statement field       
-   //add the results to a ResultSet       
-   ResultSet rs = st.executeQuery(fetch);
-   //search the ResultSet for a user using the parameters 
-   while (rs.next()) {
-       String userEmail = rs.getString("email");
-       String userPass = rs.getString("password");
-       if (userEmail.equals(email) && userPass.equals(password))  {
-           String userFirstName = rs.getString("firstName");
-           String userLastName = rs.getString("lastName");          
-           int userRoleId = rs.getInt("roleId");
-           int userId = rs.getInt("userId");
-           return new User(userId,userRoleId,userFirstName,userLastName,userEmail,userPass);
-       }
-   
-   }
-   return null;
-} 
+    //Find user by email and password in the database
+    public User findUser(String email, String password) throws SQLException {
+        String fetch = "select * from Users where email ='" + email + "'and password ='" + password + "'";
 
-    //Add a user-data into the database   
+        //execute this query using the statement field
+        //add the results to a ResultSet
+        ResultSet rs = st.executeQuery(fetch);
+        //search the ResultSet for a user using the parameters
+        while (rs.next()) {
+            String userEmail = rs.getString("email");
+            String userPass = rs.getString("password");
+            if (userEmail.equals(email) && userPass.equals(password)) {
+                String userFirstName = rs.getString("firstName");
+                String userLastName = rs.getString("lastName");
+                int userRoleId = rs.getInt("roleId");
+                int userId = rs.getInt("userId");
+                return new User(userId, userRoleId, userFirstName, userLastName, userEmail, userPass);
+            }
+
+        }
+        return null;
+    }
+
+    //Add a user-data into the database
     public void addUser(int roleId, String fName, String lName, String email, String password) throws SQLException { //code for add-operation
-        
+
         String query = "INSERT INTO Users (roleId, firstName, lastName, email, password) VALUES("
                 + roleId + ", " + wrapStr(fName) + ", " + wrapStr(lName) + ", "
                 + wrapStr(email) + ", " + wrapStr(password) + ")";
         st.executeUpdate(query);
-      
 
     }
 
-    //update a user details in the database   
-     public void updateUser(int userId, int roleId, String fName, String lName, String email, String password) throws SQLException {       
-       st.executeUpdate("UPDATE Users SET roleId=" + roleId + ", firstName='" + fName + "', lastName='" + lName + "', email='" + email
+    //update a user details in the database
+    public void updateUser(int userId, int roleId, String fName, String lName, String email, String password) throws SQLException {
+        st.executeUpdate("UPDATE Users SET roleId=" + roleId + ", firstName='" + fName + "', lastName='" + lName + "', email='" + email
                 + "', password='" + password + "'"
                 + " WHERE userId=" + userId);
     }
 
-    //delete a user from the database   
-    public void deleteUser(int userId) throws SQLException{       
-       //code for delete-operation   
-       st.executeUpdate( "DELETE FROM Users WHERE userID=" + userId); 
+    //delete a user from the database
+    public void deleteUser(int userId) throws SQLException {
+        //code for delete-operation
+        st.executeUpdate("DELETE FROM Users WHERE userID=" + userId);
     }
-    
+
     //update a user's saved shipping details in the database
     public void updateShipping(int userID, String Address) throws SQLException {
         st.executeUpdate("UPDATE Users SET address='" + Address + "'" + " WHERE userID=" + userID);
     }
-    
+
     private String wrapStr(String input) {
         return "'" + input + "'";
     }

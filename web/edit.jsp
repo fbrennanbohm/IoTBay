@@ -31,11 +31,6 @@
                     <p>Your personal information is displayed in the table below.</p>
                     <form class="form-horizontal" name="myForm" method="post" action="UpdateServlet">
                         <h1 class="text-primary"><strong>Edit here  <span><%= (updated != null) ? updated : ""%></span></strong></h1>
-                        <div class="form-group">
-                            <label for="firstName">User ID</label>
-                            <input type="text" class="form-control" name="userId"value="<%=user.getUserId()%>" >
-                        </div>
-
 
                         <div class="form-group">
                             <label for="firstName">First name</label>

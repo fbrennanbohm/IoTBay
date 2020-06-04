@@ -10,41 +10,14 @@
     </head>
     <body>
 
-        <div class="container-fluid px-5 py-3">
-            <div class="row mb-3">
-                <div class="col-sm-4"><span class="display-4">IoTBay</span></div>
-                <div class="col-sm-8 text-right my-auto">
-                    <%
-                        String existErr = (String) session.getAttribute("existErr");
-                        String emailErr = (String) session.getAttribute("emailErr");
-                        String passErr = (String) session.getAttribute("passErr");
-                        User user = (User) session.getAttribute("user");
-                        boolean loggedIn = !(user == null || user.getEmail().equals(""));
+        <%
+            String existErr = (String) session.getAttribute("existErr");
+            String emailErr = (String) session.getAttribute("emailErr");
+            User user = (User) session.getAttribute("user");
+            boolean loggedIn = !(user == null || user.getEmail().equals(""));
+        %>
 
-                        if (!loggedIn) {
-                    %>
-                    You are not logged in.
-                    <a href="register.jsp" class="btn btn-primary m-2">Register</a>
-                    <a href="login.jsp" class="btn btn-secondary m-2 disabled">Login</a>
-
-                    <% } else { %>
-                    You are logged in as ${user.firstName} ${user.lastName} &lt;<b>${user.email}</b>&gt;
-                    <a href="logout.jsp" class="btn btn-secondary ml-2">Logout</a>
-                    <% } %>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid px-5">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.jsp">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="catalogue.jsp">Device Catalogue</a>
-                </li>
-            </ul>
-        </div>
+        <jsp:include page="_header.jsp" />
 
         <div class="container-fluid px-5">
             <div class="row">
