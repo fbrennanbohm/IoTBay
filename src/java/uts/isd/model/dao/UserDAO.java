@@ -119,7 +119,6 @@ public class UserDAO {
     }
 
     //update a user details in the database   
-      
      public void updateUser(int userId, int roleId, String fName, String lName, String email, String password) throws SQLException {       
        st.executeUpdate("UPDATE Users SET roleId=" + roleId + ", firstName='" + fName + "', lastName='" + lName + "', email='" + email
                 + "', password='" + password + "'"
@@ -132,7 +131,11 @@ public class UserDAO {
        st.executeUpdate( "DELETE FROM Users WHERE userID=" + userId); 
     }
     
-
+    //update a user's saved shipping details in the database
+    public void updateShipping(int userID, String Address) throws SQLException {
+        st.executeUpdate("UPDATE Users SET address='" + Address + "'" + " WHERE userID=" + userID);
+    }
+    
     private String wrapStr(String input) {
         return "'" + input + "'";
     }

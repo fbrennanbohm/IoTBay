@@ -7,6 +7,17 @@ public class User implements java.io.Serializable {
     private String lastName;
     private String email;
     private String password;
+<<<<<<< HEAD
+    private String address;
+
+    
+    public User() {
+        
+    }
+
+    
+=======
+>>>>>>> 434fe7ad2ae3b442134f65c5fd562c592073a208
 
     public User(int id, int roleId, String firstName, String lastName, String email, String password) {
         this.userId = id;
@@ -85,4 +96,17 @@ public class User implements java.io.Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+<<<<<<< HEAD
+
+    public String getAddress() {
+        return address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    
+=======
+>>>>>>> 434fe7ad2ae3b442134f65c5fd562c592073a208
 }
