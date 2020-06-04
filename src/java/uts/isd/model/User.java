@@ -14,9 +14,6 @@ public class User implements java.io.Serializable {
         
     }
 
-    
-
-
     public User(int id, int roleId, String firstName, String lastName, String email, String password) {
         this.userId = id;
         this.roleId = roleId;
@@ -94,8 +91,6 @@ public class User implements java.io.Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 
     public String getAddress() {
         return address;

@@ -53,6 +53,9 @@
                             <a class="nav-link" href="EditServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Update Personal Details</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="ShippingServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> View/Update Shipping Details</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="DeleteServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'">Delete My Account</a>
                         </li>
                     </ul>
