@@ -8,6 +8,7 @@ INSERT INTO USERS (roleId, firstName, lastName, email, password) VALUES
     (1, 'John', 'Smith', 'johnsmith@gmail.com', 'apples5678'),
     (2, 'Mary', 'Adams', 'maryadams@hotmail.com', 'banana8888'),
     (3, 'Rene', 'Cruces', 'rene.cruces@outlook.com', 'password');
+    (1, 'Ricky', 'Tran', 'rickytran@uts.edu.au', 'branch');
 
 
 INSERT INTO PRODUCT ("NAME", DESCRIPTION, STOCKQUANTITY, PRICE, IMAGEURL) VALUES
