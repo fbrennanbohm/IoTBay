@@ -20,6 +20,10 @@
         <servlet-name>ShippingController</servlet-name>
         <servlet-class>uts.isd.controller.ShippingController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PaymentMethodServlet</servlet-name>
+        <servlet-class>uts.isd.controller.PaymentMethodServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
         <url-pattern>/AdminConfirmDeleteUserController</url-pattern>
@@ -160,6 +164,10 @@
     <servlet-mapping>
         <servlet-name>OrderHistoryController</servlet-name>
         <url-pattern>/OrderHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentMethodServlet</servlet-name>
+        <url-pattern>/PaymentMethodServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

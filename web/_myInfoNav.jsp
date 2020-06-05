@@ -15,6 +15,12 @@
             <a class="nav-link  <%=(url.indexOf("orderHistory.jsp") > -1 ? "active" : "")%>" href="OrderHistory?id=<%= user.getUserId()%>">View Order History</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="PaymentMethodServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Payment Method</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="PaymentServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Payment History</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link  <%=(url.indexOf("edit.jsp") > -1 ? "active" : "")%>" href="EditServlet?id=<%= user.getUserId()%>"> Update Personal Details</a>
         </li>
         <li class="nav-item">
