@@ -103,7 +103,8 @@ public class UserDAO {
                 String userLastName = rs.getString("lastName");
                 int userRoleId = rs.getInt("roleId");
                 int userId = rs.getInt("userId");
-                return new User(userId, userRoleId, userFirstName, userLastName, userEmail, userPass);
+                boolean activated = rs.getBoolean("activated");
+                return new User(userId, userRoleId, userFirstName, userLastName, userEmail, userPass, activated);
             }
 
         }

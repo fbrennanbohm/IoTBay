@@ -18,26 +18,26 @@
             <div class="row">
                 <jsp:include page="_usersNav.jsp" />
                 <div class="col-sm-9">
-                    
-                <h1>Delete User</h1>
-                <%
-                    User currentUser = (User)request.getAttribute("currentUser");
-                    String successMsg = (String)request.getAttribute("successMsg");
-                    String errorMsg = (String)request.getAttribute("errorMsg");
-                    if (successMsg != null) {
-                %>
-                <div class="alert alert-success">
-                    <%=successMsg%><br>
-                    Click <a href="UserListController" class="alert-link">here</a> to go back to the user list.
-                </div>
-                <% } else if (errorMsg != null) { %>
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        Error: <%=errorMsg%><br>
+
+                    <h1>Delete User</h1>
+                    <%
+                        User currentUser = (User) request.getAttribute("currentUser");
+                        String successMsg = (String) request.getAttribute("successMsg");
+                        String errorMsg = (String) request.getAttribute("errorMsg");
+                        if (successMsg != null) {
+                    %>
+                    <div class="alert alert-success">
+                        <%=successMsg%><br>
+                        Click <a href="UserListController" class="alert-link">here</a> to go back to the user list.
                     </div>
-                <% }%>
-                
-                <% if (currentUser != null) { %>
+                    <% } else if (errorMsg != null) {%>
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong> <%=errorMsg%><br>
+                        Click <a href="UserListController" class="alert-link">here</a> to go back to the user list.
+                    </div>
+                    <% }%>
+
+                    <% if (currentUser != null) { %>
                     <div class="alert alert-warning my-3">
                         You are about to delete this user.<br>
                         <strong>This action cannot be undone.</strong>
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="form-check mb-3">
                                     <label class="form-check-label">
-                                        <input disabled class="form-check-input" 
+                                        <input disabled class="form-check-input"
                                                <% if (currentUser.isAdmin()) { %> checked="true" <% } %> type="radio" name="roleId" id="systemAdmin" value="3">
                                         System Admin
                                     </label>
@@ -99,7 +99,7 @@
                             </form>
                         </div>
                     </div>
-                <% } %>
+                    <% }%>
                 </div>
             </div>
         </div>
