@@ -29,8 +29,9 @@ public class UserDAO {
             String lName = rs.getString("lastName");
             String email = rs.getString("email");
             String password = rs.getString("password");
+            boolean activated = rs.getBoolean("activated");
 
-            User user = new User(userId, roleId, fName, lName, email, password);
+            User user = new User(userId, roleId, fName, lName, email, password, activated);
             userList.add(user);
         }
         rs.close();
@@ -39,7 +40,7 @@ public class UserDAO {
 
     public List<User> searchUsers(String name, String emailInput) throws SQLException {
         List<User> userList = new ArrayList<>();
-        String query = "SELECT userId, roleId, firstName, lastName, email, password"
+        String query = "SELECT userId, roleId, firstName, lastName, email, password, activated"
                 + " FROM Users WHERE ";
         if (name.length() > 0) {
             query += "(UPPER(firstName) LIKE '%" + name.toUpperCase() + "%'"
@@ -60,7 +61,8 @@ public class UserDAO {
             String lName = rs.getString("lastName");
             String email = rs.getString("email");
             String password = rs.getString("password");
-            User user = new User(userId, roleId, fName, lName, email, password);
+            boolean activated = rs.getBoolean("activated");
+            User user = new User(userId, roleId, fName, lName, email, password, activated);
             userList.add(user);
         }
         return userList;
@@ -77,8 +79,9 @@ public class UserDAO {
             String lName = rs.getString("lastName");
             String email = rs.getString("email");
             String password = rs.getString("password");
+            boolean activated = rs.getBoolean("activated");
 
-            return new User(userId, roleId, fName, lName, email, password);
+            return new User(userId, roleId, fName, lName, email, password, activated);
         }
         rs.close();
         return null;
@@ -121,6 +124,12 @@ public class UserDAO {
     public void updateUser(int userId, int roleId, String fName, String lName, String email, String password) throws SQLException {
         st.executeUpdate("UPDATE Users SET roleId=" + roleId + ", firstName='" + fName + "', lastName='" + lName + "', email='" + email
                 + "', password='" + password + "'"
+                + " WHERE userId=" + userId);
+    }
+
+    public void updateUser(int userId, int roleId, String fName, String lName, String email, String password, boolean activate) throws SQLException {
+        st.executeUpdate("UPDATE Users SET roleId=" + roleId + ", firstName='" + fName + "', lastName='" + lName + "', email='" + email
+                + "', password='" + password + "', activated=" + activate
                 + " WHERE userId=" + userId);
     }
 
