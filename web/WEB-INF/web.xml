@@ -9,6 +9,10 @@
         <servlet-class>uts.isd.controller.ShippingServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AcessServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AccessServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ShippingController</servlet-name>
         <servlet-class>uts.isd.controller.ShippingController</servlet-class>
     </servlet>
