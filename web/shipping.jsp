@@ -27,10 +27,10 @@
             <div class="row">
                 <jsp:include page="_myInfoNav.jsp" />
                 <div class="col-sm-9">
-
+                    <% System.out.println(user.getAddress()); %>
                     <h1>My Dashboard</h1>
                     <p>Your shipping information is displayed in the field below.</p>
-                    <form class="form-horizontal" name="myForm" method="post" action="ShippingController?id=<%= user.getUserId()%>">
+                    <form class="form-horizontal" name="myForm" method="post" action="ShippingController?Id=<%= user.getUserId()%>">
                         <h1 class="text-primary"><strong>Edit here  <span><%= (updated != null) ? updated : ""%></span></strong></h1>
                         <div class="form-group">
                             <label for="address">Address</label>
@@ -39,9 +39,9 @@
 
                         <div class="form-group"><div class="col-sm-offset-2 col-sm-10"><input type='submit' class='btn btn-primary'value='Update'>
 
-                                </form>
                             </div>
                         </div>
+                     </form>
                 </div>
             </div>
         </div>

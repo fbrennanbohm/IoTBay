@@ -23,9 +23,10 @@ public class User implements java.io.Serializable {
         this.email = email;
         this.password = password;
         this.activated = true; // account is activated by default
+        
     }
 
-    public User(int userId, int roleId, String firstName, String lastName, String email, String password, boolean activated) {
+    public User(int userId, int roleId, String firstName, String lastName, String email, String password, boolean activated, String address) {
         this.userId = userId;
         this.roleId = roleId;
         this.firstName = firstName;
@@ -33,6 +34,7 @@ public class User implements java.io.Serializable {
         this.email = email;
         this.password = password;
         this.activated = activated;
+        this.address = address;
     }
 
     public int getUserId() {

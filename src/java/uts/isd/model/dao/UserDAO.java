@@ -30,8 +30,9 @@ public class UserDAO {
             String email = rs.getString("email");
             String password = rs.getString("password");
             boolean activated = rs.getBoolean("activated");
+            String address = rs.getString("address");
 
-            User user = new User(userId, roleId, fName, lName, email, password, activated);
+            User user = new User(userId, roleId, fName, lName, email, password, activated, address);
             userList.add(user);
         }
         rs.close();
@@ -62,7 +63,8 @@ public class UserDAO {
             String email = rs.getString("email");
             String password = rs.getString("password");
             boolean activated = rs.getBoolean("activated");
-            User user = new User(userId, roleId, fName, lName, email, password, activated);
+            String address = rs.getString("address");
+            User user = new User(userId, roleId, fName, lName, email, password, activated, address);
             userList.add(user);
         }
         return userList;
@@ -80,8 +82,9 @@ public class UserDAO {
             String email = rs.getString("email");
             String password = rs.getString("password");
             boolean activated = rs.getBoolean("activated");
+            String address = rs.getString("address");
 
-            return new User(userId, roleId, fName, lName, email, password, activated);
+            return new User(userId, roleId, fName, lName, email, password, activated, address);
         }
         rs.close();
         return null;
@@ -104,7 +107,8 @@ public class UserDAO {
                 int userRoleId = rs.getInt("roleId");
                 int userId = rs.getInt("userId");
                 boolean activated = rs.getBoolean("activated");
-                return new User(userId, userRoleId, userFirstName, userLastName, userEmail, userPass, activated);
+                String address = rs.getString("address");
+                return new User(userId, userRoleId, userFirstName, userLastName, userEmail, userPass, activated, address);
             }
 
         }
