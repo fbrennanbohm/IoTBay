@@ -27,12 +27,14 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
+                            <th>Account Status</th>
                             <th>Actions</th>
                         </tr>
                         <%
                             List<User> userList = (List<User>) request.getAttribute("userList");
                             if (userList != null) {
                                 for (User u : userList) {
+                                    String userStatus = u.isActivated() ? "Activated" : "Deactivated";
                         %>
                         <tr>
                             <td><%= u.getUserId()%></td>
@@ -40,6 +42,7 @@
                             <td><%= u.getFirstName()%></td>
                             <td><%= u.getLastName()%></td>
                             <td><%= u.getEmail()%></td>
+                            <td><%= userStatus%></td>
                             <td><a href="AdminEditUserController?id=<%=u.getUserId()%>" class="btn btn-info mx-2">Edit</a>
                                 <a href="AdminConfirmDeleteUserController?id=<%=u.getUserId()%>" class="btn btn-secondary mx-2">Delete</a>
                             </td>
@@ -47,7 +50,7 @@
                         <% }
                         } else { %>
                         <tr>
-                            <td colspan="6">No users found.</td>
+                            <td colspan="7">No users found.</td>
                         </tr>
                         <% }%>
                     </table>

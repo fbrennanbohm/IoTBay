@@ -2,47 +2,63 @@ package uts.isd.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author Patrick
  */
 public class Order implements java.io.Serializable {
-    private String orderId;
-    private String customerId;
-    private Date orderDate;
-    private ArrayList<Product> productList = new ArrayList<>();
 
-    public String getOrderId() {
+    private int orderId;
+    private int userId;
+    private String orderNumber;
+    private Date createdOn;
+    private String orderStatus;
+    private List<OrderItem> orderItemList = new ArrayList<>();
+
+    public Order(int orderId, int userId, String orderNumber, Date createdOn, String orderStatus) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.orderNumber = orderNumber;
+        this.createdOn = createdOn;
+        this.orderStatus = orderStatus;
+    }
+
+    public int getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public int getUserId() {
+        return userId;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public Date getCreatedOn() {
+        return createdOn;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public String getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
     }
 
-    public ArrayList<Product> getProductList() {
-        return productList;
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 
-    public void setProductList(ArrayList<Product> productList) {
-        this.productList = productList;
+    public double getTotalPrice() {
+        double totalPrice = 0;
+        for (OrderItem orderItem : orderItemList) {
+            totalPrice += orderItem.getPricePerUnit() * orderItem.getQuantity();
+        }
+
+        return totalPrice;
     }
-    
 }

@@ -1,34 +1,18 @@
 package uts.isd.model;
 
 public class User implements java.io.Serializable {
+
     private int userId;
     private int roleId;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-//    private String gender;
-    
+    private String address;
+    private boolean activated;
+
     public User() {
-        
-    }
 
-    public User(int roleId, String firstName, String lastName, String email, String password) {
-        this.roleId = roleId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
-    
-    
-
-    public User(int id, int roleId, String firstName, String lastName, String email) {
-        this.userId = id;
-        this.roleId = roleId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
     }
 
     public User(int id, int roleId, String firstName, String lastName, String email, String password) {
@@ -38,6 +22,19 @@ public class User implements java.io.Serializable {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.activated = true; // account is activated by default
+        
+    }
+
+    public User(int userId, int roleId, String firstName, String lastName, String email, String password, boolean activated, String address) {
+        this.userId = userId;
+        this.roleId = roleId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.activated = activated;
+        this.address = address;
     }
 
     public int getUserId() {
@@ -55,40 +52,44 @@ public class User implements java.io.Serializable {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
-    
+
     public String getRoleName() {
         switch (roleId) {
-            case 1: return "Customer";
-            case 2: return "Staff";
-            case 3: return "System Admin";
-            default: return "User";
+            case 1:
+                return "Customer";
+            case 2:
+                return "Staff";
+            case 3:
+                return "System Admin";
+            default:
+                return "User";
         }
     }
-    
+
     public boolean isCustomer() {
         return this.roleId == 1;
     }
-    
+
     public boolean isStaff() {
         return this.roleId == 2;
     }
-    
+
     public boolean isAdmin() {
         return this.roleId == 3;
     }
-    
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    
+
     public String getFirstName() {
         return firstName;
     }
-    
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
+
     public String getLastName() {
         return lastName;
     }
@@ -109,12 +110,20 @@ public class User implements java.io.Serializable {
         this.password = password;
     }
 
-//    public String getGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(String gender) {
-//        this.gender = gender;
-//    }
-//    
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
 }

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 public class Validator implements Serializable {
 
     private String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";
-    private String namePattern = "([A-Z][a-z]{1,20})";
+     private String namePattern = "([A-Z][a-zA-z]{1,20})";
     private String passwordPattern = "[a-z0-9]{6,20}";
     
     public Validator() {

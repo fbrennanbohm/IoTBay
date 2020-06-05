@@ -38,7 +38,7 @@ public class RegisterServlet extends HttpServlet {
   String fname = request.getParameter("firstName");
   String lname = request.getParameter("lastName");
   UserDAO userDAO = (UserDAO)session.getAttribute("userDAO"); 
-  int roleId= Integer.parseInt(request.getParameter("roleId"));
+  int roleId= 1;
   validator.clear(session);
 
  

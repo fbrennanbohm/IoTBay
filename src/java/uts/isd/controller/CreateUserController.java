@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uts.isd.controller;
 
 import java.io.IOException;
@@ -14,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import uts.isd.model.User;
 import uts.isd.model.dao.UserDAO;
 
 /**
@@ -56,17 +50,15 @@ public class CreateUserController extends HttpServlet {
             request.setAttribute("errorMsg", "Password must be between 6 to 20 characters in length.");
             request.getRequestDispatcher("newUser.jsp").forward(request, response);
         } else {
-            User user = new User(roleId, firstName, lastName, email, password);
             UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
             try {
                 userDAO.addUser(roleId, firstName, lastName, email, password);
                 request.setAttribute("successMsg", "User was successfully created.");
-                request.setAttribute("currentUser", user);
                 request.getRequestDispatcher("newUser.jsp").forward(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(CreateUserController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.getRequestDispatcher("newUser.jsp").forward(request, response);
+        request.getRequestDispatcher("newUser.jsp").forward(request, response);
         }
     }
 }

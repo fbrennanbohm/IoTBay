@@ -58,10 +58,7 @@
             
                 <form action="RegisterServlet" method="post">
                 <input type="hidden" name="submitted" value="yes">
-                <div class="form-group">
-                    <label for="firstName">Role</label>
-                    <input type="number" class="form-control" name="roleId" placeholder="1 is Customer, 2 is Staff, 3 is Systeam Admin. Choose one number" min="0"max="3"required>
-                </div>
+                
                 <div class="form-group">
                     <label for="firstName">First name</label>
                     <input type="text" class="form-control" name="firstName" placeholder="<%=(nameErr != null ? nameErr : "Enter First Name")%>"required >

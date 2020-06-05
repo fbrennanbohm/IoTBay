@@ -5,20 +5,29 @@ package uts.isd.model;
  * @author Patrick
  */
 public class Product implements java.io.Serializable {
-    private int id;
+
+    private int productId;
     private String name;
     private String description;
     private double price;
-    private String category;
-    private int quantity;
-    
-    public int getId() {
-        return id;
+    private int stockQuantity;
+
+    public Product(int productId, String name, String description, int stockQuantity, double price) {
+        this.productId = productId;
+        this.name = name;
+        this.description = description;
+        this.stockQuantity = stockQuantity;
+        this.price = price;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getProductId() {
+        return productId;
     }
+
+    public void setProductId(int id) {
+        this.productId = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -43,20 +52,11 @@ public class Product implements java.io.Serializable {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setStockQuantity(int quantity) {
+        this.stockQuantity = quantity;
     }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-    
 }

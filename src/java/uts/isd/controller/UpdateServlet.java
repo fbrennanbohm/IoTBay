@@ -26,22 +26,19 @@ import java.io.IOException;
  * @author duong
  */
 public class UpdateServlet extends HttpServlet {
-   
-
      @Override   
-
      protected void doPost(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {       
 
-  HttpSession session = request.getSession();
-  String firstName = request.getParameter("firstName");
-  String email = request.getParameter("email");
-  String password = request.getParameter("password");
-  UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
-  String lastName = request.getParameter("lastName");
-  int userId = Integer.parseInt(request.getParameter("userId"));
-  int roleId= Integer.parseInt(request.getParameter("roleId"));
-  
-  User user = new User(userId,roleId,firstName,lastName,email,password);
+    HttpSession session = request.getSession();
+    String firstName = request.getParameter("firstName");
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+    UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
+    String lastName = request.getParameter("lastName");
+    int userId = Integer.parseInt(request.getParameter("Id"));
+    int roleId= 1;
+
+    User user = new User(userId,roleId,firstName,lastName,email,password);
   
     try{
        

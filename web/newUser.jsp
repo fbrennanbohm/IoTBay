@@ -24,7 +24,6 @@
                     <h1>Create New User</h1>
                     <p>Please fill in the form below with the information of the new user.</p>
                     <%
-                        User currentUser = (User) request.getAttribute("currentUser");
                         String successMsg = (String) request.getAttribute("successMsg");
                         String errorMsg = (String) request.getAttribute("errorMsg");
                         if (successMsg != null) {
@@ -82,12 +81,12 @@
 
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" name="email" id="email">
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="some_user@website.com">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" name="password" id="password">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Between 6 to 20 characters in length">
                                 </div>
                                 <div class="container mt-4">
                                     <input type="submit" class="btn btn-primary" value="Create User"/>
