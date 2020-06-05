@@ -28,12 +28,8 @@ public class OrderDAO {
         ResultSet rs = st.executeQuery(query);
 
         while (rs.next()) {
-            int orderId = rs.getInt("orderId");
-            String orderNumber = rs.getString("orderNumber");
-            Date createdOn = rs.getDate("createdOn");
-            String orderStatus = rs.getString("orderStatus");
+            Order order = this.buildOrder(rs);
 
-            Order order = new Order(orderId, userId, orderNumber, createdOn, orderStatus);
             orderList.add(order);
         }
         rs.close();
@@ -43,6 +39,21 @@ public class OrderDAO {
         }
 
         return orderList;
+    }
+
+    public Order getOrder(int id) throws SQLException {
+        String query = "SELECT * FROM \"ORDER\" WHERE orderid=" + id;
+        ResultSet rs = st.executeQuery(query);
+
+        Order order = null;
+        if (rs.next()) {
+            order = this.buildOrder(rs);
+        }
+        rs.close();
+
+        order.setOrderItemList(this.getOrderItemList(id));
+
+        return order;
     }
 
     public List<OrderItem> getOrderItemList(int orderId) throws SQLException {
@@ -67,5 +78,17 @@ public class OrderDAO {
         }
 
         return orderItemList;
+    }
+
+    private Order buildOrder(ResultSet rs) throws SQLException {
+        int orderId = rs.getInt("orderId");
+        int userId = rs.getInt("userId");
+        String orderNumber = rs.getString("orderNumber");
+        Date createdOn = rs.getDate("createdOn");
+        String orderStatus = rs.getString("orderStatus");
+
+        Order order = new Order(orderId, userId, orderNumber, createdOn, orderStatus);
+
+        return order;
     }
 }

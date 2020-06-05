@@ -51,4 +51,8 @@ public class OrderItem implements java.io.Serializable {
     public double getPricePerUnit() {
         return this.pricePerUnit;
     }
+
+    public double getTotalPrice() {
+        return this.quantity * this.pricePerUnit;
+    }
 }

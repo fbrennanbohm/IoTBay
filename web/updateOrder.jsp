@@ -25,50 +25,55 @@
                 <jsp:include page="_myInfoNav.jsp" />
                 <div class="col-sm-9">
 
-                    <h1>Order History</h1>
-                    <p>All my orders in the IoTBay database are displayed below.</p>
+                    <%
+                        Order order = (Order) request.getAttribute("order");
+                    %>
+
+                    <h1>Update Order</h1>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Order Number</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" value="<%=order.getOrderNumber()%>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Placed On</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" value="<%=order.getCreatedOn()%>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" value="<%=order.getOrderStatus()%>">
+                        </div>
+                    </div>
+
                     <table class="table-striped table-hover table-bordered my-3">
                         <thead>
                             <tr>
-                                <th>Order Number</th>
-                                <th>Items</th>
-                                <th>Placed On</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price per unit</th>
                                 <th>Total Price</th>
-                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <%
-                                List<Order> orderList = (List<Order>) request.getAttribute("orderList");
-                                if (orderList != null) {
-                                    for (Order order : orderList) {
+                                if (order.getOrderItemList() != null) {
+                                    for (OrderItem orderItem : order.getOrderItemList()) {
                             %>
                             <tr>
-                                <td><%= order.getOrderNumber()%></td>
+                                <td><%= orderItem.getProduct().getName()%></td>
+                                <td><%=orderItem.getQuantity()%></td>
+                                <td><%=orderItem.getPricePerUnit()%></td>
+                                <td><%=orderItem.getTotalPrice()%></td>
                                 <td>
-                                    <div>
-                                        <%
-                                            for (OrderItem orderItem : order.getOrderItemList()) {
-                                        %>
-                                        <%=orderItem.getQuantity()%>x
-                                        <%=orderItem.getProduct().getName()%>
-                                        <br/>
-                                        <% }%>
-                                    </div>
-                                </td>
-                                <td><%=order.getCreatedOn()%></td>
-                                <td><%=order.getTotalPrice()%></td>
-                                <td><%=order.getOrderStatus()%></td>
-                                <td>
-                                    <%
-                                        if (order.getOrderStatus().equals("Unpaid")) {
-                                    %>
-                                    <a href="PayOrder?id=<%=order.getUserId()%>" class="btn btn-info mx-2">Pay</a>
-                                    <a href="UpdateOrder?id=<%=order.getOrderId()%>" class="btn btn-secondary mx-2"><i class="far fa-edit"></i></a>
+                                    <a href="PayOrder?id=<%=order.getOrderId()%>" class="btn btn-secondary mx-2"><i class="far fa-edit"></i></a>
                                     <a href="PayOrder?id=<%=order.getOrderId()%>" class="btn btn-warning mx-2"><i class="fas fa-trash-alt"></i></a>
-                                        <% }%>
                                 </td>
                             </tr>
                             <% }

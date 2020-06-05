@@ -145,6 +145,14 @@
         <servlet-name>OrderHistoryController</servlet-name>
         <url-pattern>/OrderHistory</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateOrderController</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateOrderController</servlet-name>
+        <url-pattern>/UpdateOrder</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
