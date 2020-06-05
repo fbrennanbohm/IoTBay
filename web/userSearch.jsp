@@ -1,4 +1,3 @@
-
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uts.isd.model.User"%>
@@ -12,77 +11,75 @@
     </head>
     <body>
         <jsp:include page="_header.jsp" />
-       
         <div class="container-fluid px-5 my-3">
             <div class="row">
                 <jsp:include page="_usersNav.jsp" />
                 <div class="col-sm-9">
-                <%
-                    String name = (String)request.getAttribute("name");
-                    String email = (String)request.getAttribute("email");
-                %>
-                    
-                <h1>User List</h1>
-                <p>You can search users by name and/or email.</p>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        
-                        <form action="UserSearchController" method="post" class="form-inline">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control mx-3" name="name" id="name">
-
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control mx-3" name="email" id="email">
-
-                            <input type="submit" class="btn btn-primary mx-3" value="Search"/>
-                            <input type="reset" class="btn btn-secondary mx-3" value="Clear"/>
-                        </form>
-                        
-                    </div>
-                </div>
-                <% if (name != null || email != null) { %>
-                <div class="container-fluid">
-                    Searching for users with <% if(name.length()>0) {%>name "<b><%=name%></b>"<% }%>
-                    <% if (name.length()>0 && email.length()>0) { %> and <% }%>
-                    <% if(email.length()>0) {%> email "<b><%= email%></b>"<% }%>
-                </div>
-                <% } %>
-                <table class="table-striped table-hover table-bordered my-3">
-                    <tr>
-                        <th>User ID</th>
-                        <th>Role</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Actions</th>
-                    </tr>
-                    <% 
-                        List<User> userList = (List<User>)request.getAttribute("userList");
-                        if (userList != null) {for (User u : userList) {
+                    <%
+                        String name = (String) request.getAttribute("name");
+                        String email = (String) request.getAttribute("email");
                     %>
-                    <tr>
-                        <td><%= u.getUserId() %></td>
-                        <td><%= u.getRoleName() %></td>
-                        <td><%= u.getFirstName() %></td>
-                        <td><%= u.getLastName() %></td>
-                        <td><%= u.getEmail() %></td>
-                        <td><a href="AdminEditUserController?id=<%=u.getUserId()%>" class="btn btn-info mx-2">Edit</a>
-                            <% if (!u.isAdmin()) { %>
-                            <a href="AdminConfirmDeleteUserController?id=<%=u.getUserId()%>" class="btn btn-secondary mx-2">Delete</a><% } else { %>
-                            <a href="#" class="btn btn-secondary disabled mx-2">Delete</a>
-                            <% } %>
-                        </td>
-                    </tr>
-                    <% }} else { %>
-                    <tr>
-                        <td colspan="6">No users found.</td>
-                    </tr>
+                    <h1>User List</h1>
+                    <p>You can search users by name and/or email.</p>
+                    <div class="card mb-4">
+                        <div class="card-body">
+
+                            <form action="UserSearchController" method="post" class="form-inline">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control mx-3" name="name" id="name">
+
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control mx-3" name="email" id="email">
+
+                                <input type="submit" class="btn btn-primary mx-3" value="Search"/>
+                                <input type="reset" class="btn btn-secondary mx-3" value="Clear"/>
+                            </form>
+
+                        </div>
+                    </div>
+                    <% if (name != null || email != null) { %>
+                    <div class="container-fluid">
+                        Searching for users with <% if (name.length() > 0) {%>name "<b><%=name%></b>"<% }%>
+                        <% if (name.length() > 0 && email.length() > 0) { %> and <% }%>
+                        <% if (email.length() > 0) {%> email "<b><%= email%></b>"<% }%>
+                    </div>
                     <% } %>
-                </table>
-                
+                    <table class="table-striped table-hover table-bordered my-3">
+                        <tr>
+                            <th>User ID</th>
+                            <th>Role</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Account Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        <%
+                            List<User> userList = (List<User>) request.getAttribute("userList");
+                            if (userList != null) {
+                                for (User u : userList) {
+                                    String userStatus = u.isActivated() ? "Activated" : "Deactivated";
+                        %>
+                        <tr>
+                            <td><%= u.getUserId()%></td>
+                            <td><%= u.getRoleName()%></td>
+                            <td><%= u.getFirstName()%></td>
+                            <td><%= u.getLastName()%></td>
+                            <td><%= u.getEmail()%></td>
+                            <td><%= userStatus%></td>
+                            <td><a href="AdminEditUserController?id=<%=u.getUserId()%>" class="btn btn-info mx-2">Edit</a>
+                                <a href="AdminConfirmDeleteUserController?id=<%=u.getUserId()%>" class="btn btn-secondary mx-2">Delete</a>
+                            </td>
+                        </tr>
+                        <% }
+                        } else { %>
+                        <tr>
+                            <td colspan="7">No users found.</td>
+                        </tr>
+                        <% }%>
+                    </table>
                 </div>
             </div>
         </div>
-        
     </body>
 </html>
