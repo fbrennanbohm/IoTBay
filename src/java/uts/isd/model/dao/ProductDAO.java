@@ -15,10 +15,6 @@ public class ProductDAO {
         st = conn.createStatement();
     }
 
-    public ProductDAO(Statement st) throws SQLException {
-        this.st = st;
-    }
-
     public Product getProduct(int id) throws SQLException {
         String query = "SELECT * FROM PRODUCT WHERE productId=" + id;
         ResultSet rs = st.executeQuery(query);

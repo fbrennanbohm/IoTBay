@@ -50,8 +50,8 @@ public class OrderHistoryController extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("id")); // get userId from HTTP request parameter
 
         try {
-            List<Order> userList = orderDAO.getUserOrderList(userId);
-            request.setAttribute("userList", userList);
+            List<Order> orderList = orderDAO.getUserOrderList(userId);
+            request.setAttribute("orderList", orderList);
         } catch (SQLException ex) {
             Logger.getLogger(OrderHistoryController.class.getName()).log(Level.SEVERE, null, ex);
         }

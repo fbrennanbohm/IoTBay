@@ -11,14 +11,15 @@ public class OrderItem implements java.io.Serializable {
 
     private int orderItemId;
     private int orderId;
+    private int productId;
     private Product product;
     private int quantity;
     private double pricePerUnit;
 
-    public OrderItem(int orderItemId, int orderId, Product product, int quantity, double pricePerUnit) {
+    public OrderItem(int orderItemId, int orderId, int productId, int quantity, double pricePerUnit) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
-        this.product = product;
+        this.productId = productId;
         this.quantity = quantity;
         this.pricePerUnit = pricePerUnit;
     }
@@ -31,8 +32,16 @@ public class OrderItem implements java.io.Serializable {
         return this.orderId;
     }
 
+    public int getProductId() {
+        return this.productId;
+    }
+
     public Product getProduct() {
         return this.product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {

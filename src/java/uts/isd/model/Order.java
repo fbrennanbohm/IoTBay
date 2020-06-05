@@ -14,14 +14,15 @@ public class Order implements java.io.Serializable {
     private int userId;
     private String orderNumber;
     private Date createdOn;
+    private String orderStatus;
     private List<OrderItem> orderItemList = new ArrayList<>();
 
-    public Order(int orderId, int userId, String orderNumber, Date createdOn, List<OrderItem> orderItemList) {
+    public Order(int orderId, int userId, String orderNumber, Date createdOn, String orderStatus) {
         this.orderId = orderId;
         this.userId = userId;
         this.orderNumber = orderNumber;
         this.createdOn = createdOn;
-        this.orderItemList = orderItemList;
+        this.orderStatus = orderStatus;
     }
 
     public int getOrderId() {
@@ -40,8 +41,16 @@ public class Order implements java.io.Serializable {
         return createdOn;
     }
 
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
     public List<OrderItem> getOrderItemList() {
         return orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 
     public double getTotalPrice() {

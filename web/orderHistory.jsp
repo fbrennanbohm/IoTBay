@@ -33,6 +33,7 @@
                                 <th>Items</th>
                                 <th>Placed On</th>
                                 <th>Total Price</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,11 +58,14 @@
                                 </td>
                                 <td><%=order.getCreatedOn()%></td>
                                 <td><%=order.getTotalPrice()%></td>
+                                <td>
+                                    <a href="PayOrder?id=<%=order.getUserId()%>" class="btn btn-info mx-2">Pay</a>
+                                </td>
                             </tr>
                             <% }
                             } else { %>
                             <tr>
-                                <td colspan="4">No orders found.</td>
+                                <td colspan="6">No orders found.</td>
                             </tr>
                             <% }%>
                         </tbody>
