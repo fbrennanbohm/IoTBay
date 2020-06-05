@@ -36,6 +36,7 @@
             <li class="nav-item">
               <a class="nav-link" href="EditServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'">Edit</a>
             </li>
+            
         </div>
         <div class="container-fluid px-5 my-3">
             <h1>Welcome!</h1>

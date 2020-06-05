@@ -61,6 +61,9 @@
                             <a class="nav-link" href="#">View Order History</a>
                         </li> 
                         <li class="nav-item">
+                            <a class="nav-link" href="PaymentServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Payment History</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="EditServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Update Personal Details</a>
                         </li>
                         <li class="nav-item">

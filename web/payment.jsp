@@ -1,27 +1,37 @@
 <%-- 
-    Document   : edit
-    Created on : Jun 2, 2020, 6:59:27 PM
-    Author     : duong
+    Document   : payment
+    Created on : 05/06/2020, 5:50:10 PM
+    Author     : Ricky
 --%>
 
+<%@page import="java.sql.*"%>
 <%@page import="uts.isd.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>IoTBay - Update Detail</title>
+        <title>IoTBay - View Payment Details</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
-    <body>
+        <body>
     <div class="container-fluid px-5 py-3">
             <div class="row mb-3">
             <div class="col-sm-4"><span class="display-4">IoTBay</span></div>
             <div class="col-sm-8 text-right my-auto">
                  <%
             User user = (User) session.getAttribute("user");
-            String updated =(String)session.getAttribute("updated");      
+            String connectionURL = "jdbc:derby://localhost:1527/iotdb";
+            Connection connection = null;
+            Statement statement = null;
+            ResultSet rs = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(connectionURL, "iotuser", "admin");
+            statement = connection.createStatement();
+            String QueryString = "select * from PAYMENT";
+            rs = statement.executeQuery(QueryString);
+            //String updated =(String)session.getAttribute("updated");      
                     %>
             </div>
             </div>
@@ -56,49 +66,44 @@
                             <a class="nav-link" href="EditServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Update Personal Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="DeleteServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'">Delete My Account</a>
+                            <a class="nav-link" href="DeleteServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Delete My Account</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-sm-9">
                     
-                <h1>My Dashboard</h1>
-                <p>Your personal information is displayed in the table below.</p>
-                 <form class="form-horizontal" name="myForm" method="post" action="UpdateServlet">
-                        <h1 class="text-primary"><strong>Edit here  <span><%= (updated!=null)? updated :""%></span></strong></h1>
-                       <div class="form-group">
-                    <label for="firstName">User ID</label>
-                    <input type="text" class="form-control" name="userId"value="<%=user.getUserId()%>" >
-                </div>
-                  <div class="form-group">
-                    <label for="firstName">Role ID</label>
-                    <input type="text" class="form-control" name="roleId" value="<%=user.getRoleId()%>">
-                </div>
+                <h1>${user.firstName} ${user.lastName}'s Payment History</h1>
+                <p>Your payment history is listed below:</p>
                 
-                        <div class="form-group">
-                    <label for="firstName">First name</label>
-                    <input type="text" class="form-control" name="firstName"value="<%=user.getFirstName()%>">
-                </div>
                 
-                <div class="form-group">
-                    <label for="lastName">Last name</label>
-                    <input type="text" class="form-control" name="lastName" value="<%=user.getLastName()%>">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" name="email" value="<%=user.getEmail()%>">
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password"  value="<%=user.getPassword()%>">
-                </div>
-                     
-            
-                        <div class="form-group"><div class="col-sm-offset-2 col-sm-10"><input type='submit' class='btn btn-primary'value='Update'>                       
-                                
-                  </form>
+                <table border ="1" align="left" style ="text-align: center">
+                    <thead>
+                        <tr>
+                            <th>PaymentID</th>
+                            <th>Payment Amount</th>
+                            <th>Credit-Card Details</th>
+                            <th>Payment Method</th>
+                            <th>Date Paid</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <%while (rs.next()) { %>
+                        <tr>
+                            <td><%=rs.getString("PAYMENTID") %></td>
+                            <td><%=rs.getString("PAIDAMOUNT") %></td>
+                            <td><%=rs.getString("DETAIL") %></td>
+                            <td><%=rs.getString("PAYMENTMETHOD") %></td>
+                            <td><%=rs.getString("DATePAID") %></td>
+                        </tr>
+                        <% } %>
+                    <% 
+                        rs.close();
+                        statement.close();
+                        connection.close();
+                    %>                            
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>
