@@ -157,6 +157,30 @@
         <servlet-name>UpdateOrderController</servlet-name>
         <url-pattern>/UpdateOrder</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateOrderItemController</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateOrderItemController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateOrderItemController</servlet-name>
+        <url-pattern>/UpdateOrderItem</url-pattern>
+    </servlet-mapping>
+     <servlet>
+        <servlet-name>AccessController</servlet-name>
+        <servlet-class>uts.isd.controller.AccessController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AccessController</servlet-name>
+        <url-pattern>/AccessController</url-pattern>
+    </servlet-mapping>
+     <servlet>
+        <servlet-name>AccessSearch</servlet-name>
+        <servlet-class>uts.isd.controller.AccessSearch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AccessSearch</servlet-name>
+        <url-pattern>/AccessSearch</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

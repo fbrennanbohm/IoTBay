@@ -72,7 +72,7 @@
                                 <td><%=orderItem.getPricePerUnit()%></td>
                                 <td><%=orderItem.getTotalPrice()%></td>
                                 <td>
-                                    <a href="PayOrder?id=<%=order.getOrderId()%>" class="btn btn-secondary mx-2"><i class="far fa-edit"></i></a>
+                                    <a href="UpdateOrderItem?id=<%=order.getOrderId()%>" class="btn btn-secondary mx-2"><i class="far fa-edit"></i></a>
                                     <a href="PayOrder?id=<%=order.getOrderId()%>" class="btn btn-warning mx-2"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>

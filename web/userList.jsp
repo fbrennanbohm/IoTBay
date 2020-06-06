@@ -8,9 +8,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>IoTBay - User List</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </head>
     <body>
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
         <jsp:include page="_header.jsp" />
 
         <div class="container-fluid px-5 my-3">
@@ -42,9 +51,10 @@
                             <td><%= u.getFirstName()%></td>
                             <td><%= u.getLastName()%></td>
                             <td><%= u.getEmail()%></td>
-                            <td><%= userStatus%></td>
-                            <td><a href="AdminEditUserController?id=<%=u.getUserId()%>" class="btn btn-info mx-2">Edit</a>
-                                <a href="AdminConfirmDeleteUserController?id=<%=u.getUserId()%>" class="btn btn-secondary mx-2">Delete</a>
+                            <td><% if (u.isActivated()) { %><i class="fas fa-check-circle" style="color: green;"></i>
+                                <% } else { %><i class="fas fa-times-circle" style="color: red;"></i><% }%> <%= userStatus%></td>
+                            <td><a href="AdminEditUserController?id=<%=u.getUserId()%>" class="btn btn-info mx-2" data-toggle="tooltip" title="Edit this user"><i class="fas fa-edit"></i></a>
+                                <a href="AdminConfirmDeleteUserController?id=<%=u.getUserId()%>" class="btn btn-warning mx-2" data-toggle="tooltip" title="Delete this user"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         <% }

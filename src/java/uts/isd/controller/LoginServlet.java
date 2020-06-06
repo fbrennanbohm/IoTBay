@@ -58,6 +58,7 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute("existErr", "Login failed because the user account has been deactivated.");
                         request.getRequestDispatcher("login.jsp").include(request, response);
                     } else {
+                        userDAO.addAccess(email, logIn);
                         session.setAttribute("user", user);
                         request.getRequestDispatcher("welcome.jsp").include(request, response);
                     }

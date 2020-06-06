@@ -56,7 +56,7 @@ public class Order implements java.io.Serializable {
     public double getTotalPrice() {
         double totalPrice = 0;
         for (OrderItem orderItem : orderItemList) {
-            totalPrice += orderItem.getPricePerUnit() * orderItem.getQuantity();
+            totalPrice += (Math.round(orderItem.getPricePerUnit() * orderItem.getQuantity() * 100.0) / 100.0);
         }
 
         return totalPrice;
