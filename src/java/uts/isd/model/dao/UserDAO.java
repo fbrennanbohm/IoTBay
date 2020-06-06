@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import uts.isd.model.Access;
+
 /*
 * DBManager is the primary DAO class to interact with the database.
 * Performs CRUD operations with the db.
@@ -41,8 +42,7 @@ public class UserDAO {
 
     public List<User> searchUsers(String name, String emailInput) throws SQLException {
         List<User> userList = new ArrayList<>();
-        String query = "SELECT userId, roleId, firstName, lastName, email, password, activated"
-                + " FROM Users WHERE ";
+        String query = "SELECT * FROM Users WHERE ";
         if (name.length() > 0) {
             query += "(UPPER(firstName) LIKE '%" + name.toUpperCase() + "%'"
                     + " OR UPPER(lastName) LIKE '%" + name.toUpperCase() + "%')";
@@ -143,48 +143,47 @@ public class UserDAO {
         //code for delete-operation
         st.executeUpdate("DELETE FROM Users WHERE userID=" + userId);
     }
-    
+
     //find access history
-     public Access findAccess(String logIn) throws SQLException {       
-       String fetch = "select * from access_log where log_in ='"+logIn+"'";
-  
-   //execute this query using the statement field       
-   //add the results to a ResultSet       
-   ResultSet rs = st.executeQuery(fetch);
-   //search the ResultSet for a user using the parameters 
-   while (rs.next()) {
-       
-       String userLogIn = rs.getString("log_in");
-       if (userPass.equals(logIn))  {
-           String email = rs.getString("email");          
-           return new Access(email,userLogIn);
-       }
-   
-   }
-   return null;
-} 
-    
+    public Access findAccess(String logIn) throws SQLException {
+        String fetch = "select * from access_log where log_in ='" + logIn + "'";
+
+        //execute this query using the statement field
+        //add the results to a ResultSet
+        ResultSet rs = st.executeQuery(fetch);
+        //search the ResultSet for a user using the parameters
+        while (rs.next()) {
+
+            String userLogIn = rs.getString("log_in");
+            if (userPass.equals(logIn)) {
+                String email = rs.getString("email");
+                return new Access(email, userLogIn);
+            }
+
+        }
+        return null;
+    }
+
     //Add access record
-     public void addAccess (String email, String log_in_date) throws SQLException {
-st.executeUpdate("insert into access_Log(email,log_in)  "+"values('"+ email +"','"+log_in_date+"')");
-}
-    
+    public void addAccess(String email, String log_in_date) throws SQLException {
+        st.executeUpdate("insert into access_Log(email,log_in)  " + "values('" + email + "','" + log_in_date + "')");
+    }
+
     //fetch access record
     public ArrayList<Access> fetchAccess(String email) throws SQLException {
-    
-    String fetch = "select * from access_log where email='"+email+"'";
-    ResultSet rs = st.executeQuery(fetch);
-    ArrayList<Access> temp = new ArrayList();
-    while (rs.next())  {
-      
-        String logIn = rs.getString("log_in");
-        temp.add(new Access(email,logIn));
-    } 
-      rs.close(); 
-    return temp;
-    
 
-}
+        String fetch = "select * from access_log where email='" + email + "'";
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<Access> temp = new ArrayList();
+        while (rs.next()) {
+
+            String logIn = rs.getString("log_in");
+            temp.add(new Access(email, logIn));
+        }
+        rs.close();
+        return temp;
+
+    }
 
     //update a user's saved shipping details in the database
     public void updateShipping(int userId, String Address) throws SQLException {
