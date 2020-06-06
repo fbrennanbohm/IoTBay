@@ -146,7 +146,7 @@ public class UserDAO {
     
     //find access history
      public Access findAccess(String logIn) throws SQLException {       
-       String fetch = "select * from acess_log where log_in ='"+logIn+"'";
+       String fetch = "select * from access_log where log_in ='"+logIn+"'";
   
    //execute this query using the statement field       
    //add the results to a ResultSet       
@@ -154,10 +154,10 @@ public class UserDAO {
    //search the ResultSet for a user using the parameters 
    while (rs.next()) {
        
-       String userPass = rs.getString("log_in");
+       String userLogIn = rs.getString("log_in");
        if (userPass.equals(logIn))  {
            String email = rs.getString("email");          
-           return new Access(email,userPass);
+           return new Access(email,userLogIn);
        }
    
    }
@@ -166,13 +166,13 @@ public class UserDAO {
     
     //Add access record
      public void addAccess (String email, String log_in_date) throws SQLException {
-st.executeUpdate("insert into acess_Log(email,log_in)  "+"values('"+ email +"','"+log_in_date+"')");
+st.executeUpdate("insert into access_Log(email,log_in)  "+"values('"+ email +"','"+log_in_date+"')");
 }
     
     //fetch access record
     public ArrayList<Access> fetchAccess(String email) throws SQLException {
     
-    String fetch = "select * from acess_log where email='"+email+"'";
+    String fetch = "select * from access_log where email='"+email+"'";
     ResultSet rs = st.executeQuery(fetch);
     ArrayList<Access> temp = new ArrayList();
     while (rs.next())  {
