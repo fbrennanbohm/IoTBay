@@ -60,6 +60,9 @@
                             <a class="nav-link" href="#">View Order History</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="PaymentMethodServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Payment Method</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="PaymentServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Payment History</a>
                         </li>
                          <li class="nav-item">

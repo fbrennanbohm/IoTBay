@@ -24,6 +24,22 @@
         <servlet-name>PaymentMethodServlet</servlet-name>
         <servlet-class>uts.isd.controller.PaymentMethodServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddPaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AddPaymentMethodServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>removePaymentMethod</servlet-name>
+        <servlet-class>uts.isd.controller.removePaymentMethod</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddPaymentMethodServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AddPaymentMethodServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemovePaymentMethod</servlet-name>
+        <servlet-class>uts.isd.controller.RemovePaymentMethod</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
         <url-pattern>/AdminConfirmDeleteUserController</url-pattern>
@@ -168,6 +184,22 @@
     <servlet-mapping>
         <servlet-name>PaymentMethodServlet</servlet-name>
         <url-pattern>/PaymentMethodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPaymentServlet</servlet-name>
+        <url-pattern>/AddPaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>removePaymentMethod</servlet-name>
+        <url-pattern>/removePaymentMethod</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPaymentMethodServlet</servlet-name>
+        <url-pattern>/AddPaymentMethodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemovePaymentMethod</servlet-name>
+        <url-pattern>/RemovePaymentMethod</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

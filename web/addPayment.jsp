@@ -1,6 +1,6 @@
 <%-- 
-    Document   : paymentMethod
-    Created on : 06/06/2020, 2:40:04 AM
+    Document   : addPayment
+    Created on : 05/06/2020, 8:55:15 PM
     Author     : Ricky
 --%>
 
@@ -20,18 +20,13 @@
             <div class="row mb-3">
             <div class="col-sm-4"><span class="display-4">IoTBay</span></div>
             <div class="col-sm-8 text-right my-auto">
-                 <%
+            <% 
             User user = (User) session.getAttribute("user");
-            String connectionURL = "jdbc:derby://localhost:1527/iotdb";
-            Connection connection = null;
-            Statement statement = null;
-            ResultSet rs = null;
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(connectionURL, "iotuser", "admin");
-            statement = connection.createStatement();
-            String QueryString = "select * from PAYMENTMETHOD";
-            rs = statement.executeQuery(QueryString);
-            //String updated =(String)session.getAttribute("updated");      
+            String existErr = (String) session.getAttribute("existErr");
+            String emailErr = (String) session.getAttribute("emailErr");
+            String passErr = (String) session.getAttribute("passErr");
+            String nameErr = (String) session.getAttribute("nameErr");
+            %>      
                     %>
             </div>
             </div>
@@ -68,50 +63,48 @@
                          <li class="nav-item">
                             <a class="nav-link" href="EditServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Update Personal Details</a>
                         </li>
+                        
                         <li class="nav-item">
-                            <a class="nav-link" href="DeleteServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Delete My Account</a>
+                            <a class="nav-link" href="DeleteServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'">Delete My Account</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-sm-9">
                     
-                <h1>${user.firstName} ${user.lastName}'s Payment Method's</h1>
-                <div align="right" class="container mt-4"><a href="addPayment.jsp"  class='btn btn-primary' align="right">Add</a> <a href="deletePaymentMethod.jsp"  class='btn btn-primary' align="right">Remove</a></div>
-                <p>Your payment methods are listed below:</p>
+                <h1>Add Payment Method</h1>
                 
-                <table border ="1" align="left" style ="text-align: center">
-                    <thead>
-                        <tr>
-                            <th>Payment Method</th>
-                            <th>Payment Type</th>
-                            <th>Card Number</th>
-                            <th>Card Holder</th>
-                            <th>Expiry Date</th>
-                            <th>CVC</th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody>
-                        <%while (rs.next()) { %>
-                        <tr>
-                            <td><%=rs.getString("PAYMENTMETHODID") %></td>
-                            <td><%=rs.getString("TYPE") %></td>
-                            <td><%=rs.getString("CARDNUMBER") %></td>
-                            <td><%=rs.getString("NAME") %></td>
-                            <td><%=rs.getString("VALIDUNTIL") %></td>
-                            <td><%=rs.getString("CVC") %></td>
-                        <% } %>
-                    <% 
-                        rs.close();
-                        statement.close();
-                        connection.close();
-                    %>        
-                        </tr>                      
-                    </tbody>
-                </table>
-                        
+                <p></p>
+                <form action="AddPaymentMethodServlet" method="post">
+                <input type="hidden" name="submitted" value="yes">
+                <div class="form-group">
+                    <label for="paymentType">Payment Type</label>
+                    <input type="text" class="form-control" name="paymentType" placeholder="Visa/Mastercard/AmericanExpress"required >
                 </div>
-                        
+                
+                <div class="form-group">
+                    <label for="Card Number">Card Number</label>
+                    <input type="text" class="form-control" name="cardNumber" placeholder="15-16 Digit Card Number"required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Card Holder">Card Holder</label>
+                    <input type="text" class="form-control" name="cardHolder" placeholder="Name of the Card Holder"required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="Expiry Date">Expiry Date</label>
+                    <input type="text" class="form-control" name="expiryDate" placeholder="Date of Expiry" required>
+                </div>
+                <div class="form-group">
+                    <label for="CVC">CVC</label>
+                    <input type="text" class="form-control" name="cvc" placeholder="3 Digit CVC" required>
+                </div>
+                <div class="container mt-4">
+                    <input type="submit" class="btn btn-primary" value="Add Payment"/>
+                    <a href="paymentMethod.jsp" class="btn btn-secondary mx-4">Cancel</a>
+                </div>
+                </form>
+                </div>
             </div>
         </div>
     </body>

@@ -148,7 +148,21 @@ public class UserDAO {
     public void updateShipping(int userId, String Address) throws SQLException {
         st.executeUpdate("UPDATE Users SET address='" + Address + "'" + " WHERE userId=" + userId);
     }
+    
+    public void addPayment(int paymentId, String type, String cardNumber, String name, String valid, String cvc) throws SQLException { //code for add-operation
 
+        String query = "INSERT INTO PaymentMethod (PaymentMethodID, Type, CardNumber, Name, ValidDate) VALUES("
+                + paymentId + ", " + wrapStr(type) + ", " + wrapStr(cardNumber) + ", "
+                + wrapStr(name) + ", " + wrapStr(valid) + ", " + wrapStr(cvc) + ")";
+        st.executeUpdate(query);
+
+    }
+    
+    public void deletePayment(int removeId) throws SQLException {
+        //code for delete-operation
+        st.executeUpdate("DELETE FROM PaymentMethod WHERE PAYMENTMETHODID=" + removeId);
+    }    
+    
     private String wrapStr(String input) {
         return "'" + input + "'";
     }

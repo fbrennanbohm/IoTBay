@@ -1,6 +1,6 @@
 <%-- 
-    Document   : paymentMethod
-    Created on : 06/06/2020, 2:40:04 AM
+    Document   : deletePaymentMethod
+    Created on : 06/06/2020, 5:28:38 PM
     Author     : Ricky
 --%>
 
@@ -76,7 +76,20 @@
                 <div class="col-sm-9">
                     
                 <h1>${user.firstName} ${user.lastName}'s Payment Method's</h1>
-                <div align="right" class="container mt-4"><a href="addPayment.jsp"  class='btn btn-primary' align="right">Add</a> <a href="deletePaymentMethod.jsp"  class='btn btn-primary' align="right">Remove</a></div>
+                <form class="form-horizontal" name="myForm" method="post" action="RemovePaymentMethod">
+                        <p><strong>Please enter the ID of the payment you would like to remove  </strong></p>
+
+                        <div class="form-group">
+                            <label for="PaymentID">Remove Payment ID:</label>
+                            <input type="text" class="form-control" name="RemovePaymentID">
+                        </div>
+
+                        <div class="form-group"><div class="col-sm-offset-2 col-sm-10">
+                                <input type='submit' class='btn btn-primary'value='Delete'>
+                                <a href="paymentMethod.jsp" class="btn btn-secondary mx-4">Cancel</a>
+                        </div>
+                        </div>
+                    </form>
                 <p>Your payment methods are listed below:</p>
                 
                 <table border ="1" align="left" style ="text-align: center">

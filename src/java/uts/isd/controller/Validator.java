@@ -11,6 +11,12 @@ public class Validator implements Serializable {
      private String namePattern = "([A-Z][a-zA-z]{1,20})";
     private String passwordPattern = "[a-z0-9]{6,20}";
     
+    private String paymentPattern = "([A-Z][a-zA-z]{4,15})";
+    private String cardNumberPattern = "[0-9]{15,16}";
+    private String cardHolderPattern = "([A-Z][a-zA-z]{1,35})";
+    private String expiryDatePattern = "(0[1-9]|1[0-2])[-][0-9]{2}";
+    private String cvcPattern = "[0-9]{3}";
+ 
     public Validator() {
     }
 
@@ -41,6 +47,28 @@ public class Validator implements Serializable {
     public boolean validatePassword(String password) {
         return validate(passwordPattern, password);
     }
+    
+    public boolean validatePaymentType(String paymentType) {
+        return validate(paymentPattern, paymentType);
+    }
+    
+    public boolean validateCardNumber(String cardNumber) {
+        return validate(cardNumberPattern, cardNumber);
+    }
+    
+    public boolean validateCardHolder(String cardHolder) {
+        return validate(cardHolderPattern, cardHolder);
+    }
+    
+    public boolean validateExpiryDate(String expiryDate) {
+        return validate(expiryDatePattern, expiryDate);
+    }
+    
+    public boolean validateCvc(String cvc) {
+        return validate(cvcPattern, cvc);
+    }
+    
+
     public void clear (HttpSession session) {
     session.setAttribute("emailErr","Enter email");
     session.setAttribute("passErr","Enter password");
