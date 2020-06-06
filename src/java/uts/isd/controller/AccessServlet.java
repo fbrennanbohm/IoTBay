@@ -36,8 +36,8 @@ public class AccessServlet extends HttpServlet {
         try {
             user = userDAO.findUser(email,password);
             ArrayList<Access> access = userDAO.fetchAccess(email);
-            request.setAttribute("access", access);
-            request.setAttribute("user",user);
+            session.setAttribute("access", access);
+            session.setAttribute("user",user);
         }
         catch (SQLException ex) {
             Logger.getLogger(AccessServlet.class.getName()).log(Level.SEVERE, null, ex);
