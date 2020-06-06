@@ -19,8 +19,12 @@
                 <div class="col-sm-9">
                     
                 <h1>My Access Log</h1>
-                 
-                
+                 <form class="form-inline" method ="post" action="AccessSearch">
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary mx-1" value="Find">
+                            <input type="text" class="form-control" name="logIn" placeholder="Enter log in time">
+                        </div>
+                    </form>                
                 <table class="table-striped table-hover table-bordered my-3">
                         <tr>
                             <th>Email</th>
@@ -28,6 +32,8 @@
                             
                         </tr>
                         <%
+                            Access accessSearch = (Access) session.getAttribute("accessSearch");
+                            if (accessSearch == null) {
                             ArrayList<Access> access = (ArrayList<Access>) request.getAttribute("access");
                             if (access != null) {
                                 for (Access a : access) {
@@ -42,7 +48,13 @@
                         <tr>
                             <td colspan="6">No users found.</td>
                         </tr>
-                        <% }%>
+                        <% } 
+                        } else {%>
+                            <tr>
+                                <td><%= accessSearch.getEmail()%></td>
+                                <td><%= accessSearch.getLogIn()%></td>
+                            </tr>
+                            <% };%>
                     </table>
 
                 </div>
