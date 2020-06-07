@@ -48,7 +48,16 @@ public class OrderItem implements java.io.Serializable {
         return this.quantity;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public double getPricePerUnit() {
         return this.pricePerUnit;
+    }
+
+    public double getTotalPrice() {
+        //Rounding to 2 decimal places
+        return Math.round(this.quantity * this.pricePerUnit * 100.0) / 100.0;
     }
 }

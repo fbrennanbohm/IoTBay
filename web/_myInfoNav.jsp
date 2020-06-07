@@ -14,6 +14,9 @@
         <li class="nav-item">
             <a class="nav-link  <%=(url.indexOf("orderHistory.jsp") > -1 ? "active" : "")%>" href="OrderHistory?id=<%= user.getUserId()%>">View Order History</a>
         </li>
+         <li class="nav-item">
+            <a class="nav-link  <%=(url.indexOf("AccessLog.jsp") > -1 ? "active" : "")%>" href="AccessServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'">View Access Log</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="PaymentMethodServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Payment Method</a>
         </li>

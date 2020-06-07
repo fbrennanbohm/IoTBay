@@ -28,12 +28,8 @@ public class OrderDAO {
         ResultSet rs = st.executeQuery(query);
 
         while (rs.next()) {
-            int orderId = rs.getInt("orderId");
-            String orderNumber = rs.getString("orderNumber");
-            Date createdOn = rs.getDate("createdOn");
-            String orderStatus = rs.getString("orderStatus");
+            Order order = this.buildOrder(rs);
 
-            Order order = new Order(orderId, userId, orderNumber, createdOn, orderStatus);
             orderList.add(order);
         }
         rs.close();
@@ -45,18 +41,29 @@ public class OrderDAO {
         return orderList;
     }
 
+    public Order getOrder(int id) throws SQLException {
+        String query = "SELECT * FROM \"ORDER\" WHERE orderid=" + id;
+        ResultSet rs = st.executeQuery(query);
+
+        Order order = null;
+        if (rs.next()) {
+            order = this.buildOrder(rs);
+        }
+        rs.close();
+
+        order.setOrderItemList(this.getOrderItemList(id));
+
+        return order;
+    }
+
     public List<OrderItem> getOrderItemList(int orderId) throws SQLException {
         List<OrderItem> orderItemList = new ArrayList<>();
         String query = "SELECT * FROM ORDERITEM WHERE orderId=" + orderId;
         ResultSet rs = st.executeQuery(query);
 
         while (rs.next()) {
-            int orderItemId = rs.getInt("orderItemId");
-            int productId = rs.getInt("productId");
-            int quantity = rs.getInt("quantity");
-            double pricePerUnit = rs.getDouble("pricePerUnit");
 
-            OrderItem orderItem = new OrderItem(orderItemId, orderId, productId, quantity, pricePerUnit);
+            OrderItem orderItem = this.buildOrderItem(rs);
             orderItemList.add(orderItem);
         }
         rs.close();
@@ -67,5 +74,53 @@ public class OrderDAO {
         }
 
         return orderItemList;
+    }
+
+    public OrderItem getOrderItem(int id) throws SQLException {
+
+        String query = "SELECT * FROM \"ORDERITEM\" WHERE orderItemid=" + id;
+        ResultSet rs = st.executeQuery(query);
+
+        OrderItem orderItem = null;
+        if (rs.next()) {
+            orderItem = this.buildOrderItem(rs);
+        }
+        rs.close();
+
+        if (orderItem != null) {
+            ProductDAO productDao = new ProductDAO(this.conn);
+            orderItem.setProduct(productDao.getProduct(orderItem.getProductId()));
+        }
+
+        return orderItem;
+    }
+
+    public void updateOrderItem(OrderItem orderItem) throws SQLException {
+        st.executeUpdate("UPDATE ORDERITEM SET PRODUCTID=" + orderItem.getProductId() + ", QUANTITY=" + orderItem.getQuantity() + ", PRICEPERUNIT=" + orderItem.getPricePerUnit()
+                + " WHERE orderItemId=" + orderItem.getOrderItemId());
+    }
+
+    private Order buildOrder(ResultSet rs) throws SQLException {
+        int orderId = rs.getInt("orderId");
+        int userId = rs.getInt("userId");
+        String orderNumber = rs.getString("orderNumber");
+        Date createdOn = rs.getDate("createdOn");
+        String orderStatus = rs.getString("orderStatus");
+
+        Order order = new Order(orderId, userId, orderNumber, createdOn, orderStatus);
+
+        return order;
+    }
+
+    private OrderItem buildOrderItem(ResultSet rs) throws SQLException {
+        int orderItemId = rs.getInt("orderItemId");
+        int orderId = rs.getInt("orderId");
+        int productId = rs.getInt("productId");
+        int quantity = rs.getInt("quantity");
+        double pricePerUnit = rs.getDouble("pricePerUnit");
+
+        OrderItem orderItem = new OrderItem(orderItemId, orderId, productId, quantity, pricePerUnit);
+
+        return orderItem;
     }
 }
