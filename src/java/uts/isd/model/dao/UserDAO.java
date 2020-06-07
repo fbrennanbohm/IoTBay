@@ -155,7 +155,7 @@ public class UserDAO {
         while (rs.next()) {
 
             String userLogIn = rs.getString("log_in");
-            if (userPass.equals(logIn)) {
+            if (userLogIn.equals(logIn)) {
                 String email = rs.getString("email");
                 return new Access(email, userLogIn);
             }
