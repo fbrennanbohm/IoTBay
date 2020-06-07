@@ -56,6 +56,10 @@ public class OrderDAO {
         return order;
     }
 
+    public void deleteOrder(int id) throws SQLException {
+        st.executeUpdate("DELETE FROM \"ORDER\" WHERE ORDERID=" + id);
+    }
+
     public List<OrderItem> getOrderItemList(int orderId) throws SQLException {
         List<OrderItem> orderItemList = new ArrayList<>();
         String query = "SELECT * FROM ORDERITEM WHERE orderId=" + orderId;
