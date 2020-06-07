@@ -143,6 +143,12 @@ public class UserDAO {
         //code for delete-operation
         st.executeUpdate("DELETE FROM Users WHERE userID=" + userId);
     }
+    
+    //delete a user's saved shipping details in the database
+    public void deleteAddress(int userId) throws SQLException {
+        //code for delete-operation
+        st.executeUpdate("UPDATE Users SET address=NULL WHERE userId=" + userId);
+    }
 
     //find access history
     public Access findAccess(String logIn) throws SQLException {
@@ -174,7 +180,7 @@ public class UserDAO {
 
         String fetch = "select * from access_log where email='" + email + "'";
         ResultSet rs = st.executeQuery(fetch);
-        ArrayList<Access> temp = new ArrayList();
+        ArrayList<Access> temp = new ArrayList<Access>();
         while (rs.next()) {
 
             String logIn = rs.getString("log_in");
