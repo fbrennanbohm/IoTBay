@@ -39,6 +39,20 @@ public class PaymentMethod {
         return cardNumber;
     }
 
+    public String getMaskedCardNumber() {
+        String str = "";
+        for (int i = 0; i < cardNumber.length() - 4; i++) {
+            str += "X";
+            if ((i + 1) % 4 == 0) {
+                str += "-";
+            }
+        }
+
+        str += cardNumber.substring(cardNumber.length() - 4);
+
+        return str;
+    }
+
     public String getCvc() {
         return cvc;
     }

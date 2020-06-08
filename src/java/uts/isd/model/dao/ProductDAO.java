@@ -27,14 +27,20 @@ public class ProductDAO {
             String name = rs.getString("name");
             String description = rs.getString("description");
             int stockQuantity = rs.getInt("stockQuantity");
-            double price = rs.getDouble("price");
             String imageUrl = rs.getString("imageUrl");
+            double price = rs.getDouble("price");
 
             product = new Product(id, name, description, stockQuantity, price, imageUrl);
         }
         rs.close();
 
         return product;
+    }
+
+    public void updateProduct(Product product) throws SQLException {
+        st.executeUpdate("UPDATE PRODUCT SET NAME=" + wrapStr(product.getName()) + ", DESCRIPTION=" + wrapStr(product.getDescription()) + ", STOCKQUANTITY=" + product.getStockQuantity()
+                + ", PRICE=" + product.getPrice() + ", IMAGEURL=" + product.getImageUrl()
+                + " WHERE productId=" + product.getProductId());
     }
 
     public List<Product> listProducts() throws SQLException {
@@ -57,5 +63,9 @@ public class ProductDAO {
         }
         rs.close();
         return productList;
+    }
+
+    private String wrapStr(String input) {
+        return "'" + input + "'";
     }
 }
