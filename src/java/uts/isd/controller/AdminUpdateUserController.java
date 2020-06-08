@@ -62,10 +62,17 @@ public class AdminUpdateUserController extends HttpServlet {
             try {
                 User user = userDAO.findUser(userId);
                 if (user != null) {
-                    userDAO.updateUser(userId, roleId, firstName, lastName, email, password, activate);
-                    request.setAttribute("successMsg", "Update was successful.");
-                    request.setAttribute("currentUser", userDAO.findUser(userId));
-                    request.getRequestDispatcher("adminEditUser.jsp?user=" + userId).forward(request, response);
+                    if (userDAO.isEmailUsed(email, userId)) {
+                        request.setAttribute("errorMsg", "The email address that you entered is already associated with a user in the system.");
+                        request.setAttribute("currentUser", findUser(userId, userDAO));
+                        request.getRequestDispatcher("adminEditUser.jsp?user=" + userId).forward(request, response);
+                    } else {
+                        userDAO.updateUser(userId, roleId, firstName, lastName, email, password, activate);
+                        request.setAttribute("successMsg", "Update was successful.");
+                        request.setAttribute("currentUser", userDAO.findUser(userId));
+                        request.getRequestDispatcher("adminEditUser.jsp?user=" + userId).forward(request, response);
+                    }
+
                 } else {
                     request.setAttribute("errorMsg", "Error: User could not be found in the database.");
                     request.getRequestDispatcher("adminEditUser.jsp?user=" + userId).forward(request, response);
