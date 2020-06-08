@@ -17,7 +17,7 @@
         <servlet-class>uts.isd.controller.ShippingServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AcessServlet</servlet-name>
+        <servlet-name>AccessServlet</servlet-name>
         <servlet-class>uts.isd.controller.AccessServlet</servlet-class>
     </servlet>
     <servlet>
@@ -264,6 +264,7 @@
     <servlet-mapping>
         <servlet-name>ProductListController</servlet-name>
         <url-pattern>/ProductListController</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteShippingController</servlet-name>
         <url-pattern>/DeleteShippingController</url-pattern>
