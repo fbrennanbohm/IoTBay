@@ -16,7 +16,7 @@
         <div class="container-fluid px-5">
             <h1 class="my-3">Device Catalogue</h1>
         </div>
-        <div class="col-sm-12">
+        <div class="container-fluid px-5">
             <div class="row">
                 <%
                     List<Product> productList = (List<Product>) request.getAttribute("productList");
