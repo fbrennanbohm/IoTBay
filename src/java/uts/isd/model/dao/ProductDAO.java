@@ -68,4 +68,47 @@ public class ProductDAO {
     private String wrapStr(String input) {
         return "'" + input + "'";
     }
+
+    /**
+     * Finds product by id
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public Product find(int id) throws SQLException {
+        String query = "SELECT * FROM product WHERE productId=" + id;
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            int productId = rs.getInt("productId");
+            String name = rs.getString("name");
+            String description = rs.getString("description");
+            Integer stockQuantity = rs.getInt("stockQuantity");
+            Float price = rs.getFloat("price");
+            String imageUrl = rs.getString("imageUrl");
+
+            return new Product(productId, name, description, stockQuantity, price, imageUrl);
+        }
+        rs.close();
+        return null;
+    }
+
+    public void update(Product p) throws SQLException {
+        st.executeUpdate("UPDATE product SET name='" + p.getName()
+                + "', description='" + p.getDescription()
+                + "', stockQuantity=" + p.getStockQuantity()
+                + ", price=" + p.getPrice()
+                + ", imageurl='" + p.getImageUrl()
+                + "'" + " WHERE productId =" + p.getProductId());
+    }
+
+    public void add(Product p) throws SQLException {
+        st.executeUpdate("INSERT INTO product (name, description, stockQuantity, price, imageurl) values("
+                + "'" + p.getName()
+                + "','" + p.getDescription()
+                + "'," + p.getStockQuantity()
+                + "," + p.getPrice()
+                + ",'" + p.getImageUrl() + "')");
+    }
 }

@@ -31,11 +31,11 @@
                                 <div class="form-group">
                                     <p> <%=(existErr != null ? existErr : "")%></p>
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" name="email" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>" required >
+                                    <input type="email" class="form-control" name="email" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>" required value="admin@iotbay.com" >
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label><br>
-                                    <input type="password" class="form-control" name="password" placeholder="<%=(emailErr != null ? emailErr : "Enter password")%>" required >
+                                    <input type="password" class="form-control" name="password" placeholder="<%=(emailErr != null ? emailErr : "Enter password")%>" required value="admin123" >
                                 </div>
 
                                 <input type="hidden" name="tos" value="yes">

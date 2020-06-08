@@ -265,6 +265,30 @@
         <servlet-name>ProductListController</servlet-name>
         <url-pattern>/ProductListController</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddProductController</servlet-name>
+        <servlet-class>uts.isd.controller.AddProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddProductController</servlet-name>
+        <url-pattern>/AddProductController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditProductController</servlet-name>
+        <servlet-class>uts.isd.controller.EditProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditProductController</servlet-name>
+        <url-pattern>/EditProductController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateProductController</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateProductController</servlet-name>
+        <url-pattern>/UpdateProductController</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteShippingController</servlet-name>
         <url-pattern>/DeleteShippingController</url-pattern>
