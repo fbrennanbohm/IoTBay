@@ -32,7 +32,8 @@ public class AdminConfirmDeleteUserController extends HttpServlet {
             User user = userDAO.findUser(userId);
             if (user != null) {
                 if (user.getUserId() == currentUser.getUserId()) {
-                    request.setAttribute("errorMsg", "You cannot delete your own account.");
+                    request.setAttribute("errorMsg", "You cannot delete your own account. "
+                            + "If you wish to do so, please log in as a different system admin to delete your account.");
                     request.getRequestDispatcher("adminDeleteUser.jsp").forward(request, response);
                 }
                 request.setAttribute("currentUser", user);

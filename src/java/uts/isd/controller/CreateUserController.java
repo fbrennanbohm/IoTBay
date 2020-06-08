@@ -12,9 +12,10 @@ import javax.servlet.http.HttpSession;
 import uts.isd.model.dao.UserDAO;
 
 /**
- * This servlet calls the Validator class to perform data validation on the user inputs.
- * If all the inputs are valid, the servlet creates a new record for the user in the database.
- * 
+ * This servlet calls the Validator class to perform data validation on the user
+ * inputs. If all the inputs are valid, the servlet creates a new record for the
+ * user in the database.
+ *
  * @author Patrick
  */
 public class CreateUserController extends HttpServlet {
@@ -24,7 +25,7 @@ public class CreateUserController extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        
+
         int roleId = Integer.parseInt(request.getParameter("roleId"));
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -52,13 +53,18 @@ public class CreateUserController extends HttpServlet {
         } else {
             UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
             try {
-                userDAO.addUser(roleId, firstName, lastName, email, password);
-                request.setAttribute("successMsg", "User was successfully created.");
-                request.getRequestDispatcher("newUser.jsp").forward(request, response);
+                if (userDAO.isEmailUsed(email, -1)) {
+                    request.setAttribute("errorMsg", "The email address that you entered is already associated with a user in the system.");
+                    request.getRequestDispatcher("newUser.jsp").forward(request, response);
+                } else {
+                    userDAO.addUser(roleId, firstName, lastName, email, password);
+                    request.setAttribute("successMsg", "User was successfully created.");
+                    request.getRequestDispatcher("newUser.jsp").forward(request, response);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(CreateUserController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        request.getRequestDispatcher("newUser.jsp").forward(request, response);
+            request.getRequestDispatcher("newUser.jsp").forward(request, response);
         }
     }
 }

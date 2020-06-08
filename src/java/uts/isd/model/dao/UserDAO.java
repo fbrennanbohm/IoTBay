@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import uts.isd.model.Access;
+import uts.isd.model.Payment;
 
 /*
 * DBManager is the primary DAO class to interact with the database.
@@ -115,12 +116,28 @@ public class UserDAO {
         return null;
     }
 
+    // Checks if the email is already being used by an existing user in the database
+    // Ignores user records with the provided userId (if userId >= 0)
+    public boolean isEmailUsed(String emailInput, int userId) throws SQLException {
+        String query = "SELECT * FROM Users WHERE email='" + emailInput + "'";
+        if (userId >= 0) {
+            query += " AND userId <> " + userId;
+        }
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            String email = rs.getString("email");
+            if (email.equals(emailInput)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //Add a user-data into the database
     public void addUser(int roleId, String fName, String lName, String email, String password) throws SQLException { //code for add-operation
 
         String query = "INSERT INTO Users (roleId, firstName, lastName, email, password) VALUES("
-                + roleId + ", " + wrapStr(fName) + ", " + wrapStr(lName) + ", "
-                + wrapStr(email) + ", " + wrapStr(password) + ")";
+                + roleId + ", '" + fName + "', '" + lName + "', '" + email + "', '" + password + "')";
         st.executeUpdate(query);
 
     }
@@ -143,7 +160,7 @@ public class UserDAO {
         //code for delete-operation
         st.executeUpdate("DELETE FROM Users WHERE userID=" + userId);
     }
-    
+
     //delete a user's saved shipping details in the database
     public void deleteAddress(int userId) throws SQLException {
         //code for delete-operation
@@ -194,6 +211,41 @@ public class UserDAO {
     //update a user's saved shipping details in the database
     public void updateShipping(int userId, String Address) throws SQLException {
         st.executeUpdate("UPDATE Users SET address='" + Address + "'" + " WHERE userId=" + userId);
+    }
+
+    public void addPayment(String type, String cardNumber, String name, String valid, String cvc) throws SQLException { //code for add-operation
+        String query = "INSERT INTO PAYMENTMETHOD (Type, CardNumber, Name, ValidUNTIL, CVC) VALUES("
+                + wrapStr(type) + ", " + wrapStr(cardNumber) + ", "
+                + wrapStr(name) + ", " + wrapStr(valid) + ", " + wrapStr(cvc) + ")";
+        st.executeUpdate(query);
+
+    }
+
+    public void deletePayment(int removeId) throws SQLException {
+        //code for delete-operation
+        st.executeUpdate("DELETE FROM PaymentMethod WHERE PAYMENTMETHODID=" + removeId);
+    }
+
+    public List<Payment> searchPayment(int paymentID, String date) throws SQLException {
+        List<Payment> paymentList = new ArrayList<>();
+        String query = "SELECT * FROM Users WHERE ";
+        if (paymentID > 0) {
+            query += "paymentID= '" + paymentID + "'";
+        }
+
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            int paymentId = rs.getInt("PaymentID");
+            int orderId = rs.getInt("OrderID");
+            int paymentMethodId = rs.getInt("PaymentMethodID");
+            double paidAmount = rs.getDouble("paidAmount");
+            String detail = rs.getString("detail");
+
+            Payment payment = new Payment(paymentMethodId, paymentId, orderId, paidAmount, detail);
+            paymentList.add(payment);
+        }
+        return paymentList;
     }
 
     private String wrapStr(String input) {
