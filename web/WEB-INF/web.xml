@@ -61,8 +61,13 @@
         <servlet-class>uts.isd.controller.ConfirmUpdate</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>UpdatePayment</servlet-name>
         <servlet-class>uts.isd.controller.UpdatePayment</servlet-class>
+=======
+        <servlet-name>AddCartServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AddCartServlet</servlet-class>
+>>>>>>> 530c529f971b693d63ef73822e0f03d2b92f90a1
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
@@ -289,6 +294,30 @@
         <servlet-name>ProductListController</servlet-name>
         <url-pattern>/ProductListController</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddProductController</servlet-name>
+        <servlet-class>uts.isd.controller.AddProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddProductController</servlet-name>
+        <url-pattern>/AddProductController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditProductController</servlet-name>
+        <servlet-class>uts.isd.controller.EditProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditProductController</servlet-name>
+        <url-pattern>/EditProductController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateProductController</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateProductController</servlet-name>
+        <url-pattern>/UpdateProductController</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteShippingController</servlet-name>
         <url-pattern>/DeleteShippingController</url-pattern>
@@ -302,8 +331,13 @@
         <url-pattern>/ShipmentServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>UpdatePayment</servlet-name>
         <url-pattern>/UpdatePayment</url-pattern>
+=======
+        <servlet-name>AddCartServlet</servlet-name>
+        <url-pattern>/AddCartServlet</url-pattern>
+>>>>>>> 530c529f971b693d63ef73822e0f03d2b92f90a1
     </servlet-mapping>
     <session-config>
         <session-timeout>
