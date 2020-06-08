@@ -34,8 +34,8 @@ public class DeleteController extends HttpServlet {
 
   HttpSession session = request.getSession();
   UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
-  int userId = Integer.parseInt(request.getParameter("userId")); 
-  
+  User user = (User) session.getAttribute("user");
+  int userId = user.getUserId();  
             
          try {
              userDAO.deleteUser(userId);
