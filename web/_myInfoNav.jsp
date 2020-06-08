@@ -18,7 +18,7 @@
             <a class="nav-link  <%=(url.indexOf("AccessLog.jsp") > -1 ? "active" : "")%>" href="AccessServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'">View Access Log</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="PaymentMethodServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Payment Method</a>
+            <a class="nav-link  <%=(url.indexOf("paymentMethod.jsp") > -1 ? "active" : "")%>" href="PaymentMethodServlet?id=<%= user.getUserId()%>">Payment Method</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="PaymentServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Payment History</a>
