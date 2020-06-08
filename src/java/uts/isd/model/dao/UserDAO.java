@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import uts.isd.model.Access;
+import uts.isd.model.Payment;
 
 /*
 * DBManager is the primary DAO class to interact with the database.
@@ -190,20 +191,43 @@ public class UserDAO {
         st.executeUpdate("UPDATE Users SET address='" + Address + "'" + " WHERE userId=" + userId);
     }
     
-    public void addPayment(int paymentId, String type, String cardNumber, String name, String valid, String cvc) throws SQLException { //code for add-operation
+    public void addPayment(String type, String cardNumber, String name, String valid, String cvc) throws SQLException { //code for add-operation
 
-        String query = "INSERT INTO PaymentMethod (PaymentMethodID, Type, CardNumber, Name, ValidDate) VALUES("
-                + paymentId + ", " + wrapStr(type) + ", " + wrapStr(cardNumber) + ", "
+        String query = "INSERT INTO PAYMENTMETHOD (Type, CardNumber, Name, ValidUNTIL, CVC) VALUES("
+                + wrapStr(type) + ", " + wrapStr(cardNumber) + ", "
                 + wrapStr(name) + ", " + wrapStr(valid) + ", " + wrapStr(cvc) + ")";
         st.executeUpdate(query);
 
     }
+    
     
     public void deletePayment(int removeId) throws SQLException {
         //code for delete-operation
         st.executeUpdate("DELETE FROM PaymentMethod WHERE PAYMENTMETHODID=" + removeId);
     }    
     
+        public List<Payment> searchPayment(int paymentID, String date) throws SQLException {
+        List<Payment> paymentList = new ArrayList<>();
+        String query = "SELECT * FROM Users WHERE ";
+        if (paymentID > 0) {
+            query += "paymentID= '" + paymentID + "'";
+        }
+
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            int paymentId = rs.getInt("PaymentID");
+            int orderId = rs.getInt("OrderID");
+            int paymentMethodId = rs.getInt("PaymentMethodID");
+            double paidAmount = rs.getDouble("paidAmount");
+            String detail = rs.getString("detail");
+            
+            Payment payment = new Payment(paymentMethodId, paymentId, orderId, paidAmount, detail);
+            paymentList.add(payment);
+        }
+        return paymentList;
+    }
+        
     private String wrapStr(String input) {
         return "'" + input + "'";
     }

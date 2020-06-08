@@ -41,42 +41,36 @@ public class AddPaymentMethodServlet extends HttpServlet {
   String expiryDate = request.getParameter("expiryDate");
   String cvc = request.getParameter("cvc");
   UserDAO userDAO = (UserDAO)session.getAttribute("userDAO"); 
-  PaymentMethodDAO paymentMethodDAO = (PaymentMethodDAO)session.getAttribute("userDAO");
-  validator.clear(session);
+  //PaymentMethodDAO paymentMethodDAO = (PaymentMethodDAO)session.getAttribute("userDAO");
+  //validator.clear(session);
 
  
   if(!validator.validatePaymentType(paymentType)) {
-    session.setAttribute("nameErr","Error: Payment Type format incorrect");
-    request.getRequestDispatcher("addPayment.jsp").include(request,response);
+    request.setAttribute("errorMsg", "Payment type must be Visa/Mastercard");
+    request.getRequestDispatcher("addPayment.jsp").forward(request, response);
 }   else if (!validator.validateCardNumber(cardNumber)) {
-    session.setAttribute("nameErr","Error: Card Number incorrect");
-    request.getRequestDispatcher("addPayment.jsp").include(request,response);
+    request.setAttribute("errorMsg", "Card number must be 15-16 digits long");
+    request.getRequestDispatcher("addPayment.jsp").forward(request, response);
 }  else if (!validator.validateCardHolder(cardHolder)) {
-    session.setAttribute("emailErr","Error: Card Holder format incorrect");
+    request.setAttribute("errorMsg", "Must enter first name of card holder");
     request.getRequestDispatcher("addPayment.jsp").include(request,response);
 } else if (!validator.validateExpiryDate(expiryDate)) {
-    session.setAttribute("passErr","Error: Expiry Date format incorrect");
-} else if (!validator.validateCvc(cvc)) {
-    session.setAttribute("passErr","Error: CVC format incorrect");
+    request.setAttribute("errorMsg", "Expiry Date must be MM/YY");;
     request.getRequestDispatcher("addPayment.jsp").include(request,response);
-}
+} else if (!validator.validateCvc(cvc)) {
+    request.setAttribute("errorMsg", "CVC must be 3 digits long");
+    request.getRequestDispatcher("addPayment.jsp").include(request,response);
+  }
 else{
-    try{
-        Payment exist = paymentMethodDAO.findPayment(cardNumber);
-            if(exist!=null) {
-                session.setAttribute("existErr","Payment already exists");
-                request.getRequestDispatcher("addPayment.jsp").include(request,response);
-            } else {
-                
-               userDAO.addPayment(3,paymentType,cardNumber,cardHolder,expiryDate, cvc);                
-                request.getRequestDispatcher("addPayment.jsp").include(request, response);
+            try {
+                userDAO.addPayment(paymentType, cardNumber, cardHolder, expiryDate, cvc);
+                request.setAttribute("successMsg", "Successfully Added new payment");
+                request.getRequestDispatcher("addPayment.jsp").forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(CreateUserController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
-    catch (SQLException ex){
-         Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE,null,ex);
-    }
+        request.getRequestDispatcher("addPayment.jsp").forward(request, response);
+        }
 }
-     }
-}           
-           
-                    
+}
+    

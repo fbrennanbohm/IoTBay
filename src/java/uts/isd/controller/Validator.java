@@ -11,11 +11,13 @@ public class Validator implements Serializable {
      private String namePattern = "([A-Z][a-zA-z]{1,20})";
     private String passwordPattern = "[a-z0-9]{6,20}";
     
-    private String paymentPattern = "([A-Z][a-zA-z]{4,15})";
+    private String paymentPattern1 = "Visa";
+    private String paymentPattern2 = "Mastercard";
     private String cardNumberPattern = "[0-9]{15,16}";
-    private String cardHolderPattern = "([A-Z][a-zA-z]{1,35})";
-    private String expiryDatePattern = "(0[1-9]|1[0-2])[-][0-9]{2}";
-    private String cvcPattern = "[0-9]{3}";
+    private String cardHolderPattern = "([A-Z][a-zA-z]{1,20})";
+    private String expiryDatePattern = "(?:0[1-9]|1[0-2])/[0-9]{2}";//(/)([0-9]{2}))";
+    private String cvcPattern = "([0-9]{3})";//[0-9]{3}
+ 
  
     public Validator() {
     }
@@ -49,7 +51,10 @@ public class Validator implements Serializable {
     }
     
     public boolean validatePaymentType(String paymentType) {
-        return validate(paymentPattern, paymentType);
+        if(paymentType.equals(paymentPattern1)||paymentType.equals(paymentPattern2))
+            return true;
+        else
+            return false;
     }
     
     public boolean validateCardNumber(String cardNumber) {

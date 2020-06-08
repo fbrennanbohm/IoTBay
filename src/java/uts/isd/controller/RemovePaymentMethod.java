@@ -1,28 +1,31 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package uts.isd.controller;
 
 import java.io.IOException;
 
-     import java.sql.SQLException;
 
-     import java.util.logging.Level;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 
-     import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 
-     import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
-     import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
+import uts.isd.model.Payment;
 
-     import javax.servlet.http.HttpServletRequest;
+import uts.isd.model.User;
+import uts.isd.model.dao.PaymentMethodDAO;
 
-     import javax.servlet.http.HttpServletResponse;
+import uts.isd.model.dao.UserDAO;
 
-     import javax.servlet.http.HttpSession;
-
-     import uts.isd.model.dao.UserDAO;
-/**
- *
- * @author duong
- */
 public class RemovePaymentMethod extends HttpServlet {
    
 
@@ -30,17 +33,24 @@ public class RemovePaymentMethod extends HttpServlet {
 
      protected void doPost(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {       
 
-  HttpSession session = request.getSession();
-  UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
-  int removeId = Integer.parseInt(request.getParameter("RemovePaymentMethod")); 
-  
-            
-         try {
-             userDAO.deletePayment(removeId);
-         } catch (SQLException ex) {
-             Logger.getLogger(DeleteController.class.getName()).log(Level.SEVERE, null, ex);
-         }
-             request.getRequestDispatcher("deletePaymentMethod.jsp").include(request, response);
+    HttpSession session = request.getSession();
+    Validator validator = new Validator();
+    int paymentId = Integer.parseInt(request.getParameter("RemovePaymentID"));
+    UserDAO userDAO = (UserDAO)session.getAttribute("userDAO"); 
+    //PaymentMethodDAO paymentMethodDAO = (PaymentMethodDAO)session.getAttribute("userDAO");
+    //validator.clear(session);
+
+            try {
+
+                userDAO.deletePayment(paymentId);
+                request.setAttribute("successMsg", "Successfully removed payment");
+                request.getRequestDispatcher("deletePaymentMethod.jsp").forward(request, response);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CreateUserController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        request.getRequestDispatcher("deletePaymentMethod.jsp").forward(request, response);
+        }
 }
-     }
+    
           

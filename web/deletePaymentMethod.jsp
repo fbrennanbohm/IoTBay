@@ -78,7 +78,23 @@
                 <h1>${user.firstName} ${user.lastName}'s Payment Method's</h1>
                 <form class="form-horizontal" name="myForm" method="post" action="RemovePaymentMethod">
                         <p><strong>Please enter the ID of the payment you would like to remove  </strong></p>
-
+                        <%
+                        String successMsg = (String) request.getAttribute("successMsg");
+                        String errorMsg = (String) request.getAttribute("errorMsg");
+                        if (successMsg != null) {
+                        %>
+                        <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <%=successMsg%><br>
+                        Click <a href="paymentMethod.jsp" class="alert-link">here</a> to go back to the list of Payment Methods.
+                        </div>
+                        <% } %>
+                        <% if (errorMsg != null) {%>
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Error:</strong> <%=errorMsg%>
+                        </div>
+                        <% }%>
                         <div class="form-group">
                             <label for="PaymentID">Remove Payment ID:</label>
                             <input type="text" class="form-control" name="RemovePaymentID">

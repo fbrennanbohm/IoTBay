@@ -44,6 +44,10 @@
         <servlet-name>RemovePaymentMethod</servlet-name>
         <servlet-class>uts.isd.controller.RemovePaymentMethod</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PaymentSearchController</servlet-name>
+        <servlet-class>uts.isd.controller.PaymentSearchController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
         <url-pattern>/AdminConfirmDeleteUserController</url-pattern>
@@ -221,7 +225,7 @@
         <servlet-name>UpdateOrderItemController</servlet-name>
         <url-pattern>/UpdateOrderItem</url-pattern>
     </servlet-mapping>
-     <servlet>
+    <servlet>
         <servlet-name>AccessController</servlet-name>
         <servlet-class>uts.isd.controller.AccessController</servlet-class>
     </servlet>
@@ -229,13 +233,17 @@
         <servlet-name>AccessController</servlet-name>
         <url-pattern>/AccessController</url-pattern>
     </servlet-mapping>
-     <servlet>
+    <servlet>
         <servlet-name>AccessSearch</servlet-name>
         <servlet-class>uts.isd.controller.AccessSearch</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AccessSearch</servlet-name>
         <url-pattern>/AccessSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentSearchController</servlet-name>
+        <url-pattern>/PaymentSearchController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

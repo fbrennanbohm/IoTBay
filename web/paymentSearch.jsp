@@ -78,11 +78,11 @@
                 <h1>${user.firstName} ${user.lastName}'s Payment History</h1>
                 <h4>You can search for a specific payment or view all below</h4>
                 <form action="PaymentSearchController" method="post" class="form-inline">
-                                <label for="name">Payment ID</label>
-                                <input type="text" class="form-control mx-3" name="paymentID">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control mx-3" name="paymentID" id="name">
 
-                                <label for="email">Date</label>
-                                <input type="text" class="form-control mx-3" name="date">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control mx-3" name="date" id="email">
 
                                 <input type="submit" class="btn btn-primary mx-3" value="Search"/>
                                 <input type="reset" class="btn btn-secondary mx-3" value="Clear"/>
@@ -107,8 +107,8 @@
                             <td><%=rs.getString("PAYMENTID") %></td>
                             <td><%=rs.getString("PAIDAMOUNT") %></td>
                             <td><%=rs.getString("DETAIL") %></td>
-                            <td><%=rs.getString("PAYMENTMETHODID") %></td>
-                            <td><%=rs.getString("ORDERID") %></td>
+                            <td><%=rs.getString("PAYMENTMETHOD") %></td>
+                            <td><%=rs.getString("DATePAID") %></td>
                         </tr>
                         <% } %>
                     <% 

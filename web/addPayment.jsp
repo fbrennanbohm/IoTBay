@@ -72,13 +72,29 @@
                 <div class="col-sm-9">
                     
                 <h1>Add Payment Method</h1>
-                
+                <%
+                        String successMsg = (String) request.getAttribute("successMsg");
+                        String errorMsg = (String) request.getAttribute("errorMsg");
+                        if (successMsg != null) {
+                %>
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <%=successMsg%><br>
+                        Click <a href="paymentMethod.jsp" class="alert-link">here</a> to go back to the list of Payment Methods.
+                    </div>
+                    <% } %>
+                    <% if (errorMsg != null) {%>
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Error:</strong> <%=errorMsg%>
+                    </div>
+                    <% }%>
                 <p></p>
                 <form action="AddPaymentMethodServlet" method="post">
                 <input type="hidden" name="submitted" value="yes">
                 <div class="form-group">
                     <label for="paymentType">Payment Type</label>
-                    <input type="text" class="form-control" name="paymentType" placeholder="Visa/Mastercard/AmericanExpress"required >
+                    <input type="text" class="form-control" name="paymentType" placeholder="Visa/Mastercard"required >
                 </div>
                 
                 <div class="form-group">
@@ -88,7 +104,7 @@
 
                 <div class="form-group">
                     <label for="Card Holder">Card Holder</label>
-                    <input type="text" class="form-control" name="cardHolder" placeholder="Name of the Card Holder"required>
+                    <input type="text" class="form-control" name="cardHolder" placeholder="First name of cardholder"required>
                 </div>
                 
                 <div class="form-group">

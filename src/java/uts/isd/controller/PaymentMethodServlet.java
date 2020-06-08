@@ -39,8 +39,7 @@ public class PaymentMethodServlet extends HttpServlet {
                 request.getRequestDispatcher("paymentMethod.jsp").include(request,response);
             } else {
                 session.setAttribute("existErr","Payment does not exist in the Database");
-                request.getRequestDispatcher("paymentMethod.jsp").include(request, response);
-            }
+                }
     }
             
     catch (SQLException ex){
