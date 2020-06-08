@@ -337,6 +337,14 @@
         <servlet-name>AddCartServlet</servlet-name>
         <url-pattern>/AddCartServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CheckoutController</servlet-name>
+        <servlet-class>uts.isd.controller.CheckoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckoutController</servlet-name>
+        <url-pattern>/Checkout</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
