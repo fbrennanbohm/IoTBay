@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uts.isd.model.User"%>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 <%
     User user = (User) session.getAttribute("user");
@@ -15,8 +16,11 @@
             You are not logged in.
             <a href="register.jsp" class="btn btn-primary m-2">Register</a>
             <a href="login.jsp" class="btn btn-secondary m-2">Login</a>
-            <% } else { %>
+            <% } else {%>
             You are logged in as ${user.firstName} ${user.lastName} &lt;<b>${user.email}</b>&gt;
+            <a href="Checkout?id=<%=user.getUserId()%>" class="btn btn-primary ml-2">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
             <a href="LogoutController" class="btn btn-secondary ml-2">Logout</a>
             <% }%>
         </div>
