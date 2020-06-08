@@ -4,7 +4,6 @@
     Author     : Ricky
 --%>
 
-<%@page import="uts.isd.model.Payment"%>
 <%@page import="java.sql.*"%>
 <%@page import="uts.isd.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -78,7 +77,7 @@
                     
                 <h1>${user.firstName} ${user.lastName}'s Payment Method's</h1>
                 <form class="form-horizontal" name="myForm" method="post" action="RemovePaymentMethod?id=<%= user.getUserId()%>">
-                        <p><strong>Here you can edit the details of the payment:  </strong></p>
+                        <p><strong>Please enter the ID of the payment you would like to remove  </strong></p>
                         <%
                         String successMsg = (String) request.getAttribute("successMsg");
                         String errorMsg = (String) request.getAttribute("errorMsg");
@@ -122,18 +121,20 @@
                     </thead>
                     
                     <tbody>
-                        <%
-                        Payment payment = (Payment) session.getAttribute("payment");
-                        %>
+                        <%while (rs.next()) { %>
                         <tr>
-                            <td><%=payment.getPaymentId() %></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-               
-
+                            <td><%=rs.getString("PAYMENTMETHODID") %></td>
+                            <td><%=rs.getString("TYPE") %></td>
+                            <td><%=rs.getString("CARDNUMBER") %></td>
+                            <td><%=rs.getString("NAME") %></td>
+                            <td><%=rs.getString("VALIDUNTIL") %></td>
+                            <td><%=rs.getString("CVC") %></td>
+                        <% } %>
+                    <% 
+                        rs.close();
+                        statement.close();
+                        connection.close();
+                    %>        
                         </tr>                      
                     </tbody>
                 </table>

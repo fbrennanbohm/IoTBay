@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>IoTBay - Update Detail</title>
+        <title>IoTBay - View Orders</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="css/style.css">
@@ -24,7 +24,7 @@
                 <jsp:include page="_myInfoNav.jsp" />
                 <div class="col-sm-9">
 
-                    <h1>Order History</h1>
+                    <h1>Orders</h1>
                     <p>All my orders in the IoTBay database are displayed below.</p>
 
                     <%
