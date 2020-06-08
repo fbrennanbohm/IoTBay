@@ -6,7 +6,6 @@
 package uts.isd.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,11 +24,11 @@ import uts.isd.model.dao.UserDAO;
 public class PaymentServlet extends HttpServlet {
      protected void doGet(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {       
 
-  HttpSession session = request.getSession();
-  String email = request.getParameter("email");
-  String password = request.getParameter("password");
-  UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
-  User user = null;
+    HttpSession session = request.getSession();
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+    UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
+    User user = null;
 
 
     try{
@@ -47,6 +46,6 @@ public class PaymentServlet extends HttpServlet {
         System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
     }
     request.getRequestDispatcher("payment.jsp").include(request, response);
+    }
 }
-     }
        
