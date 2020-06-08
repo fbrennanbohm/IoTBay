@@ -15,37 +15,46 @@
 
         <div class="container-fluid px-5">
             <h1 class="my-3">Device Catalogue</h1>
-            <%
-                List<Product> productList = (List<Product>) request.getAttribute("productList");
+        </div>
+        <div class="col-sm-12">
+            <div class="row">
+                <%
+                    List<Product> productList = (List<Product>) request.getAttribute("productList");
 
-                if (productList != null) {
-                    for (Product p : productList) {
-            %>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img src="<%= p.getImageUrl()%>" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><%= p.getName()%></h5>
-                <p class="card-text">Item description</p>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                    if (productList != null) {
+                        for (Product p : productList) {
+                %>
+
+                <div class="col-sm-3">
+                    <div class="card">
+                        <img src="<%= p.getImageUrl()%>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= p.getName()%></h5>
+                            <p class="card-text">Item description</p>
+                            <a href="#" class="btn btn-primary">Edit</a>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <% }
+                } else {
+                %>
+                <div class="card col-sm-3">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">NO PRODUCTS</h5>
+                            <p class="card-text"></p>
+                            <a href="#" class="btn btn-primary">Edit</a>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <% }%>
             </div>
         </div>
-        <% }
-        } else {
-        %>
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">NO PRODUCTS</h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <% }%>
     </div>
 </body>
 </html>
