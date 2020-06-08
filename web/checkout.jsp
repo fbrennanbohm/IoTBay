@@ -70,12 +70,16 @@
                             </tbody>
                         </table>
 
+                        <%
+                            if (userCartProductList != null && userCartProductList.size() > 0) {
+                        %>
+                        }
                         <div class="row">
                             <div class="container mt-4">
                                 <button type="submit" class="btn btn-info">Checkout</button>
                             </div>
                         </div>
-
+                        <%}%>
                     </form>
                 </div>
             </div>
