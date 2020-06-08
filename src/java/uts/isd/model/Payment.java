@@ -12,17 +12,23 @@ package uts.isd.model;
 public class Payment {
 
     private int paymentId;
+    private int userId;
     private int orderId;
     private int paymentMethodId;
     private double paidAmount;
     private String detail;
 
-    public Payment(int paymentId, int orderId, int paymentMethodId, double paidAmount, String detail) {
+    public Payment(int paymentId, int userId, int orderId, int paymentMethodId, double paidAmount, String detail) {
         this.paymentId = paymentId;
+        this.userId = userId;
         this.orderId = orderId;
         this.paymentMethodId = paymentMethodId;
         this.paidAmount = paidAmount;
         this.detail = detail;
+    }
+
+    public int getUserId() {
+        return userId;
     }
     
     public int getPaymentId() {
@@ -47,6 +53,10 @@ public class Payment {
     
     public void setPaymentId(int paymentId) {
         this.paymentId = paymentId;
+    }
+    
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void setOrderId(int orderId) {

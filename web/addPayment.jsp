@@ -110,7 +110,7 @@
                 
                 <div class="form-group">
                     <label for="Expiry Date">Expiry Date</label>
-                    <input type="text" class="form-control" name="expiryDate" placeholder="Date of Expiry" required>
+                    <input type="text" class="form-control" name="expiryDate" placeholder="MM/YY" required>
                 </div>
                 <div class="form-group">
                     <label for="CVC">CVC</label>

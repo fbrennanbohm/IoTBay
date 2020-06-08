@@ -26,7 +26,6 @@
             Connection connection = null;
             Statement statement = null;
             ResultSet rs = null;
-            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(connectionURL, "iotuser", "admin");
             statement = connection.createStatement();
             int userId = Integer.parseInt(request.getParameter("id"));

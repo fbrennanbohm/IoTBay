@@ -4,6 +4,8 @@
     Author     : Ricky
 --%>
 
+<%@page import="uts.isd.model.Payment"%>
+<%@page import="java.util.List"%>
 <%@page import="java.sql.*"%>
 <%@page import="uts.isd.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -55,7 +57,7 @@
                     
                 <h1>${user.firstName} ${user.lastName}'s Payment History</h1>
                 <h4>You can search for a specific payment or view all below</h4>
-                <form action="PaymentSearchController" method="post" class="form-inline">
+                <form action="PaymentSearchController?id=<%= user.getUserId()%>" method="post" class="form-inline">
                                 <label for="name">Payment ID</label>
                                 <input type="text" class="form-control mx-3" name="paymentID">
 
@@ -80,20 +82,24 @@
                     </thead>
                     
                     <tbody>
-                        <%while (rs.next()) { %>
+                        <%
+                                List<Payment> paymentList = (List<Payment>) request.getAttribute("paymentList");
+                                if (paymentList != null) {
+                                    for (Payment payment : paymentList) {
+                            %>
                         <tr>
-                            <td><%=rs.getString("PAYMENTID") %></td>
-                            <td><%=rs.getString("PAIDAMOUNT") %></td>
-                            <td><%=rs.getString("DETAIL") %></td>
-                            <td><%=rs.getString("PAYMENTMETHODID") %></td>
-                            <td><%=rs.getString("ORDERID") %></td>
+                            <td><%=payment.getPaymentId() %></td>
+                            <td><%=payment.getOrderId() %></td>
+                            <td><%=payment.getPaymentMethodId() %></td>
+                            <td><%=payment.getPaidAmount() %></td>
+                            <td><%=payment.getDetail() %></td>
                         </tr>
-                        <% } %>
-                    <% 
-                        rs.close();
-                        statement.close();
-                        connection.close();
-                    %>                            
+                        <% } 
+                         } else { %>
+                         <tr>
+                                <td colspan="5">No shipments found.</td>
+                            </tr>
+                        <% }%>   
                     </tbody>
                 </table>
                 </div>

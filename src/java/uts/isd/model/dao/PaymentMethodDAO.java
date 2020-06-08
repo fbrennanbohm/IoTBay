@@ -30,20 +30,26 @@ public class PaymentMethodDAO {
     public PaymentMethod findPayment(int paymentId) throws SQLException {
         String query = "SELECT * FROM PaymentMethod WHERE PAYMENTMETHODID=" + paymentId;
         ResultSet rs = st.executeQuery(query);
-
+        int paymentMethodID;
+        int userID;  
+        String cardNumber;
+        String cvc;
+        String type;
+        String name;
+        Date expiryDate;
         while (rs.next()) {
-            int paymentMethodID = rs.getInt("PaymentMethodID");
-            int userID = rs.getInt("UserId");
-            int cardNumber = rs.getInt("CardNumber");
-            int cvc = rs.getInt("CVC");
-            String type = rs.getString("Type");    
-            String name = rs.getString("Name");
-            Date expiryDate = rs.getDate("VALIDUNTIL");
-
+            paymentMethodID = rs.getInt("PaymentMethodID");
+            userID = rs.getInt("UserId");
+            cardNumber = rs.getString("CardNumber");
+            cvc = rs.getString("CVC");
+            type = rs.getString("Type");    
+            name = rs.getString("Name");
+            expiryDate = rs.getDate("VALIDUNTIL");
+            rs.close();
+        return new PaymentMethod(paymentMethodID, userID, type, cardNumber, name, expiryDate, cvc);
         }
-        rs.close();
         return null;
-    }
+   }
     public PaymentMethod getPaymentMethod(int paymentMethodId) throws SQLException {
         String query = "SELECT * FROM PAYMENTMETHOD WHERE paymentMethodId=" + paymentMethodId;
         ResultSet rs = st.executeQuery(query);

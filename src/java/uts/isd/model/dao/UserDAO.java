@@ -229,10 +229,8 @@ public class UserDAO {
 
     public List<Payment> searchPayment(int paymentID, String date) throws SQLException {
         List<Payment> paymentList = new ArrayList<>();
-        String query = "SELECT * FROM Payment WHERE ";
-        if (paymentID > 0) {
-            query += "paymentID= '" + paymentID + "'";
-        }
+        String query = "SELECT * FROM Payment WHERE paymentID= '" + paymentID + "'";;
+ 
 
         ResultSet rs = st.executeQuery(query);
 
@@ -243,14 +241,14 @@ public class UserDAO {
             double paidAmount = rs.getDouble("paidAmount");
             String detail = rs.getString("detail");
 
-            Payment payment = new Payment(paymentMethodId, paymentId, orderId, paidAmount, detail);
+            Payment payment = new Payment(paymentMethodId, orderId, paymentId, orderId, paidAmount, detail);
             paymentList.add(payment);
         }
         return paymentList;
     }
     
         public PaymentMethod findPayment(int paymentId) throws SQLException {
-        String query = "SELECT * FROM PAYMENTMETHOD WHERE PAYMENTMETHODID=" + paymentId;
+        String query = "SELECT * FROM \"PAYMENTMETHOD\" WHERE PAYMENTMETHODID=" + paymentId;
         ResultSet rs = st.executeQuery(query);
 
         while (rs.next()) {

@@ -57,12 +57,12 @@
         <servlet-class>uts.isd.controller.ShipmentServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdatePaymentMethod</servlet-name>
-        <servlet-class>uts.isd.controller.UpdatePaymentMethod</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ConfirmUpdate</servlet-name>
         <servlet-class>uts.isd.controller.ConfirmUpdate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePayment</servlet-name>
+        <servlet-class>uts.isd.controller.UpdatePayment</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
@@ -300,6 +300,10 @@
     <servlet-mapping>
         <servlet-name>ShipmentServlet</servlet-name>
         <url-pattern>/ShipmentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePayment</servlet-name>
+        <url-pattern>/UpdatePayment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

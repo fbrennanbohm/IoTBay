@@ -26,12 +26,9 @@
             Connection connection = null;
             Statement statement = null;
             ResultSet rs = null;
-            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(connectionURL, "iotuser", "admin");
             statement = connection.createStatement();
-            int userId = Integer.parseInt(request.getParameter("id"));
-            String QueryString = "select * from PAYMENTMETHOD where userID=" + userId ;
-            rs = statement.executeQuery(QueryString);
+
             //String updated =(String)session.getAttribute("updated");      
                     %>
             </div>
@@ -77,8 +74,8 @@
                 <div class="col-sm-9">
                     
                 <h1>${user.firstName} ${user.lastName}'s Payment Method's</h1>
-                <form class="form-horizontal" name="myForm" method="post" action="UpdatePaymentMethod?id=<%= user.getUserId()%>">
-                        <p><strong>Please enter the ID of the payment you would like to update</strong></p>
+                <form class="form-horizontal" name="myForm" method="post" action="UpdatePayment?id=<%= user.getUserId()%>">
+                        <p><strong>Please enter the ID of the payment you would like to update  </strong></p>
                         <%
                         String successMsg = (String) request.getAttribute("successMsg");
                         String errorMsg = (String) request.getAttribute("errorMsg");
@@ -97,7 +94,7 @@
                         </div>
                         <% }%>
                         <div class="form-group">
-                            <label for="UpdatePaymentID">Update Payment ID:</label>
+                            <label for="PaymentID">Update Payment ID:</label>
                             <input type="text" class="form-control" name="UpdatePaymentID">
                         </div>
 
@@ -122,20 +119,14 @@
                     </thead>
                     
                     <tbody>
-                        <%while (rs.next()) { %>
+ 
                         <tr>
-                            <td><%=rs.getString("PAYMENTMETHODID") %></td>
-                            <td><%=rs.getString("TYPE") %></td>
-                            <td><%=rs.getString("CARDNUMBER") %></td>
-                            <td><%=rs.getString("NAME") %></td>
-                            <td><%=rs.getString("VALIDUNTIL") %></td>
-                            <td><%=rs.getString("CVC") %></td>
-                        <% } %>
-                    <% 
-                        rs.close();
-                        statement.close();
-                        connection.close();
-                    %>        
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>    
                         </tr>                      
                     </tbody>
                 </table>
