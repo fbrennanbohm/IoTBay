@@ -24,7 +24,7 @@
 
         <div class="container-fluid px-5 my-3">
             <div class="row">
-                <jsp:include page="_myInfoNav.jsp" />
+                
             
             <div class="col-sm-9">
                 <p>Product added to cart. Click <a href="ProductListController">here</a> to continue shopping. </p>

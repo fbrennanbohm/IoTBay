@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import uts.isd.model.Access;
 import uts.isd.model.Payment;
+import uts.isd.model.PaymentMethod;
 
 /*
 * DBManager is the primary DAO class to interact with the database.
@@ -247,6 +248,25 @@ public class UserDAO {
         }
         return paymentList;
     }
+    
+        public PaymentMethod findPayment(int paymentId) throws SQLException {
+        String query = "SELECT * FROM PAYMENTMETHOD WHERE PAYMENTMETHODID=" + paymentId;
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            int paymentMethodID = rs.getInt("PaymentMethodID");
+            int userID = rs.getInt("UserId");
+            String cardNumber = rs.getString("CardNumber");
+            String cvc = rs.getString("CVC");
+            String type = rs.getString("Type");    
+            String name = rs.getString("Name");
+            Date expiryDate = rs.getDate("VALIDUNTIL");
+            return new PaymentMethod(paymentMethodID, userID, type, cardNumber, name,  expiryDate, cvc);
+        }
+        rs.close();
+        return null;
+    }
+
 
     private String wrapStr(String input) {
         return "'" + input + "'";

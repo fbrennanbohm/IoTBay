@@ -37,10 +37,20 @@
             <a class="nav-link <%=(url.indexOf("main.jsp") > -1 ? "active" : "")%>" href="main.jsp">My Information</a>
         </li>
 
+        <%if (user.isStaff() || user.isAdmin()) {%>
+        <li class="nav-item">
+            <a class="nav-link <%=(url.indexOf("addProduct.jsp") > -1 ? "active" : "")%>" href="addProduct.jsp">Add Product</a>
+        </li>
+
+        <% }
+        %>
+
+
         <%if (user.isAdmin()) {%>
         <li class="nav-item">
             <a class="nav-link <%=(url.indexOf("userList.jsp") > -1 ? "active" : "")%>" href="UserListController">Admin Menu</a>
         </li>
+
         <% }
             }%>
 </div>
