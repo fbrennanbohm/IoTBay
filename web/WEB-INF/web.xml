@@ -170,12 +170,12 @@
         <url-pattern>/UpdateOrderItem</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>AccessController</servlet-name>
-        <servlet-class>uts.isd.controller.AccessController</servlet-class>
+        <servlet-name>AccessServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AccessServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AccessController</servlet-name>
-        <url-pattern>/AccessController</url-pattern>
+        <servlet-name>AccessServlet</servlet-name>
+        <url-pattern>/AccessServlet</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AccessSearch</servlet-name>
