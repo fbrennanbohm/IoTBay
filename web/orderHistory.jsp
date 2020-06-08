@@ -66,7 +66,7 @@
                                         if (order.getOrderStatus().equals("Unpaid")) {
                                     %>
                                     <form action="DeleteOrder" method="post">
-                                        <a href="PayOrder?id=<%=order.getUserId()%>" class="btn btn-info mx-2">Pay</a>
+                                        <a href="PayOrder?id=<%=order.getOrderId()%>" class="btn btn-info mx-2">Pay</a>
                                         <a href="UpdateOrder?id=<%=order.getOrderId()%>" class="btn btn-secondary mx-2"><i class="far fa-edit"></i></a>
                                         <input type="hidden" name="id" value="<%=order.getOrderId()%>" />
                                         <button type="submit" class="btn btn-warning mx-2"><i class="fas fa-trash-alt"></i></button>

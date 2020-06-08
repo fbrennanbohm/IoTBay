@@ -51,7 +51,9 @@ public class OrderDAO {
         }
         rs.close();
 
-        order.setOrderItemList(this.getOrderItemList(id));
+        if (order != null) {
+            order.setOrderItemList(this.getOrderItemList(id));
+        }
 
         return order;
     }

@@ -246,6 +246,14 @@
         <url-pattern>/DeleteOrderItem</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>PayOrderController</servlet-name>
+        <servlet-class>uts.isd.controller.PayOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PayOrderController</servlet-name>
+        <url-pattern>/PayOrder</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AccessServlet</servlet-name>
         <servlet-class>uts.isd.controller.AccessServlet</servlet-class>
     </servlet>
