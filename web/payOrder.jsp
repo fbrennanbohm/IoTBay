@@ -7,6 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="uts.isd.model.Order"%>
 <%@page import="uts.isd.model.OrderItem"%>
+<%@page import="uts.isd.model.PaymentMethod"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,9 +28,10 @@
 
                     <%
                         Order order = (Order) request.getAttribute("order");
+                        List<PaymentMethod> paymentMethodList = (List<PaymentMethod>) request.getAttribute("paymentMethodList");
                     %>
 
-                    <h1>Update Order</h1>
+                    <h1>Pay Order</h1>
 
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Order Number</label>
@@ -44,9 +46,20 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Status</label>
+                        <label class="col-sm-2 col-form-label">Payment Method</label>
                         <div class="col-sm-10">
-                            <input type="text" readonly class="form-control-plaintext" value="<%=order.getOrderStatus()%>">
+
+                            <% if (paymentMethodList != null && paymentMethodList.size() > 0) { %>
+                            <% for (PaymentMethod paymentMethod : paymentMethodList) {%>
+                            <div class="radio">
+                                <label><input type="radio" name="paymentMathod" value="<%=payment.getPaymentMethodId()%>" checked>Option 1</label>
+                            </div>
+                            <%}%>
+                            <% } else { %>
+                            <div class="form-control-plaintext">
+                                Please add a payment method <a href="/PaymentMethodServlet">here</a>
+                            </div>
+                            <% }%>
                         </div>
                     </div>
 
@@ -57,37 +70,46 @@
                                 <th>Quantity</th>
                                 <th>Price per unit</th>
                                 <th>Total Price</th>
-                                <th>Actions</th>
-                            </tr>
                         </thead>
                         <tbody>
 
                             <%
                                 if (order.getOrderItemList() != null && order.getOrderItemList().size() > 0) {
-                                    for (OrderItem orderItem : order.getOrderItemList()) {
+                            %>
+                            <%
+                                for (OrderItem orderItem : order.getOrderItemList()) {
                             %>
                             <tr>
                                 <td><%= orderItem.getProduct().getName()%></td>
                                 <td><%=orderItem.getQuantity()%></td>
                                 <td><%=orderItem.getPricePerUnit()%></td>
                                 <td><%=orderItem.getTotalPrice()%></td>
-                                <td>
-                                    <form action="DeleteOrderItem" method="post">
-                                        <a href="UpdateOrderItem?id=<%=order.getOrderId()%>" class="btn btn-secondary mx-2"><i class="far fa-edit"></i></a>
-                                        <input type="hidden" name="id" value="<%=order.getOrderId()%>" />
-                                        <button type="submit" class="btn btn-warning mx-2"><i class="fas fa-trash-alt"></i></button>
-                                    </form>
-                                </td>
                             </tr>
-                            <% }
-                            } else { %>
+                            <% }%>
+
                             <tr>
-                                <td colspan="5">No order items found.</td>
+                                <td colspan="3">Total</td>
+                                <td><b><%=order.getTotalPrice()%></b></td>
+                            </tr>
+                            <% } else { %>
+                            <tr>
+                                <td colspan="4">No order items found.</td>
                             </tr>
                             <% }%>
                         </tbody>
                     </table>
 
+                    <div class="row">
+                        <div class="container mt-4">
+                            <% if (paymentList != null && paymentList.size() > 0) { %>
+                            <form action="PayOrder" method="post">
+                                <button type="submit" class="btn btn-info">Pay</button>
+                            </form>
+                            <% } else { %>
+                            <button type="submit" disabled class="btn btn-secondary">Pay</button>
+                            <% }%>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

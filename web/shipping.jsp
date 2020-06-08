@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="uts.isd.model.User"%>
+<%@page import="java.io.File"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,11 +35,13 @@
                         <h1 class="text-primary"><strong>Edit here  <span><%= (updated != null) ? updated : ""%></span></strong></h1>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" name="address" value="<%= user.getAddress()%>" >
+                            <input type="text" class="form-control" name="address" value="<%= user.getAddress()%>" id="address">
                         </div>
 
-                        <div class="form-group"><div class="col-sm-offset-2 col-sm-10"><input type='submit' class='btn btn-primary'value='Update'>
-
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input type='submit' class='btn btn-primary'value='Update'>
+                                <input type='submit' class='btn btn-primary' value='Delete' formaction="DeleteShippingController?Id=<%= user.getUserId()%>">
                             </div>
                         </div>
                      </form>

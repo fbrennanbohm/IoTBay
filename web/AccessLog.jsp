@@ -34,7 +34,7 @@
                         <%
                             Access accessSearch = (Access) session.getAttribute("accessSearch");
                             if (accessSearch == null) {
-                            ArrayList<Access> access = (ArrayList<Access>) request.getAttribute("access");
+                            ArrayList<Access> access = (ArrayList<Access>) session.getAttribute("access");
                             if (access != null) {
                                 for (Access a : access) {
                         %>

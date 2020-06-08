@@ -51,13 +51,24 @@ public class OrderDAO {
         }
         rs.close();
 
-        order.setOrderItemList(this.getOrderItemList(id));
+        if (order != null) {
+            order.setOrderItemList(this.getOrderItemList(id));
+        }
 
         return order;
     }
 
     public void deleteOrder(int id) throws SQLException {
+        this.deleteOrderItemList(id);
         st.executeUpdate("DELETE FROM \"ORDER\" WHERE ORDERID=" + id);
+    }
+
+    public void deleteOrderItem(int orderItemId) throws SQLException {
+        st.executeUpdate("DELETE FROM \"ORDERITEM\" WHERE ORDERITEMID=" + orderItemId);
+    }
+
+    public void deleteOrderItemList(int orderId) throws SQLException {
+        st.executeUpdate("DELETE FROM \"ORDERITEM\" WHERE ORDERID=" + orderId);
     }
 
     public List<OrderItem> getOrderItemList(int orderId) throws SQLException {
