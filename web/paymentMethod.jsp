@@ -35,7 +35,8 @@
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(connectionURL, "iotuser", "admin");
             statement = connection.createStatement();
-            String QueryString = "select * from PAYMENTMETHOD";
+            int userId = Integer.parseInt(request.getParameter("id"));
+            String QueryString = "select * from PAYMENTMETHOD where userID=" + userId ;
             rs = statement.executeQuery(QueryString);
             //String updated =(String)session.getAttribute("updated");      
                     %>
@@ -82,7 +83,7 @@
                 <div class="col-sm-9">
                     
                 <h1>${user.firstName} ${user.lastName}'s Payment Method's</h1>
-                <div align="left" ><a href="addPayment.jsp"  class='btn btn-primary' align="right">Add</a> <a href="deletePaymentMethod.jsp"  class='btn btn-primary' align="right">Remove</a> <a href="updatePaymentMethod.jsp"  class='btn btn-primary' align="right">Update</a></div>
+                <div align="left" ><a href="addPayment.jsp"  class='btn btn-primary' align="right">Add</a> <a href="deletePaymentMethod.jsp?id=<%= user.getUserId()%>"  class='btn btn-primary' align="right">Remove</a> <a href="updatePayment.jsp?id=<%= user.getUserId()%>"  class='btn btn-primary' align="right">Update</a></div>
                 <p>Your payment methods are listed below:</p>
                 
                 <table border ="1" align="left" style ="text-align: center">

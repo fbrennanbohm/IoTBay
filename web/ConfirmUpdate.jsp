@@ -4,6 +4,7 @@
     Author     : Ricky
 --%>
 
+<%@page import="uts.isd.model.Payment"%>
 <%@page import="java.sql.*"%>
 <%@page import="uts.isd.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,12 +29,9 @@
             ResultSet rs = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(connectionURL, "iotuser", "admin");
-            statement = connection.createStatement();
-            int userId = Integer.parseInt(request.getParameter("id"));
-            String QueryString = "select * from PAYMENTMETHOD where userID=" + userId ;
-            rs = statement.executeQuery(QueryString);
-            //String updated =(String)session.getAttribute("updated");      
-                    %>
+            statement = connection.createStatement();   
+            Payment payment = (Payment) request.getAttribute("paymentUpdate");
+            %>
             </div>
             </div>
         </div>
@@ -122,24 +120,16 @@
                     </thead>
                     
                     <tbody>
-                        <%while (rs.next()) { %>
                         <tr>
-                            <td><%=rs.getString("PAYMENTMETHODID") %></td>
-                            <td><%=rs.getString("TYPE") %></td>
-                            <td><%=rs.getString("CARDNUMBER") %></td>
-                            <td><%=rs.getString("NAME") %></td>
-                            <td><%=rs.getString("VALIDUNTIL") %></td>
-                            <td><%=rs.getString("CVC") %></td>
-                        <% } %>
-                    <% 
-                        rs.close();
-                        statement.close();
-                        connection.close();
-                    %>        
+                            <td><%=payment.getType() %></td>
+                            <td><%=payment.getType() %></td>
+                            <td><%=payment.getType() %></td>
+                            <td><%=payment.getType() %></td>
+                            <td><%=payment.getType() %></td>
+                            <td><%=payment.getType() %></td>      
                         </tr>                      
                     </tbody>
                 </table>
-                        
                 </div>
                         
             </div>

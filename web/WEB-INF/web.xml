@@ -56,6 +56,14 @@
         <servlet-name>ShipmentServlet</servlet-name>
         <servlet-class>uts.isd.controller.ShipmentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdatePaymentMethod</servlet-name>
+        <servlet-class>uts.isd.controller.UpdatePaymentMethod</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmUpdate</servlet-name>
+        <servlet-class>uts.isd.controller.ConfirmUpdate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
         <url-pattern>/AdminConfirmDeleteUserController</url-pattern>
@@ -234,6 +242,30 @@
         <url-pattern>/UpdateOrderItem</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>DeleteOrderController</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteOrderController</servlet-name>
+        <url-pattern>/DeleteOrder</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteOrderItemController</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteOrderItemController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteOrderItemController</servlet-name>
+        <url-pattern>/DeleteOrderItem</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PayOrderController</servlet-name>
+        <servlet-class>uts.isd.controller.PayOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PayOrderController</servlet-name>
+        <url-pattern>/PayOrder</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AccessServlet</servlet-name>
         <servlet-class>uts.isd.controller.AccessServlet</servlet-class>
     </servlet>
@@ -262,8 +294,17 @@
         <url-pattern>/PaymentSearchController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>ShipmentServlet</servlet-name>
         <url-pattern>/ShipmentServlet</url-pattern>
+=======
+        <servlet-name>UpdatePaymentMethod</servlet-name>
+        <url-pattern>/UpdatePaymentMethod</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmUpdate</servlet-name>
+        <url-pattern>/ConfirmUpdate</url-pattern>
+>>>>>>> e83923b5e253837ad8b0df3ead7b94a103996191
     </servlet-mapping>
     <session-config>
         <session-timeout>

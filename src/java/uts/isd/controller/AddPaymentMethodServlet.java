@@ -35,6 +35,8 @@ public class AddPaymentMethodServlet extends HttpServlet {
 
   HttpSession session = request.getSession();
   Validator validator = new Validator();
+  //int userId = session.req
+  int userId = Integer.parseInt(request.getParameter("Id"));
   String paymentType = request.getParameter("paymentType");
   String cardNumber = request.getParameter("cardNumber");
   String cardHolder = request.getParameter("cardHolder");
@@ -63,7 +65,7 @@ public class AddPaymentMethodServlet extends HttpServlet {
   }
 else{
             try {
-                userDAO.addPayment(paymentType, cardNumber, cardHolder, expiryDate, cvc);
+                userDAO.addPayment(userId, paymentType, cardNumber, cardHolder, expiryDate, cvc);
                 request.setAttribute("successMsg", "Successfully Added new payment");
                 request.getRequestDispatcher("addPayment.jsp").forward(request, response);
             } catch (SQLException ex) {

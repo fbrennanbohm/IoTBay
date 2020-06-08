@@ -213,9 +213,9 @@ public class UserDAO {
         st.executeUpdate("UPDATE Users SET address='" + Address + "'" + " WHERE userId=" + userId);
     }
 
-    public void addPayment(String type, String cardNumber, String name, String valid, String cvc) throws SQLException { //code for add-operation
-        String query = "INSERT INTO PAYMENTMETHOD (Type, CardNumber, Name, ValidUNTIL, CVC) VALUES("
-                + wrapStr(type) + ", " + wrapStr(cardNumber) + ", "
+    public void addPayment(int userId, String type, String cardNumber, String name, String valid, String cvc) throws SQLException { //code for add-operation
+        String query = "INSERT INTO PAYMENTMETHOD (UserId, Type, CardNumber, Name, ValidUNTIL, CVC) VALUES("
+                + userId + ", " + wrapStr(type) + ", " + wrapStr(cardNumber) + ", "
                 + wrapStr(name) + ", " + wrapStr(valid) + ", " + wrapStr(cvc) + ")";
         st.executeUpdate(query);
 
@@ -228,7 +228,7 @@ public class UserDAO {
 
     public List<Payment> searchPayment(int paymentID, String date) throws SQLException {
         List<Payment> paymentList = new ArrayList<>();
-        String query = "SELECT * FROM Users WHERE ";
+        String query = "SELECT * FROM Payment WHERE ";
         if (paymentID > 0) {
             query += "paymentID= '" + paymentID + "'";
         }
