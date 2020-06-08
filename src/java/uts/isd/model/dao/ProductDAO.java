@@ -39,7 +39,7 @@ public class ProductDAO {
 
     public void updateProduct(Product product) throws SQLException {
         st.executeUpdate("UPDATE PRODUCT SET NAME=" + wrapStr(product.getName()) + ", DESCRIPTION=" + wrapStr(product.getDescription()) + ", STOCKQUANTITY=" + product.getStockQuantity()
-                + ", PRICE=" + product.getPrice() + ", IMAGEURL=" + product.getImageUrl()
+                + ", PRICE=" + product.getPrice() + ", IMAGEURL=" + wrapStr(product.getImageUrl())
                 + " WHERE productId=" + product.getProductId());
     }
 

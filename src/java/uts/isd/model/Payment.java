@@ -24,7 +24,7 @@ public class Payment {
         this.paidAmount = paidAmount;
         this.detail = detail;
     }
-
+    
     public int getPaymentId() {
         return paymentId;
     }
@@ -44,7 +44,7 @@ public class Payment {
     public String getDetail() {
         return detail;
     }
-
+    
     public void setPaymentId(int paymentId) {
         this.paymentId = paymentId;
     }
@@ -64,5 +64,4 @@ public class Payment {
     public void setDetail(String detail) {
         this.detail = detail;
     }
-
 }

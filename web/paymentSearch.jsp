@@ -26,7 +26,6 @@
             Connection connection = null;
             Statement statement = null;
             ResultSet rs = null;
-            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(connectionURL, "iotuser", "admin");
             statement = connection.createStatement();
             String QueryString = "select * from PAYMENT";
@@ -51,28 +50,7 @@
                 
         <div class="container-fluid px-5 my-3">
             <div class="row">
-                <div class="col-sm-3">
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="main.jsp">My Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">View Order History</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="PaymentMethodServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Payment Method</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="PaymentServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Payment History</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="EditServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Update Personal Details</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="DeleteServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'"> Delete My Account</a>
-                        </li>
-                    </ul>
-                </div>
+                <jsp:include page="_myInfoNav.jsp" />
                 <div class="col-sm-9">
                     
                 <h1>${user.firstName} ${user.lastName}'s Payment History</h1>

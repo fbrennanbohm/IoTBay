@@ -45,6 +45,10 @@ public class Order implements java.io.Serializable {
         return orderStatus;
     }
 
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     public List<OrderItem> getOrderItemList() {
         return orderItemList;
     }
