@@ -47,7 +47,6 @@ public class PaymentMethod {
                 str += "-";
             }
         }
-
         str += cardNumber.substring(cardNumber.length() - 4);
 
         return str;

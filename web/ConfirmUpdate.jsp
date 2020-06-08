@@ -1,10 +1,12 @@
 <%-- 
-    Document   : deletePaymentMethod
-    Created on : 06/06/2020, 5:28:38 PM
+    Document   : paymentMethod
+    Created on : 06/06/2020, 2:40:04 AM
     Author     : Ricky
 --%>
 
+<%@page import="uts.isd.model.PaymentMethod"%>
 <%@page import="uts.isd.model.Payment"%>
+<%@page import="java.util.List"%>
 <%@page import="java.sql.*"%>
 <%@page import="uts.isd.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,25 +15,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>IoTBay - View Payment Details</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </head>
         <body>
     <div class="container-fluid px-5 py-3">
             <div class="row mb-3">
             <div class="col-sm-4"><span class="display-4">IoTBay</span></div>
             <div class="col-sm-8 text-right my-auto">
-                 <%
-            User user = (User) session.getAttribute("user");
-            String connectionURL = "jdbc:derby://localhost:1527/iotdb";
-            Connection connection = null;
-            Statement statement = null;
-            ResultSet rs = null;
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(connectionURL, "iotuser", "admin");
-            statement = connection.createStatement();   
-            Payment payment = (Payment) request.getAttribute("paymentUpdate");
-            %>
+                <%
+                    User user = (User) session.getAttribute("user");
+                    PaymentMethod payment = (PaymentMethod) request.getAttribute("paymentUpdate");
+                %>
             </div>
             </div>
         </div>
@@ -75,36 +74,7 @@
                 <div class="col-sm-9">
                     
                 <h1>${user.firstName} ${user.lastName}'s Payment Method's</h1>
-                <form class="form-horizontal" name="myForm" method="post" action="UpdatePaymentMethod?id=<%= user.getUserId()%>">
-                        <p><strong>Please enter the ID of the payment you would like to update</strong></p>
-                        <%
-                        String successMsg = (String) request.getAttribute("successMsg");
-                        String errorMsg = (String) request.getAttribute("errorMsg");
-                        if (successMsg != null) {
-                        %>
-                        <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <%=successMsg%><br>
-                        Click <a href="paymentMethod.jsp?id=<%= user.getUserId()%>" class="alert-link">here</a> to go back to the list of Payment Methods.
-                        </div>
-                        <% } %>
-                        <% if (errorMsg != null) {%>
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <strong>Error:</strong> <%=errorMsg%>
-                        </div>
-                        <% }%>
-                        <div class="form-group">
-                            <label for="PaymentID">Update Payment ID:</label>
-                            <input type="text" class="form-control" name="UpdatePaymentID">
-                        </div>
-
-                        <div class="form-group"><div class="col-sm-offset-2 col-sm-10">
-                                <input type='submit' class='btn btn-primary'value='Update'>
-                                <a href="paymentMethod.jsp?id=<%= user.getUserId()%>" class="btn btn-secondary mx-4">Cancel</a>
-                        </div>
-                        </div>
-                    </form>
+                <div align="left" ><a href="addPayment.jsp"  class='btn btn-primary' align="right">Add</a> <a href="deletePaymentMethod.jsp?id=<%= user.getUserId()%>"  class='btn btn-primary' align="right">Remove</a> <a href="updatePayment.jsp?id=<%= user.getUserId()%>"  class='btn btn-primary' align="right">Update</a></div>
                 <p>Your payment methods are listed below:</p>
                 
                 <table border ="1" align="left" style ="text-align: center">
@@ -121,17 +91,16 @@
                     
                     <tbody>
                         <tr>
-                            <td><%=payment.getType() %></td>
-                            <td><%=payment.getType() %></td>
-                            <td><%=payment.getType() %></td>
-                            <td><%=payment.getType() %></td>
-                            <td><%=payment.getType() %></td>
-                            <td><%=payment.getType() %></td>      
+                            <td><%= payment.getCardNumber()%></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>                      
                     </tbody>
                 </table>
-                </div>
-                        
+                </div>        
             </div>
         </div>
     </body>

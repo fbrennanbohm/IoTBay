@@ -14,13 +14,14 @@ import javax.servlet.http.HttpSession;
 import uts.isd.controller.ConnServlet;
 import uts.isd.controller.UpdateOrderController;
 import uts.isd.model.Order;
+import uts.isd.model.Payment;
 import uts.isd.model.PaymentMethod;
 import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.OrderDAO;
 import uts.isd.model.dao.PaymentMethodDAO;
 
 /**
- * This servlet loads the order history page.
+ * This  loads the order history page.
  *
  * @author Patrick
  */
@@ -49,10 +50,11 @@ public class UpdatePaymentMethod extends HttpServlet {
 
         try {
             PaymentMethod payment = paymentMethodDAO.getPaymentMethod(updateId);
+
             request.setAttribute("paymentUpdate", payment);
         } catch (SQLException ex) {
             Logger.getLogger(UpdateOrderController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("confirmUpdate.jsp").forward(request, response);
+        request.getRequestDispatcher("ConfirmUpdate.jsp").forward(request, response);
     }
 }

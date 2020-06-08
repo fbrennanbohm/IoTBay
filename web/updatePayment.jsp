@@ -97,7 +97,7 @@
                         </div>
                         <% }%>
                         <div class="form-group">
-                            <label for="PaymentID">Update Payment ID:</label>
+                            <label for="UpdatePaymentID">Update Payment ID:</label>
                             <input type="text" class="form-control" name="UpdatePaymentID">
                         </div>
 
