@@ -37,6 +37,10 @@ public class Order implements java.io.Serializable {
         return orderNumber;
     }
 
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
     public Date getCreatedOn() {
         return createdOn;
     }
