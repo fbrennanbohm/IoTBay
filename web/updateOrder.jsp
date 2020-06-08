@@ -63,7 +63,7 @@
                         <tbody>
 
                             <%
-                                if (order.getOrderItemList() != null) {
+                                if (order.getOrderItemList() != null && order.getOrderItemList().size() > 0) {
                                     for (OrderItem orderItem : order.getOrderItemList()) {
                             %>
                             <tr>
@@ -72,14 +72,17 @@
                                 <td><%=orderItem.getPricePerUnit()%></td>
                                 <td><%=orderItem.getTotalPrice()%></td>
                                 <td>
-                                    <a href="UpdateOrderItem?id=<%=order.getOrderId()%>" class="btn btn-secondary mx-2"><i class="far fa-edit"></i></a>
-                                    <a href="PayOrder?id=<%=order.getOrderId()%>" class="btn btn-warning mx-2"><i class="fas fa-trash-alt"></i></a>
+                                    <form action="DeleteOrderItem" method="post">
+                                        <a href="UpdateOrderItem?id=<%=order.getOrderId()%>" class="btn btn-secondary mx-2"><i class="far fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="<%=order.getOrderId()%>" />
+                                        <button type="submit" class="btn btn-warning mx-2"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                             <% }
                             } else { %>
                             <tr>
-                                <td colspan="7">No orders found.</td>
+                                <td colspan="7">No order items found.</td>
                             </tr>
                             <% }%>
                         </tbody>

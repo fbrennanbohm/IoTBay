@@ -42,7 +42,7 @@
 
                             <%
                                 List<Order> orderList = (List<Order>) request.getAttribute("orderList");
-                                if (orderList != null) {
+                                if (orderList != null && orderList.size() > 0) {
                                     for (Order order : orderList) {
                             %>
                             <tr>
@@ -65,10 +65,13 @@
                                     <%
                                         if (order.getOrderStatus().equals("Unpaid")) {
                                     %>
-                                    <a href="PayOrder?id=<%=order.getUserId()%>" class="btn btn-info mx-2">Pay</a>
-                                    <a href="UpdateOrder?id=<%=order.getOrderId()%>" class="btn btn-secondary mx-2"><i class="far fa-edit"></i></a>
-                                    <a href="PayOrder?id=<%=order.getOrderId()%>" class="btn btn-warning mx-2"><i class="fas fa-trash-alt"></i></a>
-                                        <% }%>
+                                    <form action="DeleteOrder" method="post">
+                                        <a href="PayOrder?id=<%=order.getUserId()%>" class="btn btn-info mx-2">Pay</a>
+                                        <a href="UpdateOrder?id=<%=order.getOrderId()%>" class="btn btn-secondary mx-2"><i class="far fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="<%=order.getOrderId()%>" />
+                                        <button type="submit" class="btn btn-warning mx-2"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                    <% }%>
                                 </td>
                             </tr>
                             <% }

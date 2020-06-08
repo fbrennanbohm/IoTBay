@@ -230,6 +230,22 @@
         <url-pattern>/UpdateOrderItem</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>DeleteOrderController</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteOrderController</servlet-name>
+        <url-pattern>/DeleteOrder</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteOrderItemController</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteOrderItemController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteOrderItemController</servlet-name>
+        <url-pattern>/DeleteOrderItem</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AccessServlet</servlet-name>
         <servlet-class>uts.isd.controller.AccessServlet</servlet-class>
     </servlet>
