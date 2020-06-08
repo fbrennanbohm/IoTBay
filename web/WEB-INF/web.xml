@@ -64,6 +64,10 @@
         <servlet-name>ConfirmUpdate</servlet-name>
         <servlet-class>uts.isd.controller.ConfirmUpdate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddCartServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AddCartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
         <url-pattern>/AdminConfirmDeleteUserController</url-pattern>
@@ -300,6 +304,10 @@
     <servlet-mapping>
         <servlet-name>ShipmentServlet</servlet-name>
         <url-pattern>/ShipmentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCartServlet</servlet-name>
+        <url-pattern>/AddCartServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

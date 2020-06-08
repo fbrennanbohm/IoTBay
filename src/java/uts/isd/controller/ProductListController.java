@@ -35,6 +35,6 @@ public class ProductListController extends HttpServlet {
             Logger.getLogger(ProductListController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        request.getRequestDispatcher("catalogue.jsp").forward(request, response);
+        request.getRequestDispatcher("catalogue.jsp").include(request, response);
     }
 }

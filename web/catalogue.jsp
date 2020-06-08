@@ -1,4 +1,5 @@
 
+<%@page import="uts.isd.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uts.isd.model.Product"%>
 <%@page import="java.util.List"%>
@@ -17,6 +18,8 @@
             <h1 class="my-3">Device Catalogue</h1>
             <%
                 List<Product> productList = (List<Product>) request.getAttribute("productList");
+                User user = (User) session.getAttribute("user");
+                System.out.println(user.getUserId());
 
                 if (productList != null) {
                     for (Product p : productList) {
@@ -28,7 +31,7 @@
                 <h5 class="card-title"><%= p.getName()%></h5>
                 <p class="card-text">Item description</p>
                 <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
+                <a href="AddCartServlet?id=<%= user.getUserId()%>&product=<%= p.getProductId()%>" class="btn btn-primary">Add to Cart</a>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
         </div>

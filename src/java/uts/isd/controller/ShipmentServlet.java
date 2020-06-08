@@ -37,7 +37,7 @@ public class ShipmentServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {   
-        System.out.println("doget");
+        
         response.setContentType("text/html;charset=UTF-8");
         int userId = Integer.parseInt(request.getParameter("id"));
         
@@ -59,7 +59,7 @@ public class ShipmentServlet extends HttpServlet {
         String search = request.getParameter("search");
         
         try {
-            System.out.println("doPost");
+            
             List<Shipment> shipmentList = shipmentDAO.getShipmentSearchList(userId, search); //with search param
             request.setAttribute("shipmentList", shipmentList);
         }
