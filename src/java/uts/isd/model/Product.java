@@ -11,13 +11,15 @@ public class Product implements java.io.Serializable {
     private String description;
     private double price;
     private int stockQuantity;
+    private String imageUrl;
 
-    public Product(int productId, String name, String description, int stockQuantity, double price) {
+    public Product(int productId, String name, String description, int stockQuantity, double price, String imageUrl) {
         this.productId = productId;
         this.name = name;
         this.description = description;
         this.stockQuantity = stockQuantity;
         this.price = price;
+        this.imageUrl = imageUrl;
     }
 
     public int getProductId() {
@@ -58,5 +60,13 @@ public class Product implements java.io.Serializable {
 
     public void setStockQuantity(int quantity) {
         this.stockQuantity = quantity;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

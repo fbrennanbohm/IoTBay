@@ -30,7 +30,7 @@
             <a class="nav-link <%=(url.indexOf("index.jsp") > -1 ? "active" : "")%>" href="index.jsp">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <%=(url.indexOf("catalogue.jsp") > -1 ? "active" : "")%>" href="catalogue.jsp">Device Catalogue</a>
+            <a class="nav-link <%=(url.indexOf("catalogue.jsp") > -1 ? "active" : "")%>" href="ProductListController">Device Catalogue</a>
         </li>
         <% if (loggedIn) {%>
         <li class="nav-item">
@@ -41,5 +41,6 @@
         <li class="nav-item">
             <a class="nav-link <%=(url.indexOf("userList.jsp") > -1 ? "active" : "")%>" href="UserListController">Admin Menu</a>
         </li>
-        <% }}%>
+        <% }
+            }%>
 </div>
