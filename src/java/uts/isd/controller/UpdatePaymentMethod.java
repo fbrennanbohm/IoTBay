@@ -1,4 +1,5 @@
 package uts.isd.controller;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import uts.isd.controller.ConnServlet;
 import uts.isd.controller.UpdateOrderController;
 import uts.isd.model.Order;
-import uts.isd.model.Payment;
+import uts.isd.model.PaymentMethod;
 import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.OrderDAO;
 import uts.isd.model.dao.PaymentMethodDAO;
@@ -47,7 +48,7 @@ public class UpdatePaymentMethod extends HttpServlet {
         int updateId = Integer.parseInt(request.getParameter("UpdatePaymentID")); // get userId from HTTP request parameter
 
         try {
-            Payment payment = paymentMethodDAO.findPayment(updateId);
+            PaymentMethod payment = paymentMethodDAO.getPaymentMethod(updateId);
             request.setAttribute("paymentUpdate", payment);
         } catch (SQLException ex) {
             Logger.getLogger(UpdateOrderController.class.getName()).log(Level.SEVERE, null, ex);

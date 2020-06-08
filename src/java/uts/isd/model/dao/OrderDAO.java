@@ -2,8 +2,6 @@ package uts.isd.model.dao;
 
 import uts.isd.model.Order;
 import uts.isd.model.OrderItem;
-import uts.isd.model.Product;
-import uts.isd.model.dao.ProductDAO;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

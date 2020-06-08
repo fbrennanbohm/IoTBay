@@ -32,84 +32,88 @@
                     %>
 
                     <h1>Pay Order</h1>
-
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Order Number</label>
-                        <div class="col-sm-10">
-                            <input type="text" readonly class="form-control-plaintext" value="<%=order.getOrderNumber()%>">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Placed On</label>
-                        <div class="col-sm-10">
-                            <input type="text" readonly class="form-control-plaintext" value="<%=order.getCreatedOn()%>">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Payment Method</label>
-                        <div class="col-sm-10">
-
-                            <% if (paymentMethodList != null && paymentMethodList.size() > 0) { %>
-                            <% for (PaymentMethod paymentMethod : paymentMethodList) {%>
-                            <div class="radio">
-                                <label><input type="radio" name="paymentMathod" value="<%=payment.getPaymentMethodId()%>" checked>Option 1</label>
+                    <form action="PayOrder" method="post">
+                        <input type="hidden" name="id" value="<%=order.getOrderId()%>" >
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Order Number</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" value="<%=order.getOrderNumber()%>">
                             </div>
-                            <%}%>
-                            <% } else { %>
-                            <div class="form-control-plaintext">
-                                Please add a payment method <a href="/PaymentMethodServlet">here</a>
-                            </div>
-                            <% }%>
                         </div>
-                    </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Placed On</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" value="<%=order.getCreatedOn()%>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Payment Method</label>
+                            <div class="col-sm-10">
 
-                    <table class="table-striped table-hover table-bordered my-3">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Price per unit</th>
-                                <th>Total Price</th>
-                        </thead>
-                        <tbody>
+                                <div class="form-control-plaintext">
+                                    <% if (paymentMethodList != null && paymentMethodList.size() > 0) { %>
+                                    <% for (PaymentMethod paymentMethod : paymentMethodList) {%>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="paymentMethodId" value="<%=paymentMethod.getPaymentMethodId()%>" checked>
+                                            <%=paymentMethod.getMaskedCardNumber()%>
+                                        </label>
+                                    </div>
+                                    <%}%>
+                                    <% } else { %>
+                                    Please add a payment method <a href="/PaymentMethodServlet">here</a>
+                                    <% }%>
+                                </div>
+                            </div>
+                        </div>
 
-                            <%
-                                if (order.getOrderItemList() != null && order.getOrderItemList().size() > 0) {
-                            %>
-                            <%
-                                for (OrderItem orderItem : order.getOrderItemList()) {
-                            %>
-                            <tr>
-                                <td><%= orderItem.getProduct().getName()%></td>
-                                <td><%=orderItem.getQuantity()%></td>
-                                <td><%=orderItem.getPricePerUnit()%></td>
-                                <td><%=orderItem.getTotalPrice()%></td>
-                            </tr>
-                            <% }%>
+                        <table class="table-striped table-hover table-bordered my-3">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price per unit</th>
+                                    <th>Total Price</th>
+                            </thead>
+                            <tbody>
 
-                            <tr>
-                                <td colspan="3">Total</td>
-                                <td><b><%=order.getTotalPrice()%></b></td>
-                            </tr>
-                            <% } else { %>
-                            <tr>
-                                <td colspan="4">No order items found.</td>
-                            </tr>
-                            <% }%>
-                        </tbody>
-                    </table>
+                                <%
+                                    if (order.getOrderItemList() != null && order.getOrderItemList().size() > 0) {
+                                %>
+                                <%
+                                    for (OrderItem orderItem : order.getOrderItemList()) {
+                                %>
+                                <tr>
+                                    <td><%= orderItem.getProduct().getName()%></td>
+                                    <td><%=orderItem.getQuantity()%></td>
+                                    <td><%=orderItem.getPricePerUnit()%></td>
+                                    <td><%=orderItem.getTotalPrice()%></td>
+                                </tr>
+                                <% }%>
 
-                    <div class="row">
-                        <div class="container mt-4">
-                            <% if (paymentList != null && paymentList.size() > 0) { %>
-                            <form action="PayOrder" method="post">
+                                <tr>
+                                    <td colspan="3">Total</td>
+                                    <td><b><%=order.getTotalPrice()%></b></td>
+                                </tr>
+                                <% } else { %>
+                                <tr>
+                                    <td colspan="4">No order items found.</td>
+                                </tr>
+                                <% }%>
+                            </tbody>
+                        </table>
+
+                        <div class="row">
+                            <div class="container mt-4">
+                                <% if (paymentMethodList != null && paymentMethodList.size() > 0) { %>
                                 <button type="submit" class="btn btn-info">Pay</button>
-                            </form>
-                            <% } else { %>
-                            <button type="submit" disabled class="btn btn-secondary">Pay</button>
-                            <% }%>
+                                <% } else { %>
+                                <button type="submit" disabled class="btn btn-secondary">Pay</button>
+                                <% }%>
+                            </div>
                         </div>
-                    </div>
+
+                    </form>
                 </div>
             </div>
         </div>
