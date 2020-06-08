@@ -47,9 +47,15 @@ public class OrderHistoryController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         int userId = Integer.parseInt(request.getParameter("id")); // get userId from HTTP request parameter
+        String orderNumberSearch = request.getParameter("orderNumberSearch");
 
         try {
-            List<Order> orderList = orderDAO.getUserOrderList(userId);
+            List<Order> orderList = null;
+            if (orderNumberSearch != null && !orderNumberSearch.isEmpty()) {
+                orderList = orderDAO.getUserOrderList(userId, orderNumberSearch);
+            } else {
+                orderList = orderDAO.getUserOrderList(userId);
+            }
             request.setAttribute("orderList", orderList);
         } catch (SQLException ex) {
             Logger.getLogger(OrderHistoryController.class.getName()).log(Level.SEVERE, null, ex);

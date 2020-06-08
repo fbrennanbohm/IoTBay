@@ -39,6 +39,25 @@ public class OrderDAO {
         return orderList;
     }
 
+    public List<Order> getUserOrderList(int userId, String orderNumberSearch) throws SQLException {
+        List<Order> orderList = new ArrayList<>();
+        String query = "SELECT * FROM \"ORDER\" WHERE userid=" + userId + " AND orderNumber LIKE '%" + orderNumberSearch + "%'";
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            Order order = this.buildOrder(rs);
+
+            orderList.add(order);
+        }
+        rs.close();
+
+        for (Order order : orderList) {
+            order.setOrderItemList(this.getOrderItemList(order.getOrderId()));
+        }
+
+        return orderList;
+    }
+
     public Order getOrder(int id) throws SQLException {
         String query = "SELECT * FROM \"ORDER\" WHERE orderid=" + id;
         ResultSet rs = st.executeQuery(query);

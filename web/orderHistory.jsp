@@ -5,8 +5,7 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="uts.isd.model.Order"%>
-<%@page import="uts.isd.model.OrderItem"%>
+<%@page import="uts.isd.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,6 +26,27 @@
 
                     <h1>Order History</h1>
                     <p>All my orders in the IoTBay database are displayed below.</p>
+
+                    <%
+                        User user = (User) session.getAttribute("user");
+                        String orderNumberSearch = request.getParameter("orderNumberSearch");
+                        if (orderNumberSearch == null) {
+                            orderNumberSearch = "";
+                        }
+                    %>
+
+                    <form class="form-inline" method ="get" action="OrderHistory">
+                        <input type="hidden" name="id" value="<%=user.getUserId()%>" />
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="orderNumberSearch" placeholder="Search by Order Number" value="<%=orderNumberSearch%>" />
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+
+                    </form>
+
                     <table class="table-striped table-hover table-bordered my-3">
                         <thead>
                             <tr>

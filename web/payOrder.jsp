@@ -60,8 +60,8 @@
                                         </label>
                                     </div>
                                     <%}%>
-                                    <% } else { %>
-                                    Please add a payment method <a href="/PaymentMethodServlet">here</a>
+                                    <% } else {%>
+                                    Please add a payment method <a href="PaymentMethodServlet?id=<%=order.getUserId()%>">here</a>
                                     <% }%>
                                 </div>
                             </div>
