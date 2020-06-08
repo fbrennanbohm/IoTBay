@@ -89,8 +89,8 @@ public class PaymentMethodDAO {
     private PaymentMethod buildOrder(ResultSet rs) throws SQLException {
         int paymentMethodID = rs.getInt("PaymentMethodID");
         int userID = rs.getInt("UserId");
-        int cardNumber = rs.getInt("CardNumber");
-        int cvc = rs.getInt("CVC");
+        String cardNumber = rs.getString("CardNumber");
+        String cvc = rs.getString("CVC");
         String type = rs.getString("Type");    
         String name = rs.getString("Name");
         Date expiryDate = rs.getDate("VALIDUNTIL");
@@ -103,8 +103,8 @@ public class PaymentMethodDAO {
 
         int paymentMethodId = rs.getInt("PaymentMethodID");
         int userId = rs.getInt("userId");
-        int cardNumber = rs.getInt("CardNumber");
-        int cvc = rs.getInt("CVC");
+        String cardNumber = rs.getString("CardNumber");
+        String cvc = rs.getString("CVC");
         String type = rs.getString("Type");
         String name = rs.getString("Name");
         Date expiryDate = rs.getDate("VALIDUNTIL");

@@ -256,8 +256,8 @@ public class UserDAO {
         while (rs.next()) {
             int paymentMethodID = rs.getInt("PaymentMethodID");
             int userID = rs.getInt("UserId");
-            int cardNumber = rs.getInt("CardNumber");
-            int cvc = rs.getInt("CVC");
+            String cardNumber = rs.getString("CardNumber");
+            String cvc = rs.getString("CVC");
             String type = rs.getString("Type");    
             String name = rs.getString("Name");
             Date expiryDate = rs.getDate("VALIDUNTIL");
