@@ -61,14 +61,13 @@
         <servlet-class>uts.isd.controller.ConfirmUpdate</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>UpdatePayment</servlet-name>
         <servlet-class>uts.isd.controller.UpdatePayment</servlet-class>
-=======
+    </servlet>   
+    <servlet> 
         <servlet-name>AddCartServlet</servlet-name>
         <servlet-class>uts.isd.controller.AddCartServlet</servlet-class>
->>>>>>> 530c529f971b693d63ef73822e0f03d2b92f90a1
-    </servlet>
+    </servlet>      
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
         <url-pattern>/AdminConfirmDeleteUserController</url-pattern>
@@ -331,13 +330,14 @@
         <url-pattern>/ShipmentServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
+
         <servlet-name>UpdatePayment</servlet-name>
         <url-pattern>/UpdatePayment</url-pattern>
-=======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AddCartServlet</servlet-name>
         <url-pattern>/AddCartServlet</url-pattern>
->>>>>>> 530c529f971b693d63ef73822e0f03d2b92f90a1
+        
     </servlet-mapping>
     <session-config>
         <session-timeout>

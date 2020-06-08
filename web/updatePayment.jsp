@@ -28,7 +28,9 @@
             ResultSet rs = null;
             connection = DriverManager.getConnection(connectionURL, "iotuser", "admin");
             statement = connection.createStatement();
-
+            int userId = Integer.parseInt(request.getParameter("id"));
+            String QueryString = "select * from PAYMENTMETHOD where userID=" + userId ;
+            rs = statement.executeQuery(QueryString);
             //String updated =(String)session.getAttribute("updated");      
                     %>
             </div>
@@ -95,7 +97,7 @@
                         <% }%>
                         <div class="form-group">
                             <label for="PaymentID">Update Payment ID:</label>
-                            <input type="text" class="form-control" name="UpdatePaymentID">
+                            <input type="text" class="form-control" name="RemovePaymentID">
                         </div>
 
                         <div class="form-group"><div class="col-sm-offset-2 col-sm-10">
@@ -119,14 +121,20 @@
                     </thead>
                     
                     <tbody>
- 
+                        <%while (rs.next()) { %>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>    
+                            <td><%=rs.getString("PAYMENTMETHODID") %></td>
+                            <td><%=rs.getString("TYPE") %></td>
+                            <td><%=rs.getString("CARDNUMBER") %></td>
+                            <td><%=rs.getString("NAME") %></td>
+                            <td><%=rs.getString("VALIDUNTIL") %></td>
+                            <td><%=rs.getString("CVC") %></td>
+                        <% } %>
+                    <% 
+                        rs.close();
+                        statement.close();
+                        connection.close();
+                    %>        
                         </tr>                      
                     </tbody>
                 </table>
