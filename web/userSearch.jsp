@@ -34,10 +34,10 @@
                         <div class="card-body">
 
                             <form action="UserSearchController" method="post" class="form-inline">
-                                <label for="name">Payment ID</label>
+                                <label for="name">Name</label>
                                 <input type="text" class="form-control mx-3" name="name" id="name">
 
-                                <label for="email">Date</label>
+                                <label for="email">Email</label>
                                 <input type="text" class="form-control mx-3" name="email" id="email">
 
                                 <input type="submit" class="btn btn-primary mx-3" value="Search"/>
