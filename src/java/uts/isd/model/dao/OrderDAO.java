@@ -56,20 +56,6 @@ public class OrderDAO {
         return order;
     }
 
-    public void createOrder(int userId, String orderNumber, Date createdOn, String orderStatus) throws SQLException {
-
-        st.executeUpdate("INSERT INTO \"ORDER\" (USERID, ORDERNUMBER, CREATEDON, ORDERSTATUS) "
-                + "VALUES (" + userId + ", " + wrapStr(orderNumber) + ", " + wrapDate(createdOn) + ", " + wrapStr(orderStatus)
-                + ")");
-    }
-
-    public void createOrderItem(int orderId, int productId, int quantity, double pricePerUnit) throws SQLException {
-
-        st.executeUpdate("INSERT INTO \"ORDERITEM\" (ORDERID, PRODUCTID, QUANTITY, PRICEPERUNIT) "
-                + "VALUES (" + orderId + ", " + productId + ", " + quantity + ", " + pricePerUnit
-                + ")");
-    }
-
     public void deleteOrder(int id) throws SQLException {
         this.deleteOrderItemList(id);
         st.executeUpdate("DELETE FROM \"ORDER\" WHERE ORDERID=" + id);

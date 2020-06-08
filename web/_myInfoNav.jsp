@@ -12,9 +12,9 @@
             <a class="nav-link  <%=(url.indexOf("main.jsp") > -1 ? "active" : "")%>" href="main.jsp">My Dashboard</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  <%=(url.indexOf("orderHistory.jsp") > -1 ? "active" : "")%>" href="OrderHistory?id=<%= user.getUserId()%>">View Orders</a>
+            <a class="nav-link  <%=(url.indexOf("orderHistory.jsp") > -1 ? "active" : "")%>" href="OrderHistory?id=<%= user.getUserId()%>">View Order History</a>
         </li>
-        <li class="nav-item">
+         <li class="nav-item">
             <a class="nav-link  <%=(url.indexOf("AccessLog.jsp") > -1 ? "active" : "")%>" href="AccessServlet?email='<%= user.getEmail()%>'$password='<%= user.getPassword()%>'">View Access Log</a>
         </li>
         <li class="nav-item">

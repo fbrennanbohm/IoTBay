@@ -1,4 +1,4 @@
-INSERT INTO "ROLE" (ROLEID, "NAME") VALUES
+INSERT INTO "ROLE" (ROLEID, "NAME") VALUES 
     (1, 'Customer'),
     (2, 'Staff'),
     (3, 'System Admin');
@@ -8,22 +8,7 @@ INSERT INTO USERS (roleId, firstName, lastName, email, password) VALUES
     (1, 'John', 'Smith', 'johnsmith@gmail.com', 'apples5678'),
     (2, 'Mary', 'Adams', 'maryadams@hotmail.com', 'banana8888'),
     (3, 'Rene', 'Cruces', 'rene.cruces@outlook.com', 'password'),
-    (1, 'Ricky', 'Tran', 'rickytran@uts.edu.au', 'branch'),
-    (2, 'Patrick', 'Espiritu', 'patrick.esp@uts.edu.au', 'coffee7'),
-    (1, 'Mary', 'Poppins', 'mary_poppins@gmail.com', 'sugar12'),
-    (3, 'Jack', 'McCreanor', 'jack.mccreanor@uts.edu.au', 'password2'),
-    (2, 'Felix', 'Brennan-Bohm', 'felix.brennanbohm@uts.edu.au', 'password3'),
-    (1, 'Ben', 'Duong', 'ben.duong@uts.edu.au', 'password'),
-    (1, 'Jennifer', 'Smith', 'jennifer.smith@gmail.com', 'banana2'),
-    (2, 'Casey', 'David', 'casey.david@gmail.com', 'password'),
-    (1, 'Brendan', 'Lopez', 'brendan.l@gmail.com', 'password'),
-    (2, 'Melinda', 'Stevenson', 'melinda.s@gmail.com', 'apples1'),
-    (3, 'Tony', 'David', 'tony.david@gmail.com', 'daffodil'),
-    (1, 'Ben', 'Jamieson', 'ben.j@gmail.com', 'orange1'),
-    (2, 'Sarah', 'David', 'sarah.david@gmail.com', 'vanilla'),
-    (2, 'James', 'Gates', 'james.gates@gmail.com', 'mustang'),
-    (1, 'Jessica', 'Baker', 'jessica.baker@gmail.com', 'roses22'),
-    (3, 'Tony', 'Stark', 'tony.stark@gmail.com', 'ironman');
+    (1, 'Ricky', 'Tran', 'rickytran@uts.edu.au', 'branch');
 
 
 INSERT INTO PRODUCT ("NAME", DESCRIPTION, STOCKQUANTITY, PRICE, IMAGEURL) VALUES
@@ -70,10 +55,3 @@ INSERT INTO "PAYMENTMETHOD" ("USERID", "TYPE", "CARDNUMBER", "NAME", "VALIDUNTIL
 FROM USERS U
 LEFT JOIN "PAYMENTMETHOD" P ON P.USERID = U.USERID
 WHERE U.EMAIL = 'rene.cruces@outlook.com' AND P.PAYMENTMETHODID IS NULL);
-
-INSERT INTO "USERCARTPRODUCTS" ("USERID", "PRODUCTID", "QUANTITY")
-(SELECT U.USERID, P.PRODUCTID, 3
-FROM USERS U
-LEFT JOIN "USERCARTPRODUCTS" UCP ON UCP.USERID = U.USERID
-JOIN "PRODUCT" P ON P.NAME = 'FRDM-K64F'
-WHERE U.EMAIL = 'rene.cruces@outlook.com' AND UCP.USERCARTPRODUCTID IS NULL);
