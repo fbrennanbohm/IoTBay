@@ -30,6 +30,9 @@
             <a class="nav-link  <%=(url.indexOf("shipping.jsp") > -1 ? "active" : "")%>" href="ShippingServlet?id=<%= user.getUserId()%>"> Manage Shipping Details</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link  <%=(url.indexOf("shipments.jsp") > -1 ? "active" : "")%>" href="ShipmentServlet?id=<%= user.getUserId()%>"> Manage Shipments</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link  <%=(url.indexOf("delete.jsp") > -1 ? "active" : "")%>" href="DeleteServlet?id=<%= user.getUserId()%>">Delete My Account</a>
         </li>
     </ul>
