@@ -23,30 +23,27 @@ import uts.isd.model.dao.UserDAO;
  * @author Ricky
  */
 public class PaymentMethodServlet extends HttpServlet {
-     protected void doGet(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {       
 
-  HttpSession session = request.getSession();
-  String email = request.getParameter("email");
-  String password = request.getParameter("password");
-  UserDAO userDAO = (UserDAO)session.getAttribute("userDAO");
-  User user = null;
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
+        User user = null;
 
-    try{
-            user=userDAO.findUser(email,password);
-            if(user!=null) {
-                session.setAttribute("user",user);
-                request.getRequestDispatcher("paymentMethod.jsp").include(request,response);
+        try {
+            user = userDAO.findUser(email, password);
+            if (user != null) {
+                session.setAttribute("user", user);
+                request.getRequestDispatcher("paymentMethod.jsp").include(request, response);
             } else {
-                session.setAttribute("existErr","Payment does not exist in the Database");
-                }
+                session.setAttribute("existErr", "Payment does not exist in the Database");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
+        }
+        request.getRequestDispatcher("paymentMethod.jsp").include(request, response);
     }
-            
-    catch (SQLException ex){
-        Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE,null,ex);
-        System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
-    }
-    request.getRequestDispatcher("paymentMethod.jsp").include(request, response);
 }
-     }
-       

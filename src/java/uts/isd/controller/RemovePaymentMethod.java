@@ -7,7 +7,6 @@ package uts.isd.controller;
 
 import java.io.IOException;
 
-
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,30 +26,24 @@ import uts.isd.model.dao.PaymentMethodDAO;
 import uts.isd.model.dao.UserDAO;
 
 public class RemovePaymentMethod extends HttpServlet {
-   
 
-     @Override   
+    @Override
 
-     protected void doPost(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {       
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    HttpSession session = request.getSession();
-    Validator validator = new Validator();
-    int paymentId = Integer.parseInt(request.getParameter("RemovePaymentID"));
-    UserDAO userDAO = (UserDAO)session.getAttribute("userDAO"); 
-    //PaymentMethodDAO paymentMethodDAO = (PaymentMethodDAO)session.getAttribute("userDAO");
-    //validator.clear(session);
+        HttpSession session = request.getSession();
+        int paymentId = Integer.parseInt(request.getParameter("RemovePaymentID"));
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
-            try {
+        try {
 
-                userDAO.deletePayment(paymentId);
-                request.setAttribute("successMsg", "Successfully removed payment");
-                request.getRequestDispatcher("deletePaymentMethod.jsp").forward(request, response);
+            userDAO.deletePayment(paymentId);
+            request.setAttribute("successMsg", "Successfully removed payment");
+            request.getRequestDispatcher("deletePaymentMethod.jsp").forward(request, response);
 
-            } catch (SQLException ex) {
-                Logger.getLogger(CreateUserController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        request.getRequestDispatcher("deletePaymentMethod.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CreateUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        request.getRequestDispatcher("deletePaymentMethod.jsp").forward(request, response);
+    }
 }
-    
-          

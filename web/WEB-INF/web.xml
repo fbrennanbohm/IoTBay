@@ -66,11 +66,6 @@
         <servlet-class>uts.isd.controller.UpdatePayment</servlet-class>
     </servlet>   
     
-    <servlet> 
-        <servlet-name>AddCartServlet</servlet-name>
-        <servlet-class>uts.isd.controller.AddCartServlet</servlet-class>
-    </servlet>  
-      
     <servlet>
         <servlet-name>AddCartServlet</servlet-name>
         <servlet-class>uts.isd.controller.AddCartServlet</servlet-class>

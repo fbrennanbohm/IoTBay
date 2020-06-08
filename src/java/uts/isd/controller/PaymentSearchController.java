@@ -1,4 +1,3 @@
-
 package uts.isd.controller;
 
 import java.io.IOException;
@@ -20,13 +19,13 @@ import uts.isd.model.dao.ShipmentDAO;
 
 /**
  *
- * @author Jack
+ * @author Rick
  */
 public class PaymentSearchController extends HttpServlet {
 
     private ShipmentDAO shipmentDAO;
     private PaymentDAO paymentDAO;
-    
+
     @Override //Create and instance of DBConnector for the deployment session
     public void init() {
         try {
@@ -38,20 +37,19 @@ public class PaymentSearchController extends HttpServlet {
             Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {   
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         int paymentId = Integer.parseInt(request.getParameter("paymentID"));
         int userId = Integer.parseInt(request.getParameter("id"));
-        
-        
+
         try {
             List<Payment> paymentList = paymentDAO.getPaymentList(paymentId, userId);
             request.setAttribute("paymentList", paymentList);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (SQLException ex){
-            Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE,null,ex);
-        }   
-        request.getRequestDispatcher("payment.jsp").include(request,response);
+        request.getRequestDispatcher("payment.jsp").include(request, response);
     }
 }
