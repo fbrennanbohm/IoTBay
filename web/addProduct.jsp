@@ -19,9 +19,8 @@
         <div class="container-fluid px-5 my-3">
             <div class="row">
                 <div class="col-sm-9">
-
-                    <h1>Product Additor</h1>
-                    <p>Your personal information is displayed in the table below.</p>
+                    <h1>Add a product</h1>
+                    <p>Fill in the product details below.</p>
                     <form class="form-horizontal" name="myForm" method="post" action="AddProductController">
                         <h1 class="text-primary"><strong>Add here</strong></h1>
 

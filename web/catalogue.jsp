@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uts.isd.model.Product"%>
 <%@page import="java.util.List"%>
@@ -10,7 +9,6 @@
     <%
         User user = (User) session.getAttribute("user");
         boolean loggedIn = !(user == null);
-
         String url = request.getRequestURL().toString();
     %>
     <head>
@@ -31,7 +29,6 @@
             <div class="row">
                 <%
                     List<Product> productList = (List<Product>) request.getAttribute("productList");
-
                     if (productList != null) {
                         for (Product p : productList) {
                 %>
@@ -48,7 +45,7 @@
                             <a href="/IoTBay/DeleteProductController?id=<%= p.getProductId()%>" class="btn btn-primary">Delete</a>
 
                             <% }
-                    } %>
+                                } %>
 
                             <a href="#" class="btn btn-primary">Add to Cart</a>
                         </div>
