@@ -33,8 +33,8 @@ import java.util.List;
 public class PayOrderController extends HttpServlet {
 
     private OrderDAO orderDAO;
-    private PaymentMethodDAO paymentMethodDAO;
     private PaymentDAO paymentDAO;
+    private PaymentMethodDAO paymentMethodDAO;
     private ProductDAO productDAO;
 
     @Override //Create and instance of DBConnector for the deployment session
@@ -45,7 +45,7 @@ public class PayOrderController extends HttpServlet {
             orderDAO = new OrderDAO(conn);
             paymentDAO = new PaymentDAO(conn);
             paymentMethodDAO = new PaymentMethodDAO(conn);
-            paymentDAO = new PaymentDAO(conn);
+            productDAO = new ProductDAO(conn);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,8 +74,8 @@ public class PayOrderController extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        int orderId = Integer.parseInt(request.getParameter("id")); // get userId from HTTP request parameter
-        int paymentMethodId = Integer.parseInt(request.getParameter("paymentMethodId")); // get userId from HTTP request parameter
+        int orderId = Integer.parseInt(request.getParameter("id")); // get orderId from HTTP request parameter
+        int paymentMethodId = Integer.parseInt(request.getParameter("paymentMethodId")); // get paymentMethodId from HTTP request parameter
 
         boolean success = false;
         try {
@@ -89,6 +89,10 @@ public class PayOrderController extends HttpServlet {
                 product.setStockQuantity(Math.max(product.getStockQuantity() - orderItem.getQuantity(), 0));
                 productDAO.updateProduct(product);
             }
+
+            order.setOrderStatus("Paid");
+
+            orderDAO.updateOrder(order);
 
             response.sendRedirect("/IoTBay/OrderHistory?id=" + order.getUserId());
             success = true;
