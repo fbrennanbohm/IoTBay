@@ -29,7 +29,8 @@
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(connectionURL, "iotuser", "admin");
             statement = connection.createStatement();
-            String QueryString = "select * from PAYMENTMETHOD";
+            int userId = Integer.parseInt(request.getParameter("id"));
+            String QueryString = "select * from PAYMENTMETHOD where userID=" + userId ;
             rs = statement.executeQuery(QueryString);
             //String updated =(String)session.getAttribute("updated");      
                     %>
@@ -76,7 +77,7 @@
                 <div class="col-sm-9">
                     
                 <h1>${user.firstName} ${user.lastName}'s Payment Method's</h1>
-                <form class="form-horizontal" name="myForm" method="post" action="RemovePaymentMethod">
+                <form class="form-horizontal" name="myForm" method="post" action="RemovePaymentMethod?id=<%= user.getUserId()%>">
                         <p><strong>Please enter the ID of the payment you would like to remove  </strong></p>
                         <%
                         String successMsg = (String) request.getAttribute("successMsg");
@@ -86,7 +87,7 @@
                         <div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <%=successMsg%><br>
-                        Click <a href="paymentMethod.jsp" class="alert-link">here</a> to go back to the list of Payment Methods.
+                        Click <a href="paymentMethod.jsp?id=<%= user.getUserId()%>" class="alert-link">here</a> to go back to the list of Payment Methods.
                         </div>
                         <% } %>
                         <% if (errorMsg != null) {%>
@@ -102,7 +103,7 @@
 
                         <div class="form-group"><div class="col-sm-offset-2 col-sm-10">
                                 <input type='submit' class='btn btn-primary'value='Delete'>
-                                <a href="paymentMethod.jsp" class="btn btn-secondary mx-4">Cancel</a>
+                                <a href="paymentMethod.jsp?id=<%= user.getUserId()%>" class="btn btn-secondary mx-4">Cancel</a>
                         </div>
                         </div>
                     </form>

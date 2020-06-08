@@ -22,6 +22,7 @@
             <div class="col-sm-8 text-right my-auto">
             <% 
             User user = (User) session.getAttribute("user");
+            request.setAttribute("userId", user.getUserId());
             String existErr = (String) session.getAttribute("existErr");
             String emailErr = (String) session.getAttribute("emailErr");
             String passErr = (String) session.getAttribute("passErr");
@@ -80,7 +81,7 @@
                     <div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <%=successMsg%><br>
-                        Click <a href="paymentMethod.jsp" class="alert-link">here</a> to go back to the list of Payment Methods.
+                        Click <a href="paymentMethod.jsp?id=<%= user.getUserId()%>" class="alert-link">here</a> to go back to the list of Payment Methods.
                     </div>
                     <% } %>
                     <% if (errorMsg != null) {%>
@@ -90,7 +91,7 @@
                     </div>
                     <% }%>
                 <p></p>
-                <form action="AddPaymentMethodServlet" method="post">
+                <form action="AddPaymentMethodServlet?Id=<%= user.getUserId()%>" method="post">
                 <input type="hidden" name="submitted" value="yes">
                 <div class="form-group">
                     <label for="paymentType">Payment Type</label>
@@ -117,7 +118,7 @@
                 </div>
                 <div class="container mt-4">
                     <input type="submit" class="btn btn-primary" value="Add Payment"/>
-                    <a href="paymentMethod.jsp" class="btn btn-secondary mx-4">Cancel</a>
+                    <a href="paymentMethod.jsp?id=<%= user.getUserId()%>" class="btn btn-secondary mx-4">Cancel</a>
                 </div>
                 </form>
                 </div>

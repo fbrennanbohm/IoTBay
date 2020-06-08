@@ -52,6 +52,14 @@
         <servlet-name>PaymentSearchController</servlet-name>
         <servlet-class>uts.isd.controller.PaymentSearchController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdatePaymentMethod</servlet-name>
+        <servlet-class>uts.isd.controller.UpdatePaymentMethod</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmUpdate</servlet-name>
+        <servlet-class>uts.isd.controller.ConfirmUpdate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
         <url-pattern>/AdminConfirmDeleteUserController</url-pattern>
@@ -280,6 +288,14 @@
     <servlet-mapping>
         <servlet-name>PaymentSearchController</servlet-name>
         <url-pattern>/PaymentSearchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePaymentMethod</servlet-name>
+        <url-pattern>/UpdatePaymentMethod</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmUpdate</servlet-name>
+        <url-pattern>/ConfirmUpdate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
