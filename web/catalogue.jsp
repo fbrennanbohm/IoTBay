@@ -25,29 +25,8 @@
 
         <div class="container-fluid px-5">
             <h1 class="my-3">Device Catalogue</h1>
-            <%
-                List<Product> productList = (List<Product>) request.getAttribute("productList");
-
-                if (productList != null) {
-                    for (Product p : productList) {
-            %>
         </div>
-        <div class="card" style="width: 18rem;">
-            <img src="<%= p.getImageUrl()%>" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><%= p.getName()%></h5>
-                <p class="card-text"><%=p.getDescription()%></p>
-                <% if (loggedIn) { %>
-                <%if (user.isAdmin() || user.isStaff()) {%>
-                <a href="/IoTBay/EditProductController?id=<%= p.getProductId()%>" class="btn btn-primary">Edit</a>
-                <a href="/IoTBay/DeleteProductController?id=<%= p.getProductId()%>" class="btn btn-primary">Delete</a>
 
-                <% }
-                    } %>
-
-                <a href="#" class="btn btn-primary">Add to Cart</a>
-            </div>
-        </div>
         <div class="container-fluid px-5">
             <div class="row">
                 <%
@@ -62,10 +41,16 @@
                         <img src="<%= p.getImageUrl()%>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><%= p.getName()%></h5>
-                            <p class="card-text">Item description</p>
-                            <a href="#" class="btn btn-primary">Edit</a>
+                            <p class="card-text"><%=p.getDescription()%></p>
+                            <% if (loggedIn) { %>
+                            <%if (user.isAdmin() || user.isStaff()) {%>
+                            <a href="/IoTBay/EditProductController?id=<%= p.getProductId()%>" class="btn btn-primary">Edit</a>
+                            <a href="/IoTBay/DeleteProductController?id=<%= p.getProductId()%>" class="btn btn-primary">Delete</a>
+
+                            <% }
+                    } %>
+
                             <a href="#" class="btn btn-primary">Add to Cart</a>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
                 </div>
