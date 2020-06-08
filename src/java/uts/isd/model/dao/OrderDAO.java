@@ -108,6 +108,12 @@ public class OrderDAO {
         return orderItem;
     }
 
+    public void updateOrder(Order order) throws SQLException {
+        st.executeUpdate("UPDATE \"ORDER\" SET USERID=" + order.getUserId() + ", ORDERNUMBER=" + wrapStr(order.getOrderNumber())
+                + ", CREATEDON=" + wrapDate(order.getCreatedOn()) + ", ORDERSTATUS=" + wrapStr(order.getOrderStatus())
+                + " WHERE orderId=" + order.getOrderId());
+    }
+
     public void updateOrderItem(OrderItem orderItem) throws SQLException {
         st.executeUpdate("UPDATE ORDERITEM SET PRODUCTID=" + orderItem.getProductId() + ", QUANTITY=" + orderItem.getQuantity() + ", PRICEPERUNIT=" + orderItem.getPricePerUnit()
                 + " WHERE orderItemId=" + orderItem.getOrderItemId());
@@ -135,5 +141,13 @@ public class OrderDAO {
         OrderItem orderItem = new OrderItem(orderItemId, orderId, productId, quantity, pricePerUnit);
 
         return orderItem;
+    }
+
+    private String wrapStr(String input) {
+        return "'" + input + "'";
+    }
+
+    private String wrapDate(java.util.Date input) {
+        return "'" + input + "'";
     }
 }
