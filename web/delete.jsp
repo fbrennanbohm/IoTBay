@@ -21,7 +21,7 @@
                 <jsp:include page="_myInfoNav.jsp" />
                 <div class="col-sm-9">
 
-                    <form class="form-horizontal" name="myForm" method="post" action="DeleteController">
+                    <form class="form-horizontal" name="myForm" method="post" action="DeleteController?id=<%= user.getUserId()%>">
                         <h1 class="text-primary"><strong>Edit here  </strong></h1>
 
                         <div class="form-group">
