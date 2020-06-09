@@ -15,6 +15,13 @@ public class UserCartProductDAO {
         productDAO = new ProductDAO(conn);
     }
 
+    public void createUserCartProduct(int userId, int productId, int quantity) throws SQLException {
+
+        st.executeUpdate("INSERT INTO \"USERCARTPRODUCTS\" (USERID, PRODUCTID, QUANTITY) "
+                + "VALUES (" + userId + ", " + productId + ", " + quantity
+                + ")");
+    }
+
     public List<UserCartProduct> getUserCartProductList(int userId) throws SQLException {
         List<UserCartProduct> userCartProductList = new ArrayList<>();
 

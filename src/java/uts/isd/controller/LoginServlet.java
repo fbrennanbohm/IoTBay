@@ -6,29 +6,38 @@
 package uts.isd.controller;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.HttpSession;
-
 import uts.isd.model.User;
-
-import uts.isd.model.dao.UserDAO;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.sql.Connection;
+import uts.isd.model.dao.*;
 
 /**
  *
  * @author duong
  */
 public class LoginServlet extends HttpServlet {
+
+    private UserDAO userDAO;
+
+    @Override //Create and instance of DBConnector for the deployment session
+    public void init() {
+        try {
+            DBConnector db = new DBConnector();
+            Connection conn = db.openConnection();
+            userDAO = new UserDAO(conn);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
 
@@ -38,7 +47,6 @@ public class LoginServlet extends HttpServlet {
         Validator validator = new Validator();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
         validator.clear(session);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
