@@ -14,7 +14,6 @@ public class PaymentMethodDAO {
         st = conn.createStatement();
     }
 
-
     public PaymentMethod getPaymentMethod(String card) throws SQLException {
         String query = "SELECT * FROM PAYMENTMETHOD WHERE CardNumber=" + card;
         ResultSet rs = st.executeQuery(query);
@@ -31,25 +30,26 @@ public class PaymentMethodDAO {
         String query = "SELECT * FROM PaymentMethod WHERE PAYMENTMETHODID=" + paymentId;
         ResultSet rs = st.executeQuery(query);
         int paymentMethodID;
-        int userID;  
+        int userID;
         String cardNumber;
         String cvc;
         String type;
         String name;
-        Date expiryDate;
+        String expiryDate;
         while (rs.next()) {
             paymentMethodID = rs.getInt("PaymentMethodID");
             userID = rs.getInt("UserId");
             cardNumber = rs.getString("CardNumber");
             cvc = rs.getString("CVC");
-            type = rs.getString("Type");    
+            type = rs.getString("Type");
             name = rs.getString("Name");
-            expiryDate = rs.getDate("VALIDUNTIL");
+            expiryDate = rs.getString("VALIDUNTIL");
             rs.close();
-        return new PaymentMethod(paymentMethodID, userID, type, cardNumber, name, expiryDate, cvc);
+            return new PaymentMethod(paymentMethodID, userID, type, cardNumber, name, expiryDate, cvc);
         }
         return null;
-   }
+    }
+
     public PaymentMethod getPaymentMethod(int paymentMethodId) throws SQLException {
         String query = "SELECT * FROM PAYMENTMETHOD WHERE paymentMethodId=" + paymentMethodId;
         ResultSet rs = st.executeQuery(query);
@@ -57,12 +57,11 @@ public class PaymentMethodDAO {
         PaymentMethod paymentMethod = null;
         if (rs.next()) {
             paymentMethod = buildPaymentMethod(rs);
-}
+        }
         rs.close();
         return paymentMethod;
     }
 
-    
     public PaymentMethod getPayment(int id) throws SQLException {
         String query = "SELECT * FROM \"PaymentMethodID\" WHERE paymentmethodid=" + id;
         ResultSet rs = st.executeQuery(query);
@@ -77,11 +76,9 @@ public class PaymentMethodDAO {
 
     public List<PaymentMethod> getPaymentMethodList(int userId) throws SQLException {
 
-
         List<PaymentMethod> paymentMethodList = new ArrayList<>();
         String query = "SELECT * FROM \"PAYMENTMETHOD\" WHERE userid=" + userId;
         ResultSet rs = st.executeQuery(query);
-        List<PaymentMethod> paymentMethods = null;   
         while (rs.next()) {
             PaymentMethod paymentMethod = this.buildPaymentMethod(rs);
 
@@ -89,21 +86,20 @@ public class PaymentMethodDAO {
         }
         rs.close();
 
-        return paymentMethods;
+        return paymentMethodList;
     }
-    
+
     private PaymentMethod buildOrder(ResultSet rs) throws SQLException {
         int paymentMethodID = rs.getInt("PaymentMethodID");
         int userID = rs.getInt("UserId");
         String cardNumber = rs.getString("CardNumber");
         String cvc = rs.getString("CVC");
-        String type = rs.getString("Type");    
+        String type = rs.getString("Type");
         String name = rs.getString("Name");
-        Date expiryDate = rs.getDate("VALIDUNTIL");
+        String expiryDate = rs.getString("VALIDUNTIL");
         return new PaymentMethod(paymentMethodID, userID, type, cardNumber, name, expiryDate, cvc);
 
     }
-    
 
     private PaymentMethod buildPaymentMethod(ResultSet rs) throws SQLException {
 
@@ -113,7 +109,7 @@ public class PaymentMethodDAO {
         String cvc = rs.getString("CVC");
         String type = rs.getString("Type");
         String name = rs.getString("Name");
-        Date expiryDate = rs.getDate("VALIDUNTIL");
+        String expiryDate = rs.getString("VALIDUNTIL");
         return new PaymentMethod(paymentMethodId, userId, type, cardNumber, name, expiryDate, cvc);
     }
 

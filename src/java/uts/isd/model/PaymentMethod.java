@@ -18,10 +18,10 @@ public class PaymentMethod {
     private String type;
     private String cardNumber;
     private String name;
-    private Date expiryDate;
+    private String expiryDate;
     private String cvc;
 
-    public PaymentMethod(int paymentMethodId, int userId, String type, String cardNumber, String name, Date expiryDate, String cvc) {
+    public PaymentMethod(int paymentMethodId, int userId, String type, String cardNumber, String name, String expiryDate, String cvc) {
         this.paymentMethodId = paymentMethodId;
         this.userId = userId;
         this.type = type;
@@ -64,7 +64,7 @@ public class PaymentMethod {
         return name;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
@@ -88,7 +88,7 @@ public class PaymentMethod {
         this.name = name;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 

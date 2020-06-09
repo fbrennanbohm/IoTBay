@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : addPayment
     Created on : 05/06/2020, 8:55:15 PM
     Author     : Ricky
@@ -28,7 +28,7 @@
                         String emailErr = (String) session.getAttribute("emailErr");
                         String passErr = (String) session.getAttribute("passErr");
                         String nameErr = (String) session.getAttribute("nameErr");
-                    %>      
+                    %>
                     %>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="main.jsp">My Information</a>
                 </li>
-        </div>       
+        </div>
 
         <div class="container-fluid px-5 my-3">
             <div class="row">
@@ -94,7 +94,7 @@
                     <% }%>
                     <p></p>
                     <form action="AddPaymentMethodServlet?Id=<%= user.getUserId()%>" method="post">
-                        <input type="hidden" name="submitted" value="yes">
+                        <input type="hidden" name="submitted" value="yes"/>
                         <div class="form-group">
                             <label for="paymentType">Payment Type</label>
                             <input type="text" class="form-control" name="paymentType" placeholder="Visa/Mastercard"required >

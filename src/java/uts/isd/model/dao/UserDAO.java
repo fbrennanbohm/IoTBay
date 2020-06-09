@@ -230,7 +230,6 @@ public class UserDAO {
     public List<Payment> searchPayment(int paymentID, String date) throws SQLException {
         List<Payment> paymentList = new ArrayList<>();
         String query = "SELECT * FROM Payment WHERE paymentID= '" + paymentID + "'";;
- 
 
         ResultSet rs = st.executeQuery(query);
 
@@ -246,8 +245,8 @@ public class UserDAO {
         }
         return paymentList;
     }
-    
-        public PaymentMethod findPayment(int paymentId) throws SQLException {
+
+    public PaymentMethod findPayment(int paymentId) throws SQLException {
         String query = "SELECT * FROM \"PAYMENTMETHOD\" WHERE PAYMENTMETHODID=" + paymentId;
         ResultSet rs = st.executeQuery(query);
 
@@ -256,15 +255,14 @@ public class UserDAO {
             int userID = rs.getInt("UserId");
             String cardNumber = rs.getString("CardNumber");
             String cvc = rs.getString("CVC");
-            String type = rs.getString("Type");    
+            String type = rs.getString("Type");
             String name = rs.getString("Name");
-            Date expiryDate = rs.getDate("VALIDUNTIL");
-            return new PaymentMethod(paymentMethodID, userID, type, cardNumber, name,  expiryDate, cvc);
+            String expiryDate = rs.getString("VALIDUNTIL");
+            return new PaymentMethod(paymentMethodID, userID, type, cardNumber, name, expiryDate, cvc);
         }
         rs.close();
         return null;
     }
-
 
     private String wrapStr(String input) {
         return "'" + input + "'";
