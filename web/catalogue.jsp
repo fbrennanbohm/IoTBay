@@ -1,6 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="uts.isd.model.Product"%>
+<%@page import="uts.isd.model.*"%>
 <%@page import="java.util.List"%>
 
 <!DOCTYPE html>
@@ -17,6 +17,7 @@
             <h1 class="my-3">Device Catalogue</h1>
         </div>
         <%
+            User user = (User) session.getAttribute("user");
             List<Product> productList = (List<Product>) request.getAttribute("productList");
 
             if (productList != null) {
@@ -24,17 +25,31 @@
         <div class="container-fluid px-5">
             <div class="row">
                 <%
-                    for (Product p : productList) {
+                    for (Product product : productList) {
                 %>
                 <div class="col-sm-3">
                     <div class="card">
-                        <img src="<%= p.getImageUrl()%>" class="card-img-top" alt="...">
+                        <img src="<%= product.getImageUrl()%>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title"><%= p.getName()%></h5>
-                            <p class="card-text">Item description</p>
-                            <a href="#" class="btn btn-primary">Edit</a>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title"><%= product.getName()%></h5>
+                            <p class="card-text"><%=product.getDescription()%></p>
+
+                            <form action="AddToCart" method="post">
+                                <input type="hidden" name="productId" value="<%=product.getProductId()%>" />
+                                <%if (user == null) {%>
+                                <input type="number" name="quantity" class="form-control"  placeholder="Enter quantity" value="0" min="0" max="<%=product.getStockQuantity()%>" readonly/>
+
+                                </br>
+                                <button type="submit" class="btn btn-primary" disabled>Add to Cart</button>
+                                <% } else {%>
+
+                                <input type="hidden" name="userId" value="<%=user.getUserId()%>" />
+                                <input type="number" name="quantity" class="form-control"  placeholder="Enter quantity" value="0" min="0" max="<%=product.getStockQuantity()%>"/>
+
+                                </br>
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                <% } %>
+                            </form>
                         </div>
                     </div>
                 </div>
