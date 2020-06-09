@@ -13,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
      import javax.servlet.ServletException;
      import javax.servlet.http.HttpServlet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
      import javax.servlet.http.HttpServletRequest;
 
@@ -39,6 +41,9 @@ public class RegisterServlet extends HttpServlet {
   String lname = request.getParameter("lastName");
   UserDAO userDAO = (UserDAO)session.getAttribute("userDAO"); 
   int roleId= 1;
+  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+  LocalDateTime now = LocalDateTime.now();
+  String logIn = dtf.format(now);
   validator.clear(session);
 
  
@@ -63,7 +68,8 @@ else{
                 request.getRequestDispatcher("register.jsp").include(request,response);
             } else {
                 
-               userDAO.addUser(roleId,fname,lname,email,password);                
+               userDAO.addUser(roleId,fname,lname,email,password);   
+                 userDAO.addAccess(email, logIn);      
                 User user = userDAO.findUser(email,password);
                 session.setAttribute("user",user);
                 request.getRequestDispatcher("welcome.jsp").include(request, response);
