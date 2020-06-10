@@ -60,22 +60,22 @@
         <servlet-name>ConfirmUpdate</servlet-name>
         <servlet-class>uts.isd.controller.ConfirmUpdate</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>UpdatePayment</servlet-name>
         <servlet-class>uts.isd.controller.UpdatePayment</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>AddCartServlet</servlet-name>
         <servlet-class>uts.isd.controller.AddCartServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>ConfirmAddPayment</servlet-name>
+        <servlet-class>uts.isd.controller.ConfirmAddPayment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminConfirmDeleteUserController</servlet-name>
         <url-pattern>/AdminConfirmDeleteUserController</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>AdminDeleteUserController</servlet-name>
         <servlet-class>uts.isd.controller.AdminDeleteUserController</servlet-class>
@@ -329,24 +329,18 @@
         <servlet-name>PaymentSearchController</servlet-name>
         <url-pattern>/PaymentSearchController</url-pattern>
     </servlet-mapping>
-
-
     <servlet-mapping>
         <servlet-name>ShipmentServlet</servlet-name>
         <url-pattern>/ShipmentServlet</url-pattern>
     </servlet-mapping>
-
-
     <servlet-mapping>
         <servlet-name>UpdatePayment</servlet-name>
         <url-pattern>/UpdatePayment</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>AddCartServlet</servlet-name>
         <url-pattern>/AddCartServlet</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>CheckoutController</servlet-name>
         <servlet-class>uts.isd.controller.CheckoutController</servlet-class>
@@ -363,7 +357,6 @@
         <servlet-name>AddToCartController</servlet-name>
         <url-pattern>/AddToCart</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ProductManagementController</servlet-name>
         <url-pattern>/ProductManagementController</url-pattern>
@@ -372,7 +365,10 @@
         <servlet-name>ProductManagementController</servlet-name>
         <servlet-class>uts.isd.controller.ProductManagementController</servlet-class>
     </servlet>
-
+    <servlet-mapping>
+        <servlet-name>ConfirmAddPayment</servlet-name>
+        <url-pattern>/ConfirmAddPayment</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

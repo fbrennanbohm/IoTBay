@@ -39,12 +39,11 @@ public class UpdatePayment extends HttpServlet {
 
         try {
             PaymentMethod payment = userDAO.findPayment(paymentId);
-            System.out.println();
             request.setAttribute("payment", payment);
             //request.setAttribute("successMsg", "Successfully Added new payment");
         } catch (SQLException ex) {
             Logger.getLogger(CreateUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("updateConfirm.jsp").forward(request, response);
+        request.getRequestDispatcher("confirmPayment.jsp").forward(request, response);
     }
 }

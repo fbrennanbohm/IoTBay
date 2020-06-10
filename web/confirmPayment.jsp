@@ -23,7 +23,6 @@
             <div class="col-sm-8 text-right my-auto">
                  <%
             User user = (User) session.getAttribute("user");
-            PaymentMethod payment = (PaymentMethod) request.getAttribute("payment");
             String connectionURL = "jdbc:derby://localhost:1527/iotdb";
             Connection connection = null;
             Statement statement = null;
@@ -33,8 +32,7 @@
             int userId = Integer.parseInt(request.getParameter("id"));
             String QueryString = "select * from PAYMENTMETHOD where userID=" + userId ;
             rs = statement.executeQuery(QueryString);
-            //String updated =(String)session.getAttribute("updated");     
-            String paymentSearch = "";
+            //String updated =(String)session.getAttribute("updated");      
                     %>
             </div>
             </div>
@@ -79,9 +77,10 @@
                 <div class="col-sm-9">
                     
                 <h1>${user.firstName} ${user.lastName}'s Payment Method's</h1>
-                <form class="form-horizontal" name="myForm" method="post" action="UpdatePayment?id=<%= user.getUserId()%>">
-                        <p><strong>Please enter the ID of the payment you would like to update  </strong></p>
+                <form class="form-horizontal" name="myForm" method="post" action="ConfirmAddPayment?id=<%= user.getUserId()%>">
+                        <p><strong>These are the details of your selected payment method: </strong></p>
                         <%
+                        PaymentMethod payment = (PaymentMethod) request.getAttribute("payment");
                         String successMsg = (String) request.getAttribute("successMsg");
                         String errorMsg = (String) request.getAttribute("errorMsg");
                         if (successMsg != null) {
@@ -99,52 +98,35 @@
                         </div>
                         <% }%>
                         <div class="form-group">
-                            
-                            <label for="PaymentID">Update Payment ID:</label>
-                            <input type="text" class="form-control" name="UpdatePaymentID">
+                            <input type="hidden" name="paymentId" value="<%=payment.getPaymentMethodId()%>"/>
+                            <label for="paymentType">Payment Type</label>
+                            <input type="text" class="form-control" name="paymentType" value="<%=payment.getType()%>"required >
                         </div>
 
-                        <div class="form-group"><div class="col-sm-offset-2 col-sm-10">
-                                <input type='submit' class='btn btn-primary'value='Update'>
-                                <a href="paymentMethod.jsp?id=<%= user.getUserId()%>" class="btn btn-secondary mx-4">Cancel</a>
+                        <div class="form-group">
+                            <label for="Card Number">Card Number</label>
+                            <input type="text" class="form-control" name="cardNumber" value="<%=payment.getCardNumber()%>"required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="Card Holder">Card Holder</label>
+                            <input type="text" class="form-control" name="cardHolder" value="<%=payment.getName()%>"required>
                         </div>
-                    </form>
-                <p>Your payment methods are listed below:</p>
-                
-                <table border ="1" align="left" style ="text-align: center">
-                    <thead>
-                        <tr>
-                            <th>Payment Method</th>
-                            <th>Payment Type</th>
-                            <th>Card Number</th>
-                            <th>Card Holder</th>
-                            <th>Expiry Date</th>
-                            <th>CVC</th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody>
-                        <%while (rs.next()) { %>
-                        <tr>
-                            <td><%=rs.getString("PAYMENTMETHODID") %></td>
-                            <td><%=rs.getString("TYPE") %></td>
-                            <td><%=rs.getString("CARDNUMBER") %></td>
-                            <td><%=rs.getString("NAME") %></td>
-                            <td><%=rs.getString("VALIDUNTIL") %></td>
-                            <td><%=rs.getString("CVC") %></td>
-                        <% } %>
-                    <% 
-                        rs.close();
-                        statement.close();
-                        connection.close();
-                    %>        
-                        </tr>                      
-                    </tbody>
-                </table>
-                        
-                </div>
-                        
+
+                        <div class="form-group">
+                            <label for="Expiry Date">Expiry Date</label>
+                            <input type="text" class="form-control" name="expiryDate" value="<%=payment.getExpiryDate()%>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="CVC">CVC</label>
+                            <input type="text" class="form-control" name="cvc" value="<%=payment.getCvc()%>" required>
+                        </div>
+                        <div class="container mt-4">
+                            <input type="submit" class="btn btn-primary" value="Update Payment"/>
+                            <a href="paymentMethod.jsp?id=<%= user.getUserId()%>" class="btn btn-secondary mx-4">Cancel</a>
+                        </div>
+                    </form>    
+                </div>            
             </div>
         </div>
     </body>

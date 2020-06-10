@@ -31,6 +31,7 @@
                         int userId = Integer.parseInt(request.getParameter("id"));
                         String QueryString = "select * from PAYMENTMETHOD where userID=" + userId;
                         ResultSet rs = rs = statement.executeQuery(QueryString);
+                        int paymentSearch = 0;
                     %>
                 </div>
             </div>
@@ -97,7 +98,7 @@
                         <% }%>
                         <div class="form-group">
                             <label for="PaymentID">Remove Payment ID:</label>
-                            <input type="text" class="form-control" name="RemovePaymentID">
+                            <input type="text" class="form-control" name="RemovePaymentID" value="<%=paymentSearch%>">
                         </div>
 
                         <div class="form-group"><div class="col-sm-offset-2 col-sm-10">

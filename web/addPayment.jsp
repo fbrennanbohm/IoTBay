@@ -29,7 +29,6 @@
                         String passErr = (String) session.getAttribute("passErr");
                         String nameErr = (String) session.getAttribute("nameErr");
                     %>
-                    %>
                 </div>
             </div>
         </div>

@@ -226,6 +226,10 @@ public class UserDAO {
         //code for delete-operation
         st.executeUpdate("DELETE FROM PaymentMethod WHERE PAYMENTMETHODID=" + removeId);
     }
+    
+    public void updatePayment(int paymentId, String paymentType, String cardNumber, String cardHolder, String cvc) throws SQLException {
+        st.executeUpdate("UPDATE PaymentMethod SET TYPE='" + paymentType + "'" + ", CARDNUMBER ='" + cardNumber + "'" + ", NAME='" + cardHolder + "'" + ", CVC = '" + cvc +"' WHERE paymentMethodId=" + paymentId);
+    }
 
     public List<Payment> searchPayment(int paymentID, String date) throws SQLException {
         List<Payment> paymentList = new ArrayList<>();
