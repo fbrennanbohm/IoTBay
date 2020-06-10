@@ -61,7 +61,7 @@
 
                                 <tr>
                                     <td colspan="3">Total</td>
-                                    <td><b><%=totalPrice%> </b> </td>
+                                    <td><b><%=(Math.round(totalPrice * 100.0) / 100.0)%> </b> </td>
                                 </tr> <% } else {%>
                                 <tr>
                                     <td colspan="4">No items in cart.</td>

@@ -28,7 +28,7 @@ public class UserCartProductDAO {
         String query = "SELECT * FROM USERCARTPRODUCTS WHERE userId=" + userId;
         ResultSet rs = st.executeQuery(query);
 
-        if (rs.next()) {
+        while (rs.next()) {
             UserCartProduct userCartProduct = buildUserCartProduct(rs);
             userCartProductList.add(userCartProduct);
         }
