@@ -45,7 +45,7 @@
                                 <td><%= product.getProductId()%></td>
                                 <td><%=product.getName()%></td>
                                 <td><%=product.getDescription()%></td>
-                                <td><%=product.getPrice()%></td>
+                                <td><%=Math.round(product.getPrice())%></td>
                                 <td><%=product.getStockQuantity()%></td>
                                 <td>
                                     <a href="" class="btn btn-warning mx-2" data-toggle="tooltip" title="Delete this user"><i class="fas fa-trash-alt"></i></a>
