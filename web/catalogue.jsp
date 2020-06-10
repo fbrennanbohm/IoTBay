@@ -38,9 +38,9 @@
                                 <input type="hidden" name="productId" value="<%=product.getProductId()%>" />
                                 <%if (user == null) {%>
                                 <input type="number" name="quantity" class="form-control"  placeholder="Enter quantity" value="0" min="0" max="<%=product.getStockQuantity()%>" readonly/>
-
                                 </br>
                                 <button type="submit" class="btn btn-primary" disabled>Add to Cart</button>
+                                <p class="card-text">$<%=Math.round(product.getPrice())%></p>
                                 <% } else {%>
 
                                 <input type="hidden" name="userId" value="<%=user.getUserId()%>" />
