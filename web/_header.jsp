@@ -45,6 +45,10 @@
         <li class="nav-item">
             <a class="nav-link <%=(url.indexOf("addProduct.jsp") > -1 ? "active" : "")%>" href="addProduct.jsp">Add Product</a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link <%=(url.indexOf("productManagement.jsp") > -1 ? "active" : "")%>" href="ProductManagementController">Product Manager</a>
+        </li>
         <% } %>
 
         <%if (user.isAdmin()) {%>

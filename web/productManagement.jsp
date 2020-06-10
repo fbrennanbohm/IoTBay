@@ -48,7 +48,7 @@
                                 <td><%=product.getPrice()%></td>
                                 <td><%=product.getStockQuantity()%></td>
                                 <td>
-                                    <a href="AdminConfirmDeleteUserController?id=<%=product.getProductId()%>" class="btn btn-warning mx-2" data-toggle="tooltip" title="Delete this user"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="" class="btn btn-warning mx-2" data-toggle="tooltip" title="Delete this user"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                             <% }
