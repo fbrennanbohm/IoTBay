@@ -56,6 +56,7 @@
 
                                 <% }%>
                                 <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                <p class="card-text">$<%=Math.round(product.getPrice())%></p>
                                 <% } %>
                             </form>
                         </div>
