@@ -38,6 +38,22 @@ public class PaymentDAO {
         return paymentList;
     }
     
+    public List<Payment> getPaymentList(int paymentId) throws SQLException {
+        List<Payment> paymentList = new ArrayList<>();
+        String query = "SELECT * FROM \"Payment\" WHERE PAYMENTID =" + paymentId;
+        ResultSet rs = st.executeQuery(query);
+        
+        while (rs.next()) {
+            
+            Payment payment = this.buildPayment(rs);
+            paymentList.add(payment);
+        }
+        rs.close();
+        
+        return paymentList;
+    }
+        
+    
        private Payment buildPayment(ResultSet rs) throws SQLException {
            int paymentId = rs.getInt("PAYMENTID");
            int userId = rs.getInt("USERID");
