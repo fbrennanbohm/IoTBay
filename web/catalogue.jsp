@@ -9,6 +9,8 @@
         <title>IoTBay - Catalogue</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </head>
     <body>
         <jsp:include page="_header.jsp" />
@@ -47,6 +49,12 @@
                                 <input type="number" name="quantity" class="form-control"  placeholder="Enter quantity" value="0" min="0" max="<%=product.getStockQuantity()%>"/>
 
                                 </br>
+                                <%if (user.isAdmin() || user.isStaff()) {%>
+
+                                <a href="/IoTBay/EditProductController?id=<%= product.getProductId()%>" class="btn btn-primary">Edit</a>
+                                <a href="/IoTBay/ProductManagementController?id=<%= product.getProductId()%>" class="btn btn-primary">Delete</a>
+
+                                <% }%>
                                 <button type="submit" class="btn btn-primary">Add to Cart</button>
                                 <% } %>
                             </form>

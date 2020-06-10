@@ -363,6 +363,16 @@
         <servlet-name>AddToCartController</servlet-name>
         <url-pattern>/AddToCart</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProductManagementController</servlet-name>
+        <url-pattern>/ProductManagementController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProductManagementController</servlet-name>
+        <servlet-class>uts.isd.controller.ProductManagementController</servlet-class>
+    </servlet>
+
     <session-config>
         <session-timeout>
             30
